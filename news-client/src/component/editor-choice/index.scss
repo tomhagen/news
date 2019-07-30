@@ -1,0 +1,118 @@
+@import "../scss/variables.scss";
+
+.editor-choice {
+  margin-top: 30px;
+  .container {
+    width: 84%;
+    margin: auto;
+    .editor-choice-title {
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .editor-choice-item {
+      margin-top: 20px;
+      .slick-slider {
+        .slick-arrow {
+          display: none !important;
+        }
+        // .slick-prev{
+        //   top: -14%;
+        //   left: 1201px;
+        //   &::before{
+        //     color: $primaryColor;
+        //     opacity: 1;
+        //     font-size: 26px;
+
+        //   }
+        // }
+        // .slick-next {
+        //   right: 25px;
+        //   top: -14%;
+        //   &::before{
+        //     color: $primaryColor;
+        //     opacity: 1;
+        //     font-size: 26px;
+
+        //   }
+        // }
+      }
+
+      .item {
+        .item-box-img {
+          width: 92%;
+          .item-img {
+            width: 100%;
+          }
+        }
+        .item-box-content {
+          width: 92%;
+          .content-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            a {
+              color: black;
+              &:hover {
+                color: $primaryColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// responsive
+@media screen and (max-width: 1200px) {
+  .editor-choice {
+    .container {
+      width: 90%;
+
+      .editor-choice-title {
+      }
+      .editor-choice-item {
+      }
+    }
+  }
+}
+@media screen and (max-width: 993px) {
+  .editor-choice {
+    .container {
+      width: 98%;
+
+      .editor-choice-title {
+      }
+      .editor-choice-item {
+      }
+    }
+  }
+}
+@media screen and (max-width: 782px) {
+  .editor-choice {
+    .container {
+      width: 93%;
+
+      .editor-choice-title {
+      }
+      .editor-choice-item {
+        .item {
+          .item-box-img {
+            width: 92%;
+            .item-img {
+              width: 100%;
+            }
+          }
+          .item-box-content {
+      
+            .content-title {
+              font-size: 18px;
+         
+            }
+          }
+        }
+      }
+    }
+  }
+}

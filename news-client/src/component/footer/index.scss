@@ -1,0 +1,237 @@
+@import "../scss/variables.scss";
+
+.footer {
+  background-color: $bgColor2;
+  color: white;
+  .container {
+    width: 84%;
+    margin: auto;
+    padding: 50px 0;
+    .footer-box {
+      display: flex;
+      flex-wrap: wrap;
+
+      .social-box {
+        flex: 33% 1;
+        max-width: 33%;
+        img {
+          width: 125px;
+        }
+        p {
+          color: #cccccc;
+          font-size: 14px;
+          line-height: 19px;
+          letter-spacing: 1px;
+          margin-top: 25px;
+        }
+        .icon-box {
+          font-size: 25px;
+          margin-top: 30px;
+          .icon {
+            margin: 10px;
+            color: white;
+            &:hover {
+              color: $primaryColor;
+            }
+          }
+        }
+      }
+      .news-box {
+        flex: 66%;
+        max-width: 66%;
+
+        .news-box-container {
+          display: flex;
+          flex-wrap: wrap;
+          .recent-post-box {
+            flex: 50%;
+            max-width: 50%;
+            .recent-title {
+              font-size: 20px;
+              font-weight: bold;
+            }
+            .recent-item {
+              display: flex;
+              flex-wrap: wrap;
+              margin-top: 20px;
+              .item-logo {
+                max-width: 20%;
+                flex: 20%;
+                img {
+                  width: 100%;
+                }
+              }
+              .item-content {
+                max-width: 70%;
+                flex: 70%;
+                color: white;
+                font-size: 15px;
+                margin-left: 10px;
+                &:hover {
+                  color: $primaryColor;
+                }
+              }
+            }
+          }
+          .popular-post-box {
+            flex: 50%;
+            max-width: 50%;
+            .popular-title {
+              font-size: 20px;
+              font-weight: bold;
+            }
+            .popular-item {
+              display: flex;
+              flex-wrap: wrap;
+              margin-top: 20px;
+              .item-logo {
+                max-width: 20%;
+                flex: 20%;
+                width: 10%;
+                img {
+                  width: 100%;
+                }
+              }
+              .item-content {
+                max-width: 70%;
+                flex: 70%;
+                color: white;
+                font-size: 15px;
+                margin-left: 10px;
+                &:hover {
+                  color: $primaryColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// responsive
+@media screen and (max-width: 1200px) {
+  .footer {
+    .container {
+      width: 90%;
+      .footer-box {
+        .news-box {
+          .news-box-container {
+            .recent-post-box {
+              .recent-item {
+                .item-logo {
+                  max-width: 30%;
+                  flex: 30%;
+                }
+                .item-content {
+                  max-width: 60%;
+                  flex: 60%;
+                }
+              }
+            }
+            .popular-post-box {
+              .popular-item {
+                .item-logo {
+                  max-width: 30%;
+                  flex: 30%;
+                }
+                .item-content {
+                  max-width: 60%;
+                  flex: 60%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 993px) {
+  .footer {
+    .container {
+      width: 97%;
+      .footer-box {
+        .news-box {
+          .news-box-container {
+            .recent-post-box {
+              .recent-item {
+                .item-logo {
+                  max-width: 30%;
+                  flex: 30%;
+                }
+                .item-content {
+                  max-width: 60%;
+                  flex: 60%;
+                }
+              }
+            }
+            .popular-post-box {
+              .popular-item {
+                .item-logo {
+                  max-width: 30%;
+                  flex: 30%;
+                }
+                .item-content {
+                  max-width: 60%;
+                  flex: 60%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+      .container {
+        width: 93%;
+        .footer-box {
+            .social-box{
+                flex: 100% 1;
+                max-width: 100%;
+            }
+          .news-box {
+            flex: 100%;
+            max-width: 100%;
+            margin-top: 30px;
+            .news-box-container {
+              .recent-post-box {
+                flex: 1000%;
+                max-width: 100%;
+                .recent-item {
+                  .item-logo {
+                    max-width: 20%;
+                    flex: 20%;
+                  }
+                  .item-content {
+                    max-width: 70%;
+                    flex: 70%;
+                  }
+                }
+              }
+              .popular-post-box {
+                flex: 1000%;
+                max-width: 100%;
+                margin-top: 30px;
+                .popular-item {
+                  .item-logo {
+                    max-width: 20%;
+                    flex: 20%;
+                  }
+                  .item-content {
+                    max-width: 70%;
+                    flex: 70%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

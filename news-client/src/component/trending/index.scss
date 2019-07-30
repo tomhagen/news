@@ -1,0 +1,75 @@
+@import "../scss/variables.scss";
+
+.trending {
+  width: 100%;
+  padding: 20px 20px;
+  height: 70px;
+
+  .container {
+    width: 86%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    .trending-tag {
+      background-color: $primaryColor;
+
+      width: 130px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      padding: 3px;
+      font-weight: bold;
+      font-size: 15px;
+      .trending-icon {
+        font-size: 15px;
+        color: white;
+      }
+      span {
+        color: white;
+      }
+    }
+    .trending-content {
+      max-width: calc(100% - 130px);
+      font-weight: bold;
+      line-height: 40px;
+      height: 40px;
+      overflow: hidden;
+      margin-left: 20px;
+      color: $generalTextColor;
+    }
+  }
+}
+
+// responsive
+@media screen and (max-width: 993px) {
+  .trending {
+    padding: 20px 0;
+    .container {
+      width: 98%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .trending {
+     margin-bottom: 20px;
+    .container {
+      width: 93%;
+      .trending-tag {
+        font-size: 15px;
+        .trending-icon {
+          font-size: 15px;
+        }
+      }
+      .trending-content {
+        font-size: 15px;
+       
+      }
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+    .trending {
+      margin-bottom: 20px;
+    }
+  }

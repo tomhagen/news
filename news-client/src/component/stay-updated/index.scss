@@ -1,0 +1,117 @@
+@import "../scss/variables.scss";
+
+.stay-updated {
+  margin-top: 30px;
+  background-image: url("../../img/subscription_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 250px;
+
+  .container {
+    width: 84%;
+    margin: auto;
+    text-align: center;
+    padding: 50px 0;
+    .stay-updated-title {
+      color: $generalTextColor;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .subscribe-form {
+    
+      width: 50%;
+      margin: auto;
+      .stay-updated-content {
+        color: $contentTextColor;
+        margin-bottom: 30px;
+      }
+      .input-form {
+        width: 45%;
+        height: 46px;
+      }
+      .input-btn {
+        margin-left: 10px;
+        height: 46px;
+        font-size: 16px;
+        padding: 0 30px;
+        font-weight: bold;
+      }
+      .ant-btn-primary{
+        background-color: $primaryColor !important;
+        border-color: $primaryColor !important;
+        &:hover{
+            background-color: black !important;
+        }
+      }
+    }
+  }
+}
+
+//responsive
+
+@media screen and (max-width: 1200px){
+    .stay-updated{
+        .container{
+            .subscribe-form{
+                width: 68%;
+                .input-form{
+
+                }
+                .input-btn{
+
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 993px){
+    .stay-updated{
+        .container{
+            .subscribe-form{
+                width: 80%;
+                .input-form{
+
+                }
+                .input-btn{
+
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .stay-updated{
+        .container{
+            .subscribe-form{
+                width: 100%;
+                .input-form{
+                    width: 50%;
+                }
+                .input-btn{
+
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 500px){
+    .stay-updated{
+        height: 323px;
+        .container{
+            .subscribe-form{
+                width: 87%;
+                .input-form{
+                    width: 100%;
+                }
+                .input-btn{
+                    width: 100%;
+                    margin-left: 0;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

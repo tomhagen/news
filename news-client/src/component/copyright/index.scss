@@ -1,0 +1,19 @@
+@import "../scss/variables.scss";
+
+.copyright{
+    background-color: $bgColor2;
+   
+    
+    .container{
+        width: 84%;
+        margin: auto;
+        text-align: center;
+        border-top: 1px solid #444;
+        padding: 20px 0;
+        p{
+            color: #cccccc;
+            font-size: 15px;
+
+        }
+    }
+}

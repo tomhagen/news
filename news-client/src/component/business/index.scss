@@ -1,0 +1,101 @@
+@import "../scss/variables.scss";
+
+.business {
+    margin-top: 30px;
+  .container {
+    width: 100%;
+    margin: auto;
+
+    .business-tag{
+        margin-bottom: 10px;
+        background-color: #08A100;
+        padding: 7px 10px;
+        width: 80px;
+        text-align: center;
+        border-radius: 5px        ;
+        -webkit-border-radius: 5px        ;
+        -moz-border-radius: 5px        ;
+        -ms-border-radius: 5px        ;
+        -o-border-radius: 5px        ;
+        
+        a{       
+            font-size: 12px;
+            color: white;
+
+        }
+    }
+    .main-news {
+      width: 100%;
+      background-image: url("../../img/startup-photos-1.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    background-position: center;
+      position: relative;
+      height: 400px;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background: transparent;
+        background-image: linear-gradient(
+          transparent 0%,
+          transparent 50%,
+          rgba(0, 0, 0, 0.1) 56%,
+          rgba(0, 0, 0, 0.6) 93%,
+          rgba(0, 0, 0, 0.59) 100%
+        );
+      }
+      .container {
+        position: absolute;
+        z-index: 10;
+        bottom: 35px;
+        left: 2%;
+        width: 98%;
+        text-align: left;
+
+        .box-info {
+          display: flex;
+          flex-wrap: wrap;
+          .info-author {
+            width: 25px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            margin-right: 10px;
+          }
+          .info-name {
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 22px;
+            margin-right: 10px;
+          }
+          .info-date {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 22px;
+            color: white;
+          }
+        }
+        .title {
+          font-size: 28px;
+          font-weight: bold;
+          a {
+            color: white;
+          }
+          &:hover a {
+            color: $primaryColor;
+          }
+        }
+      }
+    }
+  }
+}

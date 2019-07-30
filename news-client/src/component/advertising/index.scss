@@ -1,0 +1,43 @@
+@import "../scss/variables.scss";
+
+.advertising {
+  margin-top: 30px;
+  .container {
+    width: 84%;
+    margin: auto;
+    text-align: center;
+    .title {
+      font-size: 11px;
+    }
+    .ads {
+      padding: 10px 0;
+      width: 50%;
+      margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .advertising {
+    .container {
+      .ads {
+        width: 80%;
+      }
+    }
+  }
+}
+@media screen and (max-width: 782px) {
+    .advertising {
+      .container {
+        .ads {
+          width: 100%;
+        
+        }
+      }
+    }
+  }
+  

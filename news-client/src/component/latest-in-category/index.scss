@@ -1,0 +1,224 @@
+@import "../scss/variables.scss";
+
+.latest-in-category {
+  margin-top: 4%;
+
+  .container {
+    width: 86%;
+    margin: auto;
+
+    .latest-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .latest-news-title {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-left: 10px;
+        
+      }
+      .latest-news-menu {
+        margin-right: 40px;
+        .menu-box {
+          li {
+            display: inline;
+            margin-left: 10px;
+            a {
+              color: gray;
+              font-size: 15px;
+              &:hover {
+                color: $primaryColor;
+              }
+            }
+          }
+          .addColor{
+            border-bottom: 3px solid $primaryColor;
+            transition: all 1s          ;
+            -webkit-transition: all 1s          ;
+            -moz-transition: all 1s          ;
+            -ms-transition: all 1s          ;
+            -o-transition: all 1s          ;
+          }
+          .normal{
+            border-bottom: none;
+          }
+        }
+      }
+    }
+    .latest-news-box {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      .latest-news-item {
+        flex: 31% 1;
+        max-width: 31%;
+
+        .item-box-img {
+          img {
+            width: 100%;
+          }
+        }
+        .item-box-content {
+          margin-top: 20px;
+          .content-title {
+            font-size: 20px;
+            font-weight: bold;
+
+            a {
+              color: black;
+            }
+            &:hover a {
+              color: $primaryColor;
+            }
+          }
+
+          .content-info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            .info-name {
+              font-size: 12px;
+              font-weight: bold;
+            }
+            .info-date {
+              font-size: 11px;
+              margin-left: 20px;
+              color: $dateTextColor;
+              letter-spacing: 1px;
+            }
+          }
+        }
+      }
+      .item {
+        margin: 30px 10px;
+      }
+    }
+    .showClass{
+      display: flex;
+    }
+    .hideClass{
+      display: none;
+    }
+   
+  }
+}
+
+
+
+// responsive
+@media screen and (max-width: 1200px) {
+  .latest-in-category {
+    .container {
+      width: 93%;
+    }
+  }
+}
+@media screen and (max-width: 993px) {
+  .latest-in-category {
+    .container {
+      width: 97%;
+      .latest-news-box {
+        .latest-news-item {
+          flex: 30% 1;
+          max-width: 30%;
+          .item-box-content {
+            .content-title {
+              font-size: 18px;
+            }
+            .content-info {
+              display: block;
+              .info-date {
+                margin-left: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 805px) {
+  .latest-in-category {
+    .container {
+      .latest-header {
+        .latest-news-menu {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .latest-in-category {
+    .container {
+      .latest-header {
+        .latest-news-menu {
+          margin-top: 20px;
+          max-width: 80%;
+          flex: 80%;
+          .menu-box {
+            li {
+              a {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+      .latest-news-box {
+        .latest-news-item {
+          flex: 100% 1;
+          max-width: 100%;
+          .item-box-content {
+            .content-title {
+              font-size: 20px;
+            }
+            .content-info {
+              .info-date {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .latest-in-category {
+    .container {
+      .latest-header {
+        .latest-news-menu {
+         max-width: 80%;
+         flex: 80%;
+          .menu-box {
+            li {
+              a {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .latest-in-category {
+    .container {
+      .latest-header {
+        .latest-news-menu {
+        
+          .menu-box {
+            max-width: 80%;
+            li {
+              a {
+                font-size: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

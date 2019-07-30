@@ -1,0 +1,44 @@
+@import "../scss/variables.scss";
+
+.header {
+  .admin-header {
+    width: 80%;
+    margin: auto;
+    border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+    .admin-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 10px 0;
+      .logo {
+        width: 70px;
+        img {
+          width: 100%;
+        }
+      }
+      .admin-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 180px;
+        .admin-icon {
+          line-height: 40px;
+        }
+        .admin-img {
+          img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+          }
+        }
+        .admin-name {
+          line-height: 40px;
+        }
+      }
+    }
+  }
+}
