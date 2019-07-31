@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const PostSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
   status: { type: String, default: "public" },
+  author: {type: String, required: true},
   description: { type: String, required: true },
-  createdDate: { type: Date, default: Date.now() },
+  createdOn: { type: Date, default: Date.now() },
   category: { type: String, required: true },
   comments: { type: Schema.Types.ObjectId, ref: "comment" }
 });

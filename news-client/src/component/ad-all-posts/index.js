@@ -7,43 +7,32 @@ import Axios from "axios";
 
 const { Search } = Input;
 
-
-
-
-
-
 class AllPosts extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       data2: ""
-    }
+    };
   }
   componentDidMount() {
     Axios({
       method: "get",
       url: "http://localhost:5000/api/post/get"
     })
-  
-      .then(res => {
-        console.log(res)
-        this.setState({data2: res})
-      })
+      .then(res => console.log(res))
       .catch(err => console.log(err));
   }
 
   render() {
-    console.log(this.state.data2.title)
+    console.log(this.state.data2.title);
     const data = [
       {
         STT: 1,
         key: "1",
-        title:
-          this.state.data2.title,
+        title: this.state.data2.title,
         date: "27/7/2019",
         status: "public"
       }
-      
     ];
 
     const columns = [
@@ -58,7 +47,7 @@ class AllPosts extends Component {
         key: "title",
         render: text => <a href="javascript:;">{text}</a>
       },
-    
+
       {
         title: "Created Date",
         dataIndex: "date",

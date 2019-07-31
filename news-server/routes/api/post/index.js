@@ -2,16 +2,17 @@ const { Post } = require("../../../models/post");
 const express = require("express");
 const router = express.Router();
 
-// route POST/api/post/create
-// Create New Post
+// route api/posts
+// CREATE A NEW POST
 // access PUBLIC
 
-router.post("/create", (req, res) => {
-  const { title, status, description, category } = req.body;
+router.post("/posts", (req, res) => {
+  const { title, status, author, description, category } = req.body;
 
   const newPost = new Post({
     title,
     status,
+    author,
     description,
     category
   });
@@ -21,13 +22,32 @@ router.post("/create", (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-router.get("/get", (req, res) => {
+// route api/posts
+// GET ALL POSTS
+// access PUBLIC
+
+router.get("/posts", (req, res) => {
   Post.find()
     .then(post => res.status(200).json(post))
     .catch(err => res.status(400).json(err));
 });
 
-router.delete("/delete/:id", (req, res) => {
+// route api/posts/:id
+// GET DETAIL OF POST
+// access PUBLIC
+
+router.get("/posts/id", (req, res) => {
+  let id = req.query.id;
+  Post.findById(id)
+    .then(post => res.status(200).json(post))
+    .catch(err => res.status(400).json(err));
+});
+
+// route api/posts/:id
+// DELETE A POST
+// access PUBLIC
+
+router.delete("/posts/:id", (req, res) => {
   const { id } = req.params;
 
   Post.findByIdAndDelete(id)
@@ -35,7 +55,11 @@ router.delete("/delete/:id", (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-router.put("/update/:id", (req, res) => {
+// route api/posts/:id
+// UPDATE POSTS
+// access PUBLIC
+
+router.put("/posts/:id", (req, res) => {
   Post.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, res) => {
     if (err) console.log(err);
     console.log(res);
@@ -43,6 +67,49 @@ router.put("/update/:id", (req, res) => {
     .then(post => res.status(200).json(post))
     .catch(err => res.status(400).json(err));
 });
+
+// route api/posts/category?type=&limit=
+// GET POST BY CATEGORY
+// access PUBLIC
+
+router.get("/posts/category", (req, res) => {
+  let type = req.query.type;
+  let limit = req.query.limit;
+  Post.find({ category: type })
+    .sort({ createdOn: -1 })
+    .limit(Number(limit))
+    .then(post => res.status(200).json(post))
+    .catch(err => res.status(400).json(err));
+});
+
+// route api/posts/time?limit=%skip=
+// GET LATEST POST
+// access PUBLIC
+
+router.get("/posts/time", (req, res) => {
+  Post.find()
+    .sort({ createdOn: -1 })
+    .limit(Number(req.query.count))
+    .skip(Number(req.query.skip))
+    .then(post => res.status(200).json(post))
+    .catch(err => res.status(400).json(err));
+});
+
+// route api/posts/pagniation
+// PAGNIATION
+
+router.get("/posts/pagniation", (req, res) => {
+  let pageNumber = req.query.pageNumber;
+  let pageSize = req.query.pageSize;
+  Post.find()
+    .sort({ createdOn: -1 })
+    .skip(Number((pageNumber - 1) * pageSize))
+    .limit(Number(pageSize))
+    .then(post => res.status(200).json(post))
+    .catch(err => res.status(400).json(err));
+});
+module.exports = router;
+
 // router.put("/update/:id", (req, res) => {
 //   const { id } = req.params;
 //   Post.findById(id)
@@ -63,26 +130,3 @@ router.put("/update/:id", (req, res) => {
 
 //     .catch(console.log);
 // });
-router.get("/:id", (req, res) => {
-  const { id } = req.params;
-  Post.findById(id)
-    .then(post => res.status(200).json(post))
-    .catch(err => res.status(400).json(err));
-});
-
-// Get posts with the same category
-router.get("/category", (req, res) => {
-  const { category } = req.body;
-  Post.find({ category: category })
-    .then(post => console.log(post))
-    .catch(err => res.status(400).json(err));
-});
-
-router.get("/latestnews", (req, res) => {
-  Post.find()
-    .sort({ createdDate: -1 })
-    .limit(3)
-    .then(post => res.status(200).json(post))
-    .catch(err => res.status(400).json(err));
-});
-module.exports = router;

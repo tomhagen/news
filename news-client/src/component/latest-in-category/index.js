@@ -2,8 +2,8 @@ import "./index.scss";
 
 import React, { Component, Fragment } from "react";
 import Loading from "../loading/loading";
-import {Spin} from 'antd';
-
+import { Spin } from "antd";
+import Axios from "axios";
 
 class LatestInCategory extends Component {
   constructor(props) {
@@ -15,80 +15,104 @@ class LatestInCategory extends Component {
   }
 
   handleActive = divId => {
-
     if (divId === "business") {
       this.setState({
         activeClass: [true, false, false, false, false, false]
       });
-      
     } else if (divId === "computing") {
       this.setState({
         activeClass: [false, true, false, false, false, false]
       });
-    }
-    else if (divId === "energy") {
+    } else if (divId === "energy") {
       this.setState({
         activeClass: [false, false, true, false, false, false]
       });
-    }
-    else if (divId === "mobile") {
+    } else if (divId === "mobile") {
       this.setState({
         activeClass: [false, false, false, true, false, false]
       });
-    }
-    else if (divId === "robotic") {
+    } else if (divId === "robotic") {
       this.setState({
         activeClass: [false, false, false, false, true, false]
       });
-    }
-    else if (divId === "startup") {
+    } else if (divId === "startup") {
       this.setState({
         activeClass: [false, false, false, false, false, true]
       });
     }
   };
 
-  
+  // componentDidMount() {
+  //   let computing = computing;
+  //   Axios({
+  //     method: "GET",
+  //     url: `http://localhost:5000/api/posts/category?type=${computing}&limit=${3}`
+  //   })
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
-   
     return (
-      
       <Fragment>
-          {/* <Loading/> */}
-          {/* <Spin delay="3000"/> */}
+        {/* <Loading/> */}
+        {/* <Spin delay="3000"/> */}
         <section className="latest-in-category">
           <div className="container">
             <div className="latest-header">
               <h3 className="latest-news-title">LATEST IN CATEGORIES</h3>
               <div className="latest-news-menu">
                 <ul className="menu-box">
-                  <li className={this.state.activeClass[0] ? "addColor":"normal"}>
+                  <li
+                    className={
+                      this.state.activeClass[0] ? "addColor" : "normal"
+                    }
+                  >
                     <a onClick={() => this.handleActive("business")}>
                       BUSINESS
                     </a>
                   </li>
-                  <li className={this.state.activeClass[1] ? "addColor":"normal"}>
+                  <li
+                    className={
+                      this.state.activeClass[1] ? "addColor" : "normal"
+                    }
+                  >
                     <a onClick={() => this.handleActive("computing")}>
                       COMPUTING
                     </a>
                   </li>
-                  <li className={this.state.activeClass[2] ? "addColor":"normal"}>
+                  <li
+                    className={
+                      this.state.activeClass[2] ? "addColor" : "normal"
+                    }
+                  >
                     <a onClick={() => this.handleActive("energy")}>ENERGY</a>
                   </li>
-                  <li className={this.state.activeClass[3] ? "addColor":"normal"}>
+                  <li
+                    className={
+                      this.state.activeClass[3] ? "addColor" : "normal"
+                    }
+                  >
                     <a onClick={() => this.handleActive("mobile")}>MOBILE</a>
                   </li>
-                  <li className={this.state.activeClass[4] ? "addColor":"normal"}>
+                  <li
+                    className={
+                      this.state.activeClass[4] ? "addColor" : "normal"
+                    }
+                  >
                     <a onClick={() => this.handleActive("robotic")}>ROBOTIC</a>
                   </li>
-                  <li className={this.state.activeClass[5] ? "addColor":"normal"}>
+                  <li
+                    className={
+                      this.state.activeClass[5] ? "addColor" : "normal"
+                    }
+                  >
                     <a onClick={() => this.handleActive("startup")}>STARTUP</a>
                   </li>
                 </ul>
               </div>
             </div>
-          
+
             <div
               className={`latest-news-box ${
                 this.state.activeClass[0] ? "showClass" : "hideClass"
@@ -382,9 +406,10 @@ class LatestInCategory extends Component {
             </div>
 
             <div
-              className={`latest-news-box ${this.state.activeClass[2] ? "showClass": "hideClass"}`}
+              className={`latest-news-box ${
+                this.state.activeClass[2] ? "showClass" : "hideClass"
+              }`}
               id="energy"
-              
             >
               <div className="latest-news-item item">
                 <div className="item-box-img">
@@ -525,11 +550,12 @@ class LatestInCategory extends Component {
                 </div>
               </div>
             </div>
-            
+
             <div
-              className={`latest-news-box ${this.state.activeClass[3] ? "showClass": "hideClass"}`}
+              className={`latest-news-box ${
+                this.state.activeClass[3] ? "showClass" : "hideClass"
+              }`}
               id="mobile"
-             
             >
               <div className="latest-news-item item">
                 <div className="item-box-img">
@@ -670,11 +696,12 @@ class LatestInCategory extends Component {
                 </div>
               </div>
             </div>
-            
+
             <div
-              className={`latest-news-box ${this.state.activeClass[4] ? "showClass": "hideClass"}`}
+              className={`latest-news-box ${
+                this.state.activeClass[4] ? "showClass" : "hideClass"
+              }`}
               id="robotic"
-              
             >
               <div className="latest-news-item item">
                 <div className="item-box-img">
@@ -815,11 +842,12 @@ class LatestInCategory extends Component {
                 </div>
               </div>
             </div>
-            
+
             <div
-              className={`latest-news-box ${this.state.activeClass[5] ? "showClass": "hideClass"}`}
+              className={`latest-news-box ${
+                this.state.activeClass[5] ? "showClass" : "hideClass"
+              }`}
               id="startup"
-             
             >
               <div className="latest-news-item item">
                 <div className="item-box-img">
@@ -962,9 +990,7 @@ class LatestInCategory extends Component {
             </div>
           </div>
         </section>
-        
       </Fragment>
-     
     );
   }
 }

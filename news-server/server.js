@@ -24,7 +24,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use("/api/post", require("./routes/api/post"));
+app.use("/api", require("./routes/api/post"));
 
 app.use("/", express.static(path.join(__dirname, "public")));
 // app.use("/", express.static("public"));

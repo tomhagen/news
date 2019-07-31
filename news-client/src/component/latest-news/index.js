@@ -1,6 +1,7 @@
 import "./index.scss";
 import React, { Component, Fragment } from "react";
 import { Badge } from "antd";
+import Axios from 'axios';
 
 class LatestNews extends Component {
   constructor(props) {
@@ -24,6 +25,13 @@ class LatestNews extends Component {
   };
   componentDidMount() {
       window.addEventListener("scroll", this.handleScrollCategory)
+
+      // Axios({
+      //   method: "GET",
+      //   url: "http://localhost:5000/api/posts"
+      // })
+      // .then(res => console.log(res.data))
+      // .catch(err => console.log(err))
   }
   render() {
     return (
