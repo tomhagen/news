@@ -8,7 +8,8 @@ const PostSchema = new mongoose.Schema({
   description: { type: String, required: true },
   createdOn: { type: Date, default: Date.now() },
   category: { type: String, required: true },
-  comments: { type: Schema.Types.ObjectId, ref: "comment" }
+  comments: { type: Schema.Types.ObjectId, ref: "comment" },
+  imgUrl: {type: String, required: true}
 });
 
 const Post = mongoose.model("Post", PostSchema);

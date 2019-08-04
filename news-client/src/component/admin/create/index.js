@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./index.scss";
-import { Form, Button, Input, Icon, Select, message } from "antd";
+import { Form, Button, Input, Icon, Select, message, Upload } from "antd";
 import Axios from "axios";
 
 const { Option } = Select;
@@ -12,7 +12,9 @@ class CreatePosts extends Component {
     this.state = {
       title: "",
       description: "",
-      category: ""
+      category: "",
+      imgUrl: "",
+      author: ""
     };
   }
   handleOnChange = event => {
@@ -20,11 +22,36 @@ class CreatePosts extends Component {
       [event.target.name]: event.target.value
     });
   };
-  handleSelectChange = category => {
+  handleSelectCategoryChange = category => {
     this.setState({
       category
     });
   };
+  handleSelectAuthorChange = author => {
+    this.setState({
+      author
+    });
+  };
+  handleUploadChange = imgUrl => {
+    this.setState({
+      imgUrl
+    });
+    
+  };
+  handleUploadSubmit = () => {
+    Axios({
+      method: "POST",
+      url: "http://localhost:5000/api/upload_images",
+      data: this.state.imgUrl
+    })
+    .then(res => {
+      message.success("Upload images successfully");
+    })
+    .catch(err => {
+      message.error("Cannot upload images");
+    })
+    
+  }
   handleOnSubmit = event => {
     event.preventDefault();
     console.log(this.state);
@@ -33,7 +60,7 @@ class CreatePosts extends Component {
       hide,
       Axios({
         method: "POST",
-        url: "http://localhost:5000/api/post/create",
+        url: "http://localhost:5000/api/posts",
         data: this.state
       })
         .then(res => {
@@ -65,7 +92,7 @@ class CreatePosts extends Component {
               <Form.Item>
                 <Select
                   placeholder="Select the category"
-                  onChange={this.handleSelectChange}
+                  onChange={this.handleSelectCategoryChange}
                 >
                   <Option value="business">Business</Option>
                   <Option value="computing">Computing</Option>
@@ -75,6 +102,15 @@ class CreatePosts extends Component {
                   <Option value="robotic">Robotic</Option>
                   <Option value="startup">Start Up</Option>
                   <Option value="top news">Top News</Option>
+                </Select>
+              </Form.Item>
+              <Form.Item>
+                <Select
+                  placeholder="Select Author"
+                  onChange={this.handleSelectAuthorChange}
+                >
+                  <Option value="tuyentran">Tuyen Tran</Option>
+                  <Option value="phillipe">Phillipe</Option>
                 </Select>
               </Form.Item>
               {/* <Form.Item>
@@ -88,6 +124,14 @@ class CreatePosts extends Component {
                   onChange={this.handleOnChange}
                 />
               </Form.Item>
+              <Form.Item label="Upload">
+                <Upload name="imgUrl" onChange={this.handleUploadChange} action={this.handleUploadSubmit} listType="picture">
+                  <Button>
+                    <Icon type="upload" /> Click to upload image  
+                  </Button>
+                </Upload>
+              </Form.Item>
+
               <Form.Item>
                 <Button type="primary" htmlType="submit">
                   Create Post
