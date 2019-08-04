@@ -13,7 +13,7 @@ class CreatePosts extends Component {
       title: "",
       description: "",
       category: "",
-      imgUrl: "",
+      file: null,
       author: ""
     };
   }
@@ -32,29 +32,45 @@ class CreatePosts extends Component {
       author
     });
   };
-  handleUploadChange = imgUrl => {
+
+  handleUploadChange = event => {
+    let file = event.target.files[0];
     this.setState({
-      imgUrl
+      file: file
     });
-    
   };
-  handleUploadSubmit = () => {
+
+  handleOnSubmit = event => {
+    event.preventDefault();
+    // Handle upload image
+    console.log(this.state);
+    let file = this.state.file;
+
+    let formData = new FormData();
+    formData.append("imgUrl", file);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data"
+      }
+    };
     Axios({
       method: "POST",
       url: "http://localhost:5000/api/upload_images",
-      data: this.state.imgUrl
+      data: formData,
+      config
     })
-    .then(res => {
-      message.success("Upload images successfully");
-    })
-    .catch(err => {
-      message.error("Cannot upload images");
-    })
-    
-  }
-  handleOnSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
+      .then(res => {
+        if (res.data.result === "failed") {
+          message.error("Cannot upload images");
+        } else {
+          message.success("Upload images successfully");
+        }
+      })
+      .catch(err => {
+        message.error("Cannot upload images");
+      });
+
+    // Handle submit form
     const hide = message.loading("Action in progress...", 0);
     setTimeout(
       hide,
@@ -113,9 +129,7 @@ class CreatePosts extends Component {
                   <Option value="phillipe">Phillipe</Option>
                 </Select>
               </Form.Item>
-              {/* <Form.Item>
-                <Checkbox value="allow">Allow Comment</Checkbox>
-            </Form.Item> */}
+
               <Form.Item>
                 <TextArea
                   rows={4}
@@ -124,13 +138,24 @@ class CreatePosts extends Component {
                   onChange={this.handleOnChange}
                 />
               </Form.Item>
-              <Form.Item label="Upload">
-                <Upload name="imgUrl" onChange={this.handleUploadChange} action={this.handleUploadSubmit} listType="picture">
+              <input
+                type="file"
+                name="imgUrl"
+                onChange={this.handleUploadChange}
+              />
+
+              {/* <Form.Item label="Upload">
+                <Upload
+                  name="imgUrl"
+                  onFieldsChange={this.handleUploadChange}
+                  action={this.handleUploadSubmit}
+                  listType="picture"
+                >
                   <Button>
-                    <Icon type="upload" /> Click to upload image  
+                    <Icon type="upload" /> Click to upload image
                   </Button>
                 </Upload>
-              </Form.Item>
+              </Form.Item> */}
 
               <Form.Item>
                 <Button type="primary" htmlType="submit">

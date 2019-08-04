@@ -3,13 +3,15 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const nodemailer = require("nodemailer");
+const multer = require("multer");
+const path = require("path");
 
 // route api/posts
 // CREATE A NEW POST
 // access PUBLIC
 
 router.post("/posts", (req, res) => {
-  const { title, status, author, description, category, imgUrl } = req.body;
+  const { title, status, author, description, category, file } = req.body;
   // if (image_name && image_name.length > 0) {
   //   const serverName = require("os").hostname();
   //   const serverPort = require("../../../server").settings.port;
@@ -21,7 +23,7 @@ router.post("/posts", (req, res) => {
     author,
     description,
     category,
-    imgUrl
+    file
   });
   newPost
     .save()
@@ -116,69 +118,112 @@ router.get("/posts/pagniation", (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// UPLOAD IMAGES
+// UPLOAD IMAGES WITH MULTER
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: function(req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+// init upload
+const upload = multer({
+  storage: storage
+}).single("imgUrl");
+
 router.post("/upload_images", (req, res) => {
-  let formidable = require("formidable");
-  // parse a file upload
-  var form = new formidable.IncomingForm();
-  form.uploadDir = "./uploads";
-  form.keepExtensions = true; // lấy cả đuôi
-  form.maxFieldsSize = 10 * 1024 * 1024; // 10 MB
-  form.multiples = true; // cho phép upload nhiều hình
-  form.parse(req, (err, fields, files) => {
+  upload(req, res, err => {
+    console.log("Request --- ", req.body);
+    console.log("Request file ---", req.file);
+
     if (err) {
       res.json({
         result: "failed",
-        data: {},
         message: `Cannot upload files. Error is ${err}`
       });
-    }
-    var arrayOfFiles = [];
-    if (files[""] instanceof Array) {
-      arrayOfFiles = files[""];
     } else {
-      arrayOfFiles.push(files[""]);
-    }
-    if (arrayOfFiles.length > 0) {
-      var fileNames = [];
-      arrayOfFiles.forEach(eachFile => {
-        // fileNames.push(eachFile.path);
-        fileNames.push(eachFile.path.split("\\")[1]);
-      });
-      res.json({
-        result: "ok",
-        data: fileNames,
-        numerOfImages: fileNames.length,
-        message: "Upload image successfully"
-      });
-    } else {
-      res.json({
-        result: "failed",
-        data: {},
-        numerOfImages: 0,
-        message: "No image to upload"
-      });
+      if (req.file === undefined) {
+        res.json({
+          result: "failed",
+          message: `Cannot upload files. Error is ${err}`
+        });
+      } else {
+        res.json({
+          result: "ok",
+          message: "Upload image successfully"
+        });
+      }
+
+      console.log(res.file);
     }
   });
 });
+
+// UPLOAD IMAGES WITH FORMIDABLE
+// router.post("/upload_images", (req, res) => {
+//   let formidable = require("formidable");
+//   // parse a file upload
+//   var form = new formidable.IncomingForm();
+//   form.uploadDir = "./uploads";
+//   form.keepExtensions = true; // lấy cả đuôi
+//   form.maxFieldsSize = 10 * 1024 * 1024; // 10 MB
+//   form.multiples = true; // cho phép upload nhiều hình
+//   form.parse(req, (err, fields, files) => {
+//     if (err) {
+//       res.json({
+//         result: "failed",
+//         data: {},
+//         message: `Cannot upload files. Error is ${err}`
+//       });
+//     }
+//     var arrayOfFiles = [];
+//     if (files[""] instanceof Array) {
+//       arrayOfFiles = files[""];
+//     } else {
+//       arrayOfFiles.push(files[""]);
+//     }
+//     if (arrayOfFiles.length > 0) {
+//       var fileNames = [];
+//       arrayOfFiles.forEach(eachFile => {
+//         // fileNames.push(eachFile.path);
+//         fileNames.push(eachFile.path.split("\\")[1]);
+//       });
+//       res.json({
+//         result: "ok",
+//         data: fileNames,
+//         numerOfImages: fileNames.length,
+//         message: "Upload image successfully"
+//       });
+//     } else {
+//       res.json({
+//         result: "failed",
+//         data: {},
+//         numerOfImages: 0,
+//         message: "No image to upload"
+//       });
+//     }
+//   });
+// });
 
 // OPEN IMAGES ON BROWSER
 // route api/open_images?image_name=
 
-router.get("/open_images", (req, res) => {
-  let imageName = "uploads/" + req.query.image_name;
-  fs.readFile(imageName, (err, imageData) => {
-    if (err) {
-      res.status(400).json({
-        result: "failed",
-        message: `Cannot read the image. Error is ${err}`
-      });
-      return;
-    }
-    res.writeHead(200, { "Content-Type": "image/jpeg" });
-    res.end(imageData); // send the file to the browser
-  });
-});
+// router.get("/open_images", (req, res) => {
+//   let imageName = "uploads/" + req.query.image_name;
+//   fs.readFile(imageName, (err, imageData) => {
+//     if (err) {
+//       res.status(400).json({
+//         result: "failed",
+//         message: `Cannot read the image. Error is ${err}`
+//       });
+//       return;
+//     }
+//     res.writeHead(200, { "Content-Type": "image/jpeg" });
+//     res.end(imageData); // send the file to the browser
+//   });
+// });
 
 // Send email with Nodemailer
 router.post("/send", (req, res) => {
@@ -223,24 +268,3 @@ router.post("/send", (req, res) => {
   });
 });
 module.exports = router;
-
-// router.put("/update/:id", (req, res) => {
-//   const { id } = req.params;
-//   Post.findById(id)
-
-//     .then(post => {
-//       if (!post) return Promise.reject({ error: "Post not found" });
-//       const { title, status, description, category } = req.body;
-//       const newPost = new Post({
-//         title,
-//         status,
-//         description,
-//         category
-//       });
-//       post.post = newPost;
-//       return post.save()
-//       .then(post => console.log(post))
-//     })
-
-//     .catch(console.log);
-// });
