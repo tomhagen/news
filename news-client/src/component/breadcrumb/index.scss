@@ -1,0 +1,16 @@
+@import "../scss/variables.scss";
+.breadcrumb{
+    background-color: #F2F2F2;
+    height: 100px;
+    .container{
+        width: 84%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 35px 0;
+        h1{
+            font-size: 30px;
+            font-weight: bold;
+        }
+    }
+}

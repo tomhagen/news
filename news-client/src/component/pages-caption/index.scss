@@ -1,0 +1,89 @@
+@import "../scss/variables.scss";
+
+.pages-caption {
+//   width: 100%;
+//   background-image: url("../../img/technology-computer-chips-gigabyte.jpg");
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   background-position: center;
+//   position: relative;
+//   height: 400px;
+//   background-color: rgba(0, 0, 0, 0.5);
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   
+  }
+  .container {
+    position: absolute;
+    z-index: 1;
+    bottom: 0px;
+    left: 2%;
+    width: 70%;
+    text-align: left;
+   .ant-breadcrumb{
+       a{
+           color: white;
+           &:hover{
+               color: $primaryColor;
+           }
+       }
+   }
+   .ant-breadcrumb-separator{
+       color: white;
+   }
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+    }
+    .box-info {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      .info-author {
+        width: 25px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        margin-right: 10px;
+      }
+      .info-name {
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 22px;
+        margin-right: 10px;
+      }
+      .info-date {
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 22px;
+        color: white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px){
+    .pages-caption{
+        .container{
+            width: 80%;
+        }
+    }
+}
+@media screen and (max-width: 993px){
+    .pages-caption{
+        .container{
+            width: 85%;
+        }
+    }
+}

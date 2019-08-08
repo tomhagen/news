@@ -4,6 +4,7 @@ import React, { Component, Fragment } from "react";
 import Loading from "../loading/loading";
 import { Spin } from "antd";
 import Axios from "axios";
+import ItemNews from "../item-news";
 
 class LatestInCategory extends Component {
   constructor(props) {
@@ -119,145 +120,13 @@ class LatestInCategory extends Component {
               }`}
               id="business"
             >
-              <div className="latest-news-item item">
-                <div className="item-box-img">
-                  <a href="#">
-                    <img
-                      src="./img/latest-in-category1.jpg"
-                      className="item-img"
-                    />
-                  </a>
-                </div>
-                <div className="item-box-content">
-                  <h5 className="content-title">
-                    <a href="#">
-                      Magnificent Image Of The New Hoover Dam Bridge Taking
-                      Shape
-                    </a>
-                  </h5>
-
-                  <div className="content-info">
-                    <h5 className="info-name">John Phillipe</h5>
-                    <span className="info-date">POSTED ON MARCH 24, 20167</span>
-                  </div>
-                </div>
+              <ItemNews/>
+              <ItemNews/>
+              <ItemNews/>
+              <ItemNews/>
+              <ItemNews/>
+              <ItemNews/>
               </div>
-              <div className="latest-news-item item">
-                <div className="item-box-img">
-                  <a href="#">
-                    <img
-                      src="./img/latest-in-category1.jpg"
-                      className="item-img"
-                    />
-                  </a>
-                </div>
-                <div className="item-box-content">
-                  <h5 className="content-title">
-                    <a href="#">
-                      Magnificent Image Of The New Hoover Dam Bridge Taking
-                      Shape
-                    </a>
-                  </h5>
-
-                  <div className="content-info">
-                    <h5 className="info-name">John Phillipe</h5>
-                    <span className="info-date">POSTED ON MARCH 24, 2016</span>
-                  </div>
-                </div>
-              </div>
-              <div className="latest-news-item item">
-                <div className="item-box-img">
-                  <a href="#">
-                    <img
-                      src="./img/latest-in-category1.jpg"
-                      className="item-img"
-                    />
-                  </a>
-                </div>
-                <div className="item-box-content">
-                  <h5 className="content-title">
-                    <a href="#">
-                      Magnificent Image Of The New Hoover Dam Bridge Taking
-                      Shape
-                    </a>
-                  </h5>
-
-                  <div className="content-info">
-                    <h5 className="info-name">John Phillipe</h5>
-                    <span className="info-date">POSTED ON MARCH 24, 2016</span>
-                  </div>
-                </div>
-              </div>
-              <div className="latest-news-item item">
-                <div className="item-box-img">
-                  <a href="#">
-                    <img
-                      src="./img/latest-in-category1.jpg"
-                      className="item-img"
-                    />
-                  </a>
-                </div>
-                <div className="item-box-content">
-                  <h5 className="content-title">
-                    <a href="#">
-                      Magnificent Image Of The New Hoover Dam Bridge Taking
-                      Shape
-                    </a>
-                  </h5>
-
-                  <div className="content-info">
-                    <h5 className="info-name">John Phillipe</h5>
-                    <span className="info-date">POSTED ON MARCH 24, 2016</span>
-                  </div>
-                </div>
-              </div>
-              <div className="latest-news-item item">
-                <div className="item-box-img">
-                  <a href="#">
-                    <img
-                      src="./img/latest-in-category1.jpg"
-                      className="item-img"
-                    />
-                  </a>
-                </div>
-                <div className="item-box-content">
-                  <h5 className="content-title">
-                    <a href="#">
-                      Magnificent Image Of The New Hoover Dam Bridge Taking
-                      Shape
-                    </a>
-                  </h5>
-
-                  <div className="content-info">
-                    <h5 className="info-name">John Phillipe</h5>
-                    <span className="info-date">POSTED ON MARCH 24, 2016</span>
-                  </div>
-                </div>
-              </div>
-              <div className="latest-news-item item">
-                <div className="item-box-img">
-                  <a href="#">
-                    <img
-                      src="./img/latest-in-category1.jpg"
-                      className="item-img"
-                    />
-                  </a>
-                </div>
-                <div className="item-box-content">
-                  <h5 className="content-title">
-                    <a href="#">
-                      Magnificent Image Of The New Hoover Dam Bridge Taking
-                      Shape
-                    </a>
-                  </h5>
-
-                  <div className="content-info">
-                    <h5 className="info-name">John Phillipe</h5>
-                    <span className="info-date">POSTED ON MARCH 24, 2016</span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div
               className={`latest-news-box ${

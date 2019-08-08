@@ -10,12 +10,14 @@ import LatestInCategory from '../component/latest-in-category';
 import StayUpdated from '../component/stay-updated';
 import Footer from '../component/footer';
 import Copyright from '../component/copyright';
+import { BackTop } from 'antd';
 
 class Home extends Component {
     render() {
         return (
             <Fragment>
                 <Header/>
+                <BackTop/>
                 <Trending/>
                 <NewsHome/>
                 <LatestNews/>

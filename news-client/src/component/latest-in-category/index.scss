@@ -1,12 +1,12 @@
 @import "../scss/variables.scss";
 
 .latest-in-category {
-  margin-top: 4%;
+  margin-top: 1%;
 
   .container {
     width: 86%;
     margin: auto;
-
+    padding: 5px 0;
     .latest-header {
       display: flex;
       flex-wrap: wrap;
@@ -47,7 +47,7 @@
       }
     }
     .latest-news-box {
-      margin-top: 30px;
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
       .latest-news-item {

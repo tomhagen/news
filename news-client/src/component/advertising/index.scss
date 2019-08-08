@@ -1,11 +1,12 @@
 @import "../scss/variables.scss";
 
 .advertising {
-  margin-top: 30px;
+  margin-top: 10px;
   .container {
     width: 84%;
     margin: auto;
     text-align: center;
+    padding: 15px 0;
     .title {
       font-size: 11px;
     }

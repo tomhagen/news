@@ -1,0 +1,66 @@
+@import "../scss/variables.scss";
+
+.author__container {
+  padding: 20px;
+  background: #f2f2f2;
+  margin: 40px 0 40px 0;
+  width: 93%;
+  .container {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 96%;
+    .author__img {
+      width: 100px;
+      height: 100px;
+
+      img {
+        width: 100%;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+    }
+    .author__info{
+        width: 80%;
+        flex: 80%;
+        margin-left: 20px;
+        .author__title{
+            color: $dateTextColor;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        .author__name{
+            color: $contentTextColor;
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .author__description{
+            font-size: 14px;
+            line-height: 20px;
+            margin-top: 20px;
+        }
+        .author__social{
+            margin-top: 20px;
+            ul{
+                display: flex;
+                flex-wrap: wrap;
+                li{
+                    margin-left: 20px;
+                    a{
+                        color: black;
+                        font-size: 20px;
+                        &:hover{
+                            color: $primaryColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }
+}

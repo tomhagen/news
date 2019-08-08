@@ -1,15 +1,14 @@
 @import "../scss/variables.scss";
 
 .latest-news {
-  margin-top: 4%;
-   
+  margin-top: 1%;
+
   .container {
- 
     width: 84%;
     margin: auto;
     display: flex;
+    padding: 15px 0;
     .latest-container {
-      
       width: 70%;
 
       .latest-news-title {
@@ -17,107 +16,6 @@
         font-weight: bold;
         text-transform: uppercase;
       }
-      .latest-news-item {
-        width: 100%;
-        margin-top: 30px;
-        display: flex;
-        flex-wrap: wrap;
-        .item-box-img {
-          width: 30%;
-          img {
-            width: 100%;
-          }
-        }
-        .item-box-content {
-          width: 70%;
-          padding: 10px 30px;
-          .content-title {
-            font-size: 24px;
-            font-weight: bold;
-            a {
-              color: black;
-            }
-            &:hover a {
-              color: $primaryColor;
-            }
-          }
-          .content {
-            font-size: 15px;
-            margin-top: 20px;
-          }
-          .content-info {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 30px;
-            .info-name {
-              font-size: 12px;
-              font-weight: bold;
-            }
-            .info-date {
-              font-size: 11px;
-              margin-left: 20px;
-              color: $dateTextColor;
-              letter-spacing: 1px;
-            }
-          }
-        }
-      }
-    }
-    .categories-container {
-      // position: sticky;
-      // top: 0;
-      width: 30%;
-    
-      .categories-title {
-        font-size: 18px;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-      }
-      .categories-content {
-        font-size: 14px;
-        color: $contentTextColor;
-        letter-spacing: 1px;
-        line-height: 18px;
-        margin-top: 21px;
-      }
-      .categories-item {
-        padding: 20px 0 0 0;
-        margin-bottom: 300px;
-        li {
-          width: 100%;
-          margin-top: 15px;
-          float: left;
-
-          a {
-            font-size: 14px;
-            color: $generalTextColor;
-            float: left;
-            &:hover {
-              color: $primaryColor;
-            }
-          }
-          .badge {
-            float: right;
-          }
-        }
-      }
-      .categories-ads {
-        p {
-          text-align: center;
-          font-size: 11px;
-        }
-        img {
-          width: 100%;
-          margin-top: 20px;
-        }
-      }
-    }
-    .sticky {
-      position: fixed;
-      top: -70px;
-      right: 120px;
-      width: 382.84px;
     }
   }
 }
@@ -148,36 +46,6 @@
         flex: 100%;
         .latest-news-title {
           margin-top: 30px;
-        }
-        .latest-news-item {
-          width: 97%;
-          .item-box-img {
-            width: 100%;
-          }
-          .item-box-content {
-            width: 100%;
-            padding: 10px 0;
-            .content-title {
-              font-size: 20px;
-            }
-          }
-        }
-      }
-      .categories-container {
-        width: 100%;
-        flex: 100%;
-        .categories-title {
-          margin-top: 30px;
-        }
-        .categories-item {
-          li {
-            width: 97%;
-          }
-        }
-        .categories-ads {
-          img {
-            width: 97%;
-          }
         }
       }
     }

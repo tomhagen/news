@@ -1,0 +1,54 @@
+@import "../scss/variables.scss";
+
+.social-container {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .social-share-counter-number {
+    color: $primaryColor;
+    font-size: 50px;
+    font-weight: bold;
+    .social-share-counter-label {
+      font-size: 15px;
+      color: $contentTextColor;
+      margin-left: 20px;
+    }
+  }
+  .social-share-button-wrapper {
+    margin-left: 20px;
+    margin-top: 5px;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        margin-right: 5px;
+        margin-top: 10px;
+        a {
+          display: block;
+          padding: 0 25px 0 25px;
+          line-height: 40px;
+          height: 40px;
+          color: #fff;
+          text-align: center;
+          i{
+              margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// responsive
+
+@media screen and (max-width: 1200px){
+    .social-container{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 768px){
+    .social-container{
+        width: 100%;
+    }
+}

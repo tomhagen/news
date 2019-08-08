@@ -1,10 +1,11 @@
 @import "../scss/variables.scss";
 
 .editor-choice {
-  margin-top: 30px;
+  margin-top: 10px;
   .container {
     width: 84%;
     margin: auto;
+    padding: 15px 0;
     .editor-choice-title {
       font-size: 18px;
       font-weight: bold;
