@@ -14,6 +14,7 @@ class CreatePosts extends Component {
       description: "",
       category: "",
       file: null,
+      images: "",
       author: ""
     };
   }
@@ -34,9 +35,9 @@ class CreatePosts extends Component {
   };
 
   handleUploadChange = event => {
-    let file = event.target.files[0];
     this.setState({
-      file: file
+      [event.target.name]: event.target.value,
+      file: event.target.files && event.target.files[0]
     });
   };
 
@@ -44,10 +45,11 @@ class CreatePosts extends Component {
     event.preventDefault();
     // Handle upload image
     console.log(this.state);
+
     let file = this.state.file;
 
     let formData = new FormData();
-    formData.append("imgUrl", file);
+    formData.append("images", file);
     const config = {
       headers: {
         "content-type": "multipart/form-data"
@@ -60,32 +62,28 @@ class CreatePosts extends Component {
       config
     })
       .then(res => {
-        if (res.data.result === "failed") {
-          message.error("Cannot upload images");
-        } else {
-          message.success("Upload images successfully");
-        }
+        // Handle submit form
+
+        const hide = message.loading("Action in progress...", 0);
+        setTimeout(
+          hide,
+          Axios({
+            method: "POST",
+            url: "http://localhost:5000/api/posts",
+            data: this.state
+          })
+            .then(res => {
+              message.success("New post has created successfully");
+            })
+            .catch(err => {
+              message.error("Cannot create new post");
+            })
+        );
       })
       .catch(err => {
-        message.error("Cannot upload images");
+        message.error("Cannot upload images", err);
+        console.log(err);
       });
-
-    // Handle submit form
-    const hide = message.loading("Action in progress...", 0);
-    setTimeout(
-      hide,
-      Axios({
-        method: "POST",
-        url: "http://localhost:5000/api/posts",
-        data: this.state
-      })
-        .then(res => {
-          message.success("New post has created successfully");
-        })
-        .catch(err => {
-          message.error("Cannot create new post");
-        })
-    );
   };
   render() {
     return (
@@ -140,8 +138,9 @@ class CreatePosts extends Component {
               </Form.Item>
               <input
                 type="file"
-                name="imgUrl"
+                name="images"
                 onChange={this.handleUploadChange}
+                // file={this.state.file}
               />
 
               {/* <Form.Item label="Upload">

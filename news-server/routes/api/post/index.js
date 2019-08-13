@@ -6,24 +6,77 @@ const nodemailer = require("nodemailer");
 const multer = require("multer");
 const path = require("path");
 
+// UPLOAD IMAGES WITH MULTER
+const storage = multer.diskStorage({
+  destination: "uploads/",
+  filename: function(req, file, callback) {
+    callback(
+      null,
+      // file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      file.originalname + path.extname(file.originalname)
+    );
+  }
+});
+// const fileFilter = (file, cb) => {
+//   const filetypes = /jpeg|jpg|png|gif/;
+//   // Check ext
+//   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+//   // Check mine
+//   const minetype = filetypes.test(file.minetype);
+//   if (minetype && extname) {
+//     return cb(null, true);
+//   } else {
+//     cb("Images only !");
+//   }
+// };
+// init upload
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 5 },
+  // fileFilter: function(req, file, cb) {
+  //   fileFilter(file, cb);
+  // }
+}).single("images");
+
+router.post("/upload_images", (req, res) => {
+  upload(req, res, err => {
+    if (err) {
+      res.status(400).json({
+        result: "failed",
+        message: `Cannot upload files. Error is ${err}`
+      });
+    } else {
+      if (req.file === undefined) {
+        res.status(400).json({
+          result: "failed",
+          message: "You are not submit images"
+        });
+      } else {
+        res.status(200).json({
+          result: "ok",
+          message: "Upload image successfully"
+        });
+      }
+    }
+  });
+});
+
 // route api/posts
 // CREATE A NEW POST
 // access PUBLIC
 
 router.post("/posts", (req, res) => {
-  const { title, status, author, description, category, file } = req.body;
-  // if (image_name && image_name.length > 0) {
-  //   const serverName = require("os").hostname();
-  //   const serverPort = require("../../../server").settings.port;
-  //  imgUrl = `${serverName}:${serverPort}/open_images?image_name=${req.body.image_name}`
-  // }
+  console.log(req.file);
+  // const images = req.file;
+  const { title, status, author, description, category, images } = req.body;
+
   const newPost = new Post({
     title,
     status,
     author,
     description,
     category,
-    file
+    images
   });
   newPost
     .save()
@@ -118,48 +171,67 @@ router.get("/posts/pagniation", (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// UPLOAD IMAGES WITH MULTER
-const storage = multer.diskStorage({
-  destination: "uploads/",
-  filename: function(req, file, cb) {
-    cb(
-      null,
-      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-    );
-  }
-});
-// init upload
-const upload = multer({
-  storage: storage
-}).single("imgUrl");
+// OPEN IMAGES ON BROWSER
+// route api/open?name=
 
-router.post("/upload_images", (req, res) => {
-  upload(req, res, err => {
-    console.log("Request --- ", req.body);
-    console.log("Request file ---", req.file);
-
+router.get("/open", (req, res) => {
+  let imageName = "uploads/" + req.query.name;
+  fs.readFile(imageName, (err, imageData) => {
     if (err) {
-      res.json({
+      res.status(400).json({
         result: "failed",
-        message: `Cannot upload files. Error is ${err}`
+        message: `Cannot read the image. Error is ${err}`
       });
-    } else {
-      if (req.file === undefined) {
-        res.json({
-          result: "failed",
-          message: `Cannot upload files. Error is ${err}`
-        });
-      } else {
-        res.json({
-          result: "ok",
-          message: "Upload image successfully"
-        });
-      }
-
-      console.log(res.file);
+      return;
     }
+    res.writeHead(200, { "Content-Type": "image/jpeg" });
+    res.end(imageData); // send the file to the browser
   });
 });
+
+// Send email with Nodemailer
+router.post("/send", (req, res) => {
+  const output = `
+    <p>You have a new contact message</p>
+    <h3>Contact Details</h3>
+    <ul>
+      <li>Name: ${req.body.title}</li>
+      <li>Name: ${req.body.description}</li>
+      <li>Name: ${req.body.category}</li>
+      <li>Name: ${req.body.author}</li>
+    </ul>
+    <h3>This is a message</h3>
+    <p>${req.body.description}</p>
+
+  `;
+  let transporter = nodemailer.createTransport({
+    host: "mail.mrs.com.vn",
+    port: 587,
+    sercuse: false,
+    auth: {
+      user: "tom@mrs.com.vn",
+      pass: "0965003905t"
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+
+  let mailOptions = {
+    from: '"Node mailer contact" <tom@mrs.com.vn>',
+    to: "tuyentn3393@gmail.com",
+    subject: "Node ",
+    text: "Hello",
+    html: output
+  };
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("Preview ", nodemailer.getTestMessageUrl(info));
+  });
+});
+module.exports = router;
 
 // UPLOAD IMAGES WITH FORMIDABLE
 // router.post("/upload_images", (req, res) => {
@@ -206,65 +278,3 @@ router.post("/upload_images", (req, res) => {
 //     }
 //   });
 // });
-
-// OPEN IMAGES ON BROWSER
-// route api/open_images?image_name=
-
-// router.get("/open_images", (req, res) => {
-//   let imageName = "uploads/" + req.query.image_name;
-//   fs.readFile(imageName, (err, imageData) => {
-//     if (err) {
-//       res.status(400).json({
-//         result: "failed",
-//         message: `Cannot read the image. Error is ${err}`
-//       });
-//       return;
-//     }
-//     res.writeHead(200, { "Content-Type": "image/jpeg" });
-//     res.end(imageData); // send the file to the browser
-//   });
-// });
-
-// Send email with Nodemailer
-router.post("/send", (req, res) => {
-  const output = `
-    <p>You have a new contact message</p>
-    <h3>Contact Details</h3>
-    <ul>
-      <li>Name: ${req.body.title}</li>
-      <li>Name: ${req.body.description}</li>
-      <li>Name: ${req.body.category}</li>
-      <li>Name: ${req.body.author}</li>
-    </ul>
-    <h3>This is a message</h3>
-    <p>${req.body.description}</p>
-
-  `;
-  let transporter = nodemailer.createTransport({
-    host: "mail.mrs.com.vn",
-    port: 587,
-    sercuse: false,
-    auth: {
-      user: "tom@mrs.com.vn",
-      pass: "0965003905t"
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
-  });
-
-  let mailOptions = {
-    from: '"Node mailer contact" <tom@mrs.com.vn>',
-    to: "tuyentn3393@gmail.com",
-    subject: "Node ",
-    text: "Hello",
-    html: output
-  };
-  transporter.sendMail(mailOptions, (err, info) => {
-    if (err) {
-      return console.log(err);
-    }
-    console.log("Preview ", nodemailer.getTestMessageUrl(info));
-  });
-});
-module.exports = router;

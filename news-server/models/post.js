@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema({
   createdOn: { type: Date, default: Date.now() },
   category: { type: String, required: true },
   comments: { type: Schema.Types.ObjectId, ref: "comment" },
-  file: {type: String, required: true}
+  images: {type: String, required: true}
 });
 
 const Post = mongoose.model("Post", PostSchema);

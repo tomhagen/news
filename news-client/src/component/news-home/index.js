@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./index.scss";
+import { connect } from "react-redux";
 
 class NewsHome extends Component {
   render() {
@@ -154,9 +155,16 @@ class NewsHome extends Component {
             </div>
           </div>
         </section>
-        
       </Fragment>
     );
   }
 }
-export default NewsHome;
+const mapStateToProps = state => {
+  return {
+    newsList: state.newsList
+  };
+};
+export default connect(
+  mapStateToProps,
+  null
+)(NewsHome);
