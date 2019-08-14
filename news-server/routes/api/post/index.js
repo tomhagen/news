@@ -13,7 +13,8 @@ const storage = multer.diskStorage({
     callback(
       null,
       // file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-      file.originalname + path.extname(file.originalname)
+      //  file.originalname + path.extname(file.originalname)
+      file.originalname
     );
   }
 });
@@ -32,7 +33,7 @@ const storage = multer.diskStorage({
 // init upload
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 },
+  limits: { fileSize: 1024 * 1024 * 5 }
   // fileFilter: function(req, file, cb) {
   //   fileFilter(file, cb);
   // }

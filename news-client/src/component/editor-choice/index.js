@@ -3,11 +3,36 @@ import React, { Component, Fragment } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import EditorChoiceItem from "./editor-choice-item";
+import Axios from "axios";
 
 class EditorChoice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorChoiceList: []
+    };
+  }
+  componentDidMount() {
+    Axios({
+      method: "GET",
+      url: "http://localhost:5000/api/posts/category?type=ENERGY&limit=5"
+    })
+      .then(res => {
+        console.log(res.data);
+        this.setState({ editorChoiceList: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  renderEditorChoiceList = () => {
+    return this.state.editorChoiceList.map((news, index) => {
+      return <EditorChoiceItem key={index} news={news} />;
+    });
+  };
   render() {
     const settings = {
-
       speed: 500,
       // autoplay: true,
       slidesToShow: 4,
@@ -19,26 +44,23 @@ class EditorChoice extends Component {
           breakpoint: 993,
           settings: {
             slidesToShow: 3,
-            slidesToScroll: 1,
-          
+            slidesToScroll: 1
           }
         },
         {
           breakpoint: 782,
           settings: {
             slidesToShow: 3,
-            slidesToScroll: 1,
-          
+            slidesToScroll: 1
           }
         },
         {
           breakpoint: 500,
           settings: {
             slidesToShow: 1,
-            slidesToScroll: 1,
-          
+            slidesToScroll: 1
           }
-        },
+        }
       ]
     };
 
@@ -50,7 +72,15 @@ class EditorChoice extends Component {
 
             <div className="editor-choice-item">
               <Slider {...settings}>
-                <div className="item">
+                {this.renderEditorChoiceList()}
+                {/* <EditorChoiceItem />
+                <EditorChoiceItem />
+                <EditorChoiceItem />
+                <EditorChoiceItem />
+                <EditorChoiceItem />
+                <EditorChoiceItem />
+                <EditorChoiceItem /> */}
+                {/* <div className="item">
                   <div className="item-box-img">
                     <a href="#">
                       <img
@@ -193,6 +223,7 @@ class EditorChoice extends Component {
                     </h5>
                   </div>
                 </div>
+               */}
               </Slider>
             </div>
           </div>

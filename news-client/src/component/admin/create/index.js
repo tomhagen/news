@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import "./index.scss";
 import { Form, Button, Input, Icon, Select, message, Upload } from "antd";
 import Axios from "axios";
+// import { Editor } from "@tinymce/tinymce-react";
+import CKEditor from "ckeditor4-react";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -9,6 +11,7 @@ const { TextArea } = Input;
 class CreatePosts extends Component {
   constructor(props) {
     super(props);
+    this.updateContent = this.updateContent.bind(this);
     this.state = {
       title: "",
       description: "",
@@ -33,6 +36,24 @@ class CreatePosts extends Component {
       author
     });
   };
+
+  onChange(evt) {
+    console.log("onChange fired with event info: ", evt);
+    var newContent = evt.editor.getData();
+    this.setState({
+      description: newContent
+    });
+  }
+  updateContent(newContent) {
+    this.setState({
+      description: newContent
+    });
+  }
+  // onEditorChange = event => {
+  //   this.setState({
+  //     description: event.editor.getData()
+  //   });
+  // };
 
   handleUploadChange = event => {
     this.setState({
@@ -108,14 +129,14 @@ class CreatePosts extends Component {
                   placeholder="Select the category"
                   onChange={this.handleSelectCategoryChange}
                 >
-                  <Option value="business">Business</Option>
-                  <Option value="computing">Computing</Option>
-                  <Option value="energy">Energy</Option>
-                  <Option value="gadgets">Gadgets</Option>
-                  <Option value="mobile">Mobile</Option>
-                  <Option value="robotic">Robotic</Option>
-                  <Option value="startup">Start Up</Option>
-                  <Option value="top news">Top News</Option>
+                  <Option value="BUSINESS">Business</Option>
+                  <Option value="COMPUTING">Computing</Option>
+                  <Option value="ENERGY">Energy</Option>
+                  <Option value="GADGETS">Gadgets</Option>
+                  <Option value="MOBILE">Mobile</Option>
+                  <Option value="ROBOTIC">Robotic</Option>
+                  <Option value="STARTUP">Start Up</Option>
+                  <Option value="TOP NEWS">Top News</Option>
                 </Select>
               </Form.Item>
               <Form.Item>
@@ -123,8 +144,8 @@ class CreatePosts extends Component {
                   placeholder="Select Author"
                   onChange={this.handleSelectAuthorChange}
                 >
-                  <Option value="tuyentran">Tuyen Tran</Option>
-                  <Option value="phillipe">Phillipe</Option>
+                  <Option value="TUYEN TRAN">Tuyen Tran</Option>
+                  <Option value="PHILIPPE XI">Phillipe</Option>
                 </Select>
               </Form.Item>
 
@@ -142,7 +163,16 @@ class CreatePosts extends Component {
                 onChange={this.handleUploadChange}
                 // file={this.state.file}
               />
-
+              {/* <CKEditor
+                // name="description"
+                data={this.state.description}
+                events={{ change: this.onChange }}
+                onChange={this.onEditorChange}
+                placeholder="Type content of post"
+                onChange={this.handleChange}
+              /> */}
+              {/* <Editor rows={8}  apiKey="API_KEY" init={{ plugins: "link table" }} /> */}
+              {/* <textarea id="mytextarea">Hello, World!</textarea> */}
               {/* <Form.Item label="Upload">
                 <Upload
                   name="imgUrl"

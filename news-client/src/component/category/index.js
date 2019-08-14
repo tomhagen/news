@@ -1,6 +1,7 @@
 import "./index.scss";
 import React, { Component, Fragment } from "react";
 import { Badge } from "antd";
+import {Link} from 'react-router-dom';
 
 class Category extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Category extends Component {
 
           <ul className="categories-item">
             <li>
-              <a href="#">Business</a>
+              <Link to="/category/BUSINESS">Business</Link>
               <div className="badge">
                 <Badge
                   count={9}
@@ -53,7 +54,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Computing</a>
+              <Link to="/category/COMPUTING">Computing</Link>
               <div className="badge">
                 <Badge
                   count={5}
@@ -65,7 +66,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Energy</a>
+              <Link to="/category/ENERGY">Energy</Link>
               <div className="badge">
                 <Badge
                   count={7}
@@ -77,7 +78,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Gadgets</a>
+              <Link to="/category/GADGETS">Gadgets</Link>
               <div className="badge">
                 <Badge
                   count={2}
@@ -89,7 +90,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Mobile</a>
+              <Link to="/category/MOBILE">Mobile</Link>
               <div className="badge">
                 <Badge
                   count={5}
@@ -101,7 +102,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Robotic</a>
+              <Link to="/category/ROBOTIC">Robotic</Link>
               <div className="badge">
                 <Badge
                   count={6}
@@ -113,7 +114,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Start Up</a>
+              <Link to="/category/STARTUP">Start Up</Link>
               <div className="badge">
                 <Badge
                   count={6}
@@ -125,7 +126,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <a href="#">Top News</a>
+              <Link to="/category/TOPNEWS">Top News</Link>
               <div className="badge">
                 <Badge
                   count={4}
@@ -139,7 +140,7 @@ class Category extends Component {
           </ul>
           <div className="categories-ads">
             <p> - Advertisement - </p>
-            <img src="./img/300x250ads.png" />
+            <img src="/img/300x250ads.png" />
           </div>
         </div>
       </Fragment>

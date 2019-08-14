@@ -11,13 +11,46 @@ import StayUpdated from "../component/stay-updated";
 import Footer from "../component/footer";
 import Copyright from "../component/copyright";
 import { BackTop } from "antd";
-import { requestGetNewsList } from "../actions/newsAction";
+import { requestGetAllNewsList } from "../actions/newsAction";
 
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
+import Axios from "axios";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      businessList: [],
+      computingList: []
+    };
+  }
   componentDidMount() {
-    this.props.onGetNewsList();
+    window.scrollTo(0, 0);
+    this.props.onGetAllNewsList();
+
+    Axios({
+      method: "GET",
+      url: "http://localhost:5000/api/posts/category?type=BUSINESS&limit=1"
+    })
+      .then(res => {
+        // console.log(res.data);
+        this.setState({ businessList: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    Axios({
+      method: "GET",
+      url: "http://localhost:5000/api/posts/category?type=COMPUTING&limit=8"
+    })
+      .then(res => {
+        console.log(res.data);
+        this.setState({ computingList: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
   render() {
     return (
@@ -25,11 +58,11 @@ class Home extends Component {
         <Header />
         <BackTop />
         <Trending />
-        <NewsHome />
+        <NewsHome computingList={this.state.computingList}/>
         <LatestNews />
         <EditorChoice />
         <Advertising />
-        <Business />
+        <Business businessList={this.state.businessList} />
         <LatestInCategory />
         <StayUpdated />
         <Footer />
@@ -41,9 +74,12 @@ class Home extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGetNewsList: () => {
-      dispatch(requestGetNewsList());
+    onGetAllNewsList: () => {
+      dispatch(requestGetAllNewsList());
     }
   };
 };
-export default connect(null, mapDispatchToProps) (Home);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Home);

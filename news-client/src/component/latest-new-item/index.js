@@ -1,6 +1,7 @@
 import "./index.scss";
 import React, { Component, Fragment } from "react";
 import moment from 'moment';
+import {Link } from 'react-router-dom';
 
 class LatestNewsItem extends Component {
  
@@ -10,17 +11,18 @@ class LatestNewsItem extends Component {
       <Fragment>
         <div className="latest-news-item">
           <div className="item-box-img">
-            <a href="#">
-              <img src="./img/latest-news-item1.jpg" className="item-img" />
-            </a>
+            <Link to={`detail/${item._id}`}>
+              {/* <img src="./img/latest-news-item1.jpg" className="item-img" /> */}
+              <img src={`http://localhost:5000/api/open?name=${item.images}`} className="item-img" />
+            </Link>
           </div>
           <div className="item-box-content">
             <h5 className="content-title">
-              <a href="#">
+              <Link to={`/detail/${item._id}`}>
                 {item.title}
                 {/* 3 Delicious Post-Holiday Detox Recipes, Courtesy of Personal
                 Chef */}
-              </a>
+              </Link>
             </h5>
             <p className="content">
               {item.description.substr(0,100) + "...."}

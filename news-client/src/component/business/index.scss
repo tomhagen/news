@@ -25,13 +25,13 @@
         }
     }
     .main-news {
-      width: 100%;
-      background-image: url("../../img/startup-photos-1.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-    background-position: center;
-      position: relative;
-      height: 400px;
+    //   width: 100%;
+    //   background-image: url("../../img/startup-photos-1.jpg");
+    //   background-repeat: no-repeat;
+    //   background-size: cover;
+    // background-position: center;
+    //   position: relative;
+    //   height: 400px;
       &::after {
         content: "";
         position: absolute;

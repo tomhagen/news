@@ -5,6 +5,8 @@ import Loading from "../loading/loading";
 import { Spin } from "antd";
 import Axios from "axios";
 import ItemNews from "../item-news";
+import { connect } from "react-redux";
+import { requestGetNewsByCategory } from "../../actions/newsAction";
 
 class LatestInCategory extends Component {
   constructor(props) {
@@ -43,15 +45,13 @@ class LatestInCategory extends Component {
     }
   };
 
-  // componentDidMount() {
-  //   let computing = computing;
-  //   Axios({
-  //     method: "GET",
-  //     url: `http://localhost:5000/api/posts/category?type=${computing}&limit=${3}`
-  //   })
-  //     .then(res => console.log(res))
-  //     .catch(err => console.log(err));
-  // }
+  renderNewsByCategory = () => {
+    const type = ["business", "computing"];
+
+   
+
+    // this.props.onGetNewsByCategory('BUSINESS', 5);
+  };
 
   render() {
     return (
@@ -69,7 +69,11 @@ class LatestInCategory extends Component {
                       this.state.activeClass[0] ? "addColor" : "normal"
                     }
                   >
-                    <a onClick={() => this.handleActive("business")}>
+                    <a
+                      id="business"
+                      ref="business"
+                      onClick={() => this.handleActive("business")}
+                    >
                       BUSINESS
                     </a>
                   </li>
@@ -78,7 +82,11 @@ class LatestInCategory extends Component {
                       this.state.activeClass[1] ? "addColor" : "normal"
                     }
                   >
-                    <a onClick={() => this.handleActive("computing")}>
+                    <a
+                      ref="computing"
+                      id="computing"
+                      onClick={() => this.handleActive("computing")}
+                    >
                       COMPUTING
                     </a>
                   </li>
@@ -120,13 +128,13 @@ class LatestInCategory extends Component {
               }`}
               id="business"
             >
-              <ItemNews/>
-              <ItemNews/>
-              <ItemNews/>
-              <ItemNews/>
-              <ItemNews/>
-              <ItemNews/>
-              </div>
+              <ItemNews />
+              <ItemNews />
+              <ItemNews />
+              <ItemNews />
+              <ItemNews />
+              <ItemNews />
+            </div>
 
             <div
               className={`latest-news-box ${
@@ -863,4 +871,15 @@ class LatestInCategory extends Component {
     );
   }
 }
-export default LatestInCategory;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetNewsByCategory: (type, limit) => {
+      dispatch(requestGetNewsByCategory(type, limit));
+    }
+  };
+};
+export default connect(
+  null,
+  mapDispatchToProps
+)(LatestInCategory);

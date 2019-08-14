@@ -8,12 +8,12 @@
     flex-wrap: wrap;
     padding: 15px 0;
     .main-news {
-      width: 67%;
-      background-image: url("../../img/hands-woman-laptop-working-960x640.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      margin-right: 3%;
-      position: relative;
+      // width: 67%;
+      // background-image: url("../../img/hands-woman-laptop-working-960x640.jpg");
+      // background-repeat: no-repeat;
+      // background-size: cover;
+      // margin-right: 3%;
+      // position: relative;
       &::after {
         content: "";
         position: absolute;
@@ -88,6 +88,7 @@
         width: 100%;
         text-align: left;
         display: flex;
+        padding: 5px 0;
         // flex-wrap: wrap;
         .item-img {
           width: 31%;
@@ -122,9 +123,7 @@
           }
         }
       }
-      .item-child {
-        margin-top: 20px;
-      }
+      
     }
   }
 }

@@ -8,15 +8,39 @@ import StayUpdated from "../component/stay-updated";
 import { BackTop } from "antd";
 import PagesCaption from "../component/pages-caption";
 import DetailNews from "../component/detail-news";
+import Axios from "axios";
 
 class NewsDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      detailNews: {}
+    };
+  }
+  componentDidMount() {
+    window.scrollTo(0,0);
+    const id = this.props.match.params.id
+    Axios({
+      method: "GET",
+      url: `http://localhost:5000/api/posts/id?id=${id}`
+    })
+      .then(res => {
+        console.log(res);
+        this.setState({
+          detailNews: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   render() {
     return (
       <Fragment>
         <Header />
         <BackTop />
-        <PagesCaption />
-        <DetailNews />
+        <PagesCaption detailNews={this.state.detailNews} />
+        <DetailNews detailNews={this.state.detailNews}/>
         <StayUpdated />
         <Footer />
         <Copyright />
@@ -24,4 +48,9 @@ class NewsDetail extends Component {
     );
   }
 }
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onGet
+//   }
+// }
 export default NewsDetail;

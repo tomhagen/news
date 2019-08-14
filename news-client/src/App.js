@@ -19,8 +19,8 @@ function App() {
         <Route path="/admin" exact component={AdminHome} />
         <Route path="/admin/posts" exact component={AdminPosts} />
         <Route path="/admin/posts/create" exact component={CreatePosts}/>
-        <Route path="/category" exact component={Category}/>
-        <Route path="/detail" exact component={NewsDetail}/>
+        <Route path="/category/:id" exact component={Category}/>
+        <Route path="/detail/:id" exact component={NewsDetail}/>
         
         <Route path="/" exact component={Home} />
         {/* <Route exact component={NotFound}/> */}

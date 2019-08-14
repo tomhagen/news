@@ -7,7 +7,7 @@ class TrendingItem extends Component {
       <div className="trending-item">
         <div className="trending-item-box-img">
           <a href="#">
-            <img src="./img/latest-in-category1.jpg" className="news-item-img" />
+            <img src="/img/latest-in-category1.jpg" className="news-item-img" />
           </a>
         </div>
         <div className="trending-item-box-content">

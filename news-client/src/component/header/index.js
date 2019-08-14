@@ -2,9 +2,9 @@ import "./index.scss";
 
 import React, { Component, Fragment } from "react";
 import { Icon, Drawer, Menu } from "antd";
+import { Link } from "react-router-dom";
 
 const { SubMenu } = Menu;
-
 
 class header extends Component {
   constructor(props) {
@@ -50,17 +50,21 @@ class header extends Component {
           <div className="box-ads">
             <div className="container">
               <div className="logo">
-                <img alt="logo" src="./img/logo.png" />
+                <Link to="/">
+                  <img alt="logo" src="/img/logo.png" />
+                </Link>
               </div>
               <div className="ads">
-                <img alt="ads" src="./img/728x90ads.png" />
+                <img alt="ads" src="/img/728x90ads.png" />
               </div>
             </div>
           </div>
           <div className={`menu ${this.state.isMenuFixed ? "fixedTop" : ""}`}>
             <ul className="main-container">
               <li className="menu-item">
-                <a className="menu-item-a menu-item-home">Home</a>
+                <Link to="/" className="menu-item-a menu-item-home">
+                  Home
+                </Link>
               </li>
               <li className="menu-item">
                 <a className="menu-item-a">Computing</a>
@@ -136,33 +140,28 @@ class header extends Component {
                 <a className="menu-item-a">Category</a>
                 <ul className="menu-item-submenu">
                   <li className="submenu-item">
-                    <a className="submenu-item-a">
-                      Full Post Grid + Right Sidebar
-                    </a>
+                    <Link to="/category/BUSINESS" className="submenu-item-a">Business</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Full Post Grid Fullwidth</a>
+                    <Link to="/category/COMPUTING" className="submenu-item-a">Computing</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Full Post + List</a>
+                    <Link to="/category/ENERGY" className="submenu-item-a">Energy</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Grid 2 Columns</a>
+                    <Link to="/category/GADGETS" className="submenu-item-a">Gadgets</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Grid 3 Columns</a>
+                    <Link to="/category/MOBILE" className="submenu-item-a">Mobile</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Right Sidebar</a>
+                    <Link to="/category/ROBOTIC" className="submenu-item-a">Robotic</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Left Sidebar</a>
+                    <Link to="/category/COMPUTING" className="submenu-item-a">Start Up</Link>
                   </li>
                   <li className="submenu-item">
-                    <a className="submenu-item-a">Fullwidth</a>
-                  </li>
-                  <li className="submenu-item">
-                    <a className="submenu-item-a">List</a>
+                    <Link to="/category/TOPNEWS" className="submenu-item-a">Top News</Link>
                   </li>
                 </ul>
               </li>

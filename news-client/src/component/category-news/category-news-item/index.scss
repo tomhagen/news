@@ -2,6 +2,17 @@
 
 .category-news-item {
     padding: 10px 0;
+    .item-box-breadcrumb{
+      .ant-breadcrumb{
+        .ant-breadcrumb-link{
+          a{
+            &:hover{
+              color: $primaryColor;
+            }
+          }
+        }
+      }
+    }
   .item-box-title {
     width: 93%;
     .content-title {

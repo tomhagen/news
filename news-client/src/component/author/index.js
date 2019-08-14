@@ -8,11 +8,11 @@ class Author extends Component {
         <div className="author__container">
           <div className="container">
             <div className="author__img">
-              <img src="./img/author.jpeg" />
+              <img src="/img/author.jpeg" />
             </div>
             <div className="author__info">
               <h3 className="author__title">AUTHOR</h3>
-              <h2 className="author__name">John Philippe</h2>
+              <h2 className="author__name">{this.props.detailNews.author}</h2>
               <p className="author__description">
                 Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum
                 dolor sit amet, consectetur Nulla fringilla purus at leo

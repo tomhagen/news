@@ -10,6 +10,7 @@ const { TextArea } = Input;
 
 class DetailNews extends Component {
   render() {
+    let { description, images } = this.props.detailNews;
     return (
       <Fragment>
         <section className="detail-news">
@@ -17,59 +18,17 @@ class DetailNews extends Component {
             <div className="news-container">
               <Social />
               <div className="main-content">
-                <p>
-                  Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum
-                  dolor sit amet, consectetur Nulla fringilla purus at leo
-                  dignissim congue. Mauris elementum accumsan leo vel tempor.
-                  Sit amet cursus nisl aliquam. Aliquam et elit eu nunc rhoncus
-                  viverra quis at felis. Sed do.Lorem ipsum dolor sit amet,
-                  consectetur Nulla fringilla purus Lorem ipsum dosectetur
-                  adipisicing elit at leo dignissim congue. Mauris elementum
-                  accumsan leo vel tempor Elit bespoke vinyl art party Pitchfork
-                  selfies master cleanse Kickstarter retro. Drinking vinegar
-                  stumptown yr pop-up artisan sunt. Deep v cliche lomo biodiesel
-                  Neutra Lorem ipsum dolor sit amet, consectetuer adipiscing
-                  elit, sed diam nonummy nibh euismod tincidunt ut laore.et
-                  dolore magna aliquam erat volutpat.
-                </p>
-                <h2>
-                  The road to success and the road to failure are almost exactly
-                  the same
-                </h2>
-                <p>
-                  Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl
-                  aliquam. Aliquam et elit eu nunc rhoncus viverra quis at
-                  felis. Sed do.Lorem ipsum dolor sit amet, consectetur Nulla
-                  fringilla purus Lorem ipsum dosectetur adipisicing elit at leo
-                </p>
-                <img src="./img/technology-computer-chips-gigabyte.jpg" />
-                <h2>
-                  The road to success and the road to failure are almost exactly
-                  the same
-                </h2>
-                <p>
-                  Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl
-                  aliquam. Aliquam et elit eu nunc rhoncus viverra quis at
-                  felis. Sed do.Lorem ipsum dolor sit amet, consectetur Nulla
-                  fringilla purus Lorem ipsum dosectetur adipisicing elit at leo
-                </p>
-                <h2>
-                  The road to success and the road to failure are almost exactly
-                  the same
-                </h2>
-                <p>
-                  Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl
-                  aliquam. Aliquam et elit eu nunc rhoncus viverra quis at
-                  felis. Sed do.Lorem ipsum dolor sit amet, consectetur Nulla
-                  fringilla purus Lorem ipsum dosectetur adipisicing elit at leo
-                </p>
+                <p>{description}</p>
+
+                {/* <img src="./img/technology-computer-chips-gigabyte.jpg" /> */}
+                <img src={`http://localhost:5000/api/open?name=${images}`} />
               </div>
               <Social />
               <div className="item-divider">
                 <hr className="post_divider" />
                 <hr className="post_divider double" />
               </div>
-              <Author />
+              <Author detailNews={this.props.detailNews}/>
               <div className="trending__now">
                 <h2>TRENDING NOW</h2>
               </div>
@@ -99,13 +58,13 @@ class DetailNews extends Component {
                     <Form.Item>
                       <Row gutter={24}>
                         <Col span={8}>
-                          <Input placeholder="Name*"/>
+                          <Input placeholder="Name*" />
                         </Col>
                         <Col span={8}>
-                          <Input placeholder="Email*"/>
+                          <Input placeholder="Email*" />
                         </Col>
                         <Col span={8}>
-                          <Input placeholder="Website"/>
+                          <Input placeholder="Website" />
                         </Col>
                       </Row>
                     </Form.Item>

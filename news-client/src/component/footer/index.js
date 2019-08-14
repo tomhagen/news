@@ -11,7 +11,7 @@ class Footer extends Component {
           <div className="container">
             <div className="footer-box">
               <div className="social-box">
-                <img alt="logo" src="./img/footer_logo.png" />
+                <img alt="logo" src="/img/footer_logo.png" />
                 <p>
                   Mauris elementum accumsan leo vel tempor. Sit amet cursus nisl
                   aliquam. Lorem ipsum dosectetur adipisicing elit, sed do.Lorem
@@ -48,7 +48,7 @@ class Footer extends Component {
                     <div className="recent-item">
                       <div className="item-logo">
                         <a href="#">
-                          <img src="./img/footer-item1.jpg" />
+                          <img src="/img/footer-item1.jpg" />
                         </a>
                       </div>
                       <a href="#" className="item-content">
@@ -59,7 +59,7 @@ class Footer extends Component {
                     <div className="recent-item">
                       <div className="item-logo">
                         <a href="#">
-                          <img src="./img/footer-item1.jpg" />
+                          <img src="/img/footer-item1.jpg" />
                         </a>
                       </div>
                       <a href="#" className="item-content">
@@ -70,7 +70,7 @@ class Footer extends Component {
                     <div className="recent-item">
                       <div className="item-logo">
                         <a href="#">
-                          <img src="./img/footer-item1.jpg" />
+                          <img src="/img/footer-item1.jpg" />
                         </a>
                       </div>
                       <a href="#" className="item-content">
@@ -84,7 +84,7 @@ class Footer extends Component {
                     <div className="popular-item">
                       <div className="item-logo">
                         <a href="#">
-                          <img src="./img/footer-item1.jpg" />
+                          <img src="/img/footer-item1.jpg" />
                         </a>
                       </div>
                       <a href="#" className="item-content">
@@ -95,7 +95,7 @@ class Footer extends Component {
                     <div className="popular-item">
                       <div className="item-logo">
                         <a href="#">
-                          <img src="./img/footer-item1.jpg" />
+                          <img src="/img/footer-item1.jpg" />
                         </a>
                       </div>
                       <a href="#" className="item-content">
@@ -106,7 +106,7 @@ class Footer extends Component {
                     <div className="popular-item">
                       <div className="item-logo">
                         <a href="#">
-                          <img src="./img/footer-item1.jpg" />
+                          <img src="/img/footer-item1.jpg" />
                         </a>
                       </div>
                       <a href="#" className="item-content">

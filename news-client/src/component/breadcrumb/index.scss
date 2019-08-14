@@ -12,5 +12,12 @@
             font-size: 30px;
             font-weight: bold;
         }
+        .ant-breadcrumb-link{
+            a{
+                &:hover{
+                    color: $primaryColor;
+                }
+            }
+        }
     }
 }

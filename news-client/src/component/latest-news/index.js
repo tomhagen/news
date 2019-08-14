@@ -7,7 +7,9 @@ import {connect} from 'react-redux';
 class LatestNews extends Component {
 
   renderLatestNewsList = () => {
-    return this.props.latestNewsList.map((item,index) => {
+    let latestNewsList = this.props.latestNewsList.slice(0,8);
+    // console.log(this.props.latestNewsList.slice(0,1))
+    return latestNewsList.map((item,index) => {
       return <LatestNewsItem item={item} key={index}/>
     })
   }
