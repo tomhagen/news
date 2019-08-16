@@ -3,7 +3,6 @@ import React, { Component, Fragment } from "react";
 import Category from "../category";
 import Social from "../social";
 import Author from "../author";
-import ItemNews from "../item-news";
 import TrendingItem from "../trending-item";
 import { Form, Input, Button, Row, Col } from "antd";
 const { TextArea } = Input;
@@ -27,7 +26,7 @@ class DetailNews extends Component {
                 <div dangerouslySetInnerHTML={{__html: description}}/>
 
                 {/* <img src="./img/technology-computer-chips-gigabyte.jpg" /> */}
-                <img src={`http://localhost:5000/api/open?name=${images}`} />
+                <img alt="item" src={`http://localhost:5000/api/open?name=${images}`} />
               </div>
               <Social />
               <div className="item-divider">

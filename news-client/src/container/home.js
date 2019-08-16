@@ -45,7 +45,7 @@ class Home extends Component {
       url: "http://localhost:5000/api/posts/category?type=COMPUTING&limit=8"
     })
       .then(res => {
-        console.log(res.data);
+    
         this.setState({ computingList: res.data });
       })
       .catch(err => {

@@ -1,5 +1,5 @@
 import "./index.scss";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import React, { Component, Fragment } from "react";
 
@@ -12,7 +12,8 @@ class AdminNavbar extends Component {
             <ul className="navbar-container">
               <li>
                 <NavLink
-                  exact activeStyle={{
+                  exact
+                  activeStyle={{
                     fontWeight: "bold",
                     color: "red"
                   }}

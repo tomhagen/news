@@ -140,7 +140,7 @@ class Category extends Component {
           </ul>
           <div className="categories-ads">
             <p> - Advertisement - </p>
-            <img src="/img/300x250ads.png" />
+            <img alt="category" src="/img/300x250ads.png" />
           </div>
         </div>
       </Fragment>

@@ -19,7 +19,7 @@ class EditorChoice extends Component {
       url: "http://localhost:5000/api/posts/category?type=ENERGY&limit=5"
     })
       .then(res => {
-        console.log(res.data);
+      
         this.setState({ editorChoiceList: res.data });
       })
       .catch(err => {

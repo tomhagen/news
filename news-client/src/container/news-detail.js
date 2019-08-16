@@ -25,7 +25,7 @@ class NewsDetail extends Component {
       url: `http://localhost:5000/api/posts/id?id=${id}`
     })
       .then(res => {
-        console.log(res);
+    
         this.setState({
           detailNews: res.data
         });

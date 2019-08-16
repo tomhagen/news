@@ -3,7 +3,7 @@ import { Breadcrumb } from "antd";
 
 import React, { Component, Fragment } from "react";
 import moment from "moment";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // const background = {
 //   width: "100%",
@@ -31,7 +31,7 @@ class PagesCaption extends Component {
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             position: "relative",
-            backgroundPosition:"center",
+            backgroundPosition: "center",
             backgroundColor: "rgba(0, 0, 0, 0.9)",
             backgroundImage: `url(http://localhost:5000/api/open?name=${images}`
           }}
@@ -39,17 +39,20 @@ class PagesCaption extends Component {
           <div className="overlay" />
           <div className="container">
             <Breadcrumb style={{ color: "white" }}>
-              <Breadcrumb.Item><Link to="/">HOME</Link></Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to="/">HOME</Link>
+              </Breadcrumb.Item>
               <Breadcrumb.Item>
                 <Link to={`/category/${category}`}>{category}</Link>
               </Breadcrumb.Item>
             </Breadcrumb>
-            <div className="title">
-              {title}
-              {/* Spring 2015 Runway Arrivals Talk Trends and Supporting Labels */}
-            </div>
+            <div className="title">{title}</div>
             <div className="box-info">
-              <img src="/img/author-img1.jpeg" className="info-author" />
+              <img
+                alt="caption"
+                src="/img/author-img1.jpeg"
+                className="info-author"
+              />
               <h5 className="info-name">{author}</h5>
               <span className="info-date">
                 {moment(createdOn).format("  MMM DD, YYYY")}

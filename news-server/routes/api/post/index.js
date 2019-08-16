@@ -195,9 +195,10 @@ router.get("/open", (req, res) => {
 });
 
 // Send email with Nodemailer
+// Form submit
 router.post("/send", (req, res) => {
   const output = `
-    <p>You have a new contact message</p>
+    <p style={{color:#00A3E4}}>You have a new contact message</p>
     <h3>Contact Details</h3>
     <ul>
       <li>Name: ${req.body.title}</li>
@@ -223,9 +224,9 @@ router.post("/send", (req, res) => {
   });
 
   let mailOptions = {
-    from: '"Node mailer contact" <tom@mrs.com.vn>',
+    from: '"Admin Mailer" <tom@mrs.com.vn>',
     to: "tuyentn3393@gmail.com",
-    subject: "Node ",
+    subject: "News Website Contact",
     text: "Hello",
     html: output
   };
@@ -233,9 +234,55 @@ router.post("/send", (req, res) => {
     if (err) {
       return console.log(err);
     }
+    res.status(200).json("successs");
+    res.status(400).json("error");
     console.log("Preview ", nodemailer.getTestMessageUrl(info));
   });
 });
+
+// Send email in Stay Updated
+// Get customer email
+router.post("/getemail", (req, res) => {
+  const output = `
+    <p style={{color:#00A3E4}}>You have a new contact message</p>
+    <h3>Customer Email:</h3>
+    <ul>
+      <li>Name: ${req.body.email}</li>
+    
+    </ul>
+    
+
+  `;
+  let transporter = nodemailer.createTransport({
+    host: "mail.mrs.com.vn",
+    port: 587,
+    sercuse: false,
+    auth: {
+      user: "tom@mrs.com.vn",
+      pass: "0965003905t"
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+
+  let mailOptions = {
+    from: '"Admin Mailer" <tom@mrs.com.vn>',
+    to: "tuyentn3393@gmail.com",
+    subject: "News Website Contact",
+    text: "Hello",
+    html: output
+  };
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      return console.log(err);
+    }
+    res.status(200).json("successs");
+    res.status(400).json("error");
+    console.log("Preview ", nodemailer.getTestMessageUrl(info));
+  });
+});
+
 module.exports = router;
 
 // UPLOAD IMAGES WITH FORMIDABLE

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class EditorChoiceItem extends Component {
   render() {
@@ -10,6 +10,7 @@ class EditorChoiceItem extends Component {
         <div className="item-box-img">
           <Link to={`/detail/${_id}`}>
             <img
+              alt="editor"
               src={`http://localhost:5000/api/open?name=${images}`}
               className="item-img"
             />

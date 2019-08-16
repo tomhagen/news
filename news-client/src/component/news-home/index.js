@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 
 class NewsHome extends Component {
   renderLatestNews = () => {
-    console.log(this.props.computingList.slice(0, 1));
+    
     return this.props.computingList.slice(0, 1).map((computing, index) => {
       return (
-        <div
+        <div key={index}
           className="main-news"
           style={{
             width: "67%",
@@ -26,7 +26,7 @@ class NewsHome extends Component {
         >
           <div className="container">
             <div className="box-info">
-              <img src="./img/author-img1.jpeg" className="info-author" />
+              <img alt="author" src="./img/author-img1.jpeg" className="info-author" />
               <h5 className="info-name">{computing.author}</h5>
               <span className="info-date">
                 {moment(computing.createdOn).format("MMM DD YYYY")}

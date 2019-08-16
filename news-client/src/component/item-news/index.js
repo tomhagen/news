@@ -1,25 +1,37 @@
 import "./index.scss";
 import React, { Component } from "react";
+import moment from "moment";
+import {Link} from 'react-router-dom';
 
 class ItemNews extends Component {
   render() {
+    let {_id, title, author, createdOn, images } = this.props.news;
     return (
       <div className="news-item item">
         <div className="news-item-box-img">
-          <a href="#">
-            <img src="./img/latest-in-category1.jpg" className="news-item-img" />
-          </a>
+          <div className="img-box">
+            <Link to={`/detail/${_id}`}>
+              <img
+                alt="item"
+                src={`http://localhost:5000/api/open?name=${images}`}
+                className="news-item-img"
+              />
+            </Link>
+          </div>
         </div>
         <div className="news-item-box-content">
           <h5 className="box-content-title">
-            <a href="#">
-              Magnificent Image Of The New Hoover Dam Bridge Taking Shape
-            </a>
+            <Link to={`/detail/${_id}`}>
+              {title}
+              {/* Magnificent Image Of The New Hoover Dam Bridge Taking Shape */}
+            </Link>
           </h5>
 
           <div className="box-content-info">
-            <h5 className="info-name">John Phillipe</h5>
-            <span className="info-date">POSTED ON MARCH 24, 20167</span>
+            <h5 className="info-name">{author}</h5>
+            <span className="info-date">
+              POSTED ON {moment(createdOn).format("MMM DD YYYY")}
+            </span>
           </div>
         </div>
       </div>

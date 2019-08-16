@@ -34,7 +34,7 @@ class CategoryNewsItem extends Component {
           <div className="item-box-img">
             <Link to={`/detail/${_id}`}>
               {/* <img src="./img/latest-news-item1.jpg" className="item-img" /> */}
-              <img src={`http://localhost:5000/api/open?name=${images}`} className="item-img" />
+              <img alt="detail" src={`http://localhost:5000/api/open?name=${images}`} className="item-img" />
             </Link>
           </div>
           <div className="item-box-content">

@@ -8,7 +8,7 @@ export const requestGetAllNewsList = () => {
       url: "http://localhost:5000/api/posts"
     })
       .then(res => {
-        console.log(res);
+   
         dispatch(actGetAllNewsList(res.data));
       })
       .catch(err => {
@@ -17,18 +17,6 @@ export const requestGetAllNewsList = () => {
   };
 };
 
-// export const requestDeleteNewsItem = (id) => {
-//   return dispatch => {
-//     Axios({
-//       method: 'DELETE',
-//       url: `http://localhost:5000/api/posts/${id}`
-//     })
-//     .then(res => {
-//       console.log(res);
-//       dispatch(actDeleteNewsItem(id))
-//     })
-//   }
-// }
 export const requestGetNewsByCategory = (type, limit) => {
   return dispatch => {
     Axios({
@@ -36,7 +24,7 @@ export const requestGetNewsByCategory = (type, limit) => {
       url: `http://localhost:5000/api/posts/category?type=${type}&limit=${limit}`
     })
       .then(res => {
-        console.log(res);
+     
         dispatch(actGetNewsByCategory(res.data));
       })
       .catch(err => {

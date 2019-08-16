@@ -7,13 +7,9 @@ import {
   Icon,
   Select,
   message,
-  Upload,
   Badge
 } from "antd";
 import Axios from "axios";
-// import { Editor } from "@tinymce/tinymce-react";
-import CKEditor from "ckeditor4-react";
-import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import ReactQuill from "react-quill";
@@ -21,7 +17,6 @@ import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 
 const { Option } = Select;
-const { TextArea } = Input;
 
 class CreatePosts extends Component {
   constructor(props) {
@@ -220,7 +215,7 @@ class CreatePosts extends Component {
     }
   }
   render() {
-    let { editStatus } = this.props;
+   
    
     return (
       <Fragment>

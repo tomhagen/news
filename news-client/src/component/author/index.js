@@ -8,7 +8,7 @@ class Author extends Component {
         <div className="author__container">
           <div className="container">
             <div className="author__img">
-              <img src="/img/author.jpeg" />
+              <img alt="author" src="/img/author.jpeg" />
             </div>
             <div className="author__info">
               <h3 className="author__title">AUTHOR</h3>
@@ -21,27 +21,27 @@ class Author extends Component {
               <div className="author__social">
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="https://www.facebook.com/mrsvietnam1/"  >
                       <i class="fa fa-facebook-f" />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://twitter.com/mrsvietnam1"  >
                       <i class="fa fa-twitter" />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://www.google.com/"  >
                       <i class="fa fa-google-plus" />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://www.linkedin.com/company/material-resource-solutions"  >
                       <i class="fa fa-linkedin" />
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://www.instagram.com/mrsvietnam/"  >
                       <i class="fa fa-instagram" />
                     </a>
                   </li>

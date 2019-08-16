@@ -9,7 +9,7 @@ class SubNewsItem extends Component {
       <div className="sub-news-item item-child">
         <div className="item-img">
           <Link to={`/detail/${_id}`}>
-            <img src={`http://localhost:5000/api/open?name=${images}`} />
+            <img alt="detail" src={`http://localhost:5000/api/open?name=${images}`} />
           </Link>
         </div>
         <div className="item-content">

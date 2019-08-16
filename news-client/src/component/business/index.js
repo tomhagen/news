@@ -7,7 +7,7 @@ class Business extends Component {
   renderBusinessItem = () => {
     return this.props.businessList.map((news, index) => {
       return (
-        <div className="container">
+        <div className="container" key={index}>
           <div
             className="main-news"
             style={{
@@ -25,7 +25,7 @@ class Business extends Component {
                 <Link to={`/category/${news.category}`}>{news.category}</Link>
               </div>
               <div className="box-info">
-                <img src="./img/author-img1.jpeg" className="info-author" />
+                <img alt="business" src="./img/author-img1.jpeg" className="info-author" />
                 <h5 className="info-name">{news.author}</h5>
                 <span className="info-date">
                   {moment(news.createdOn).format("MMM Do YYYY")}

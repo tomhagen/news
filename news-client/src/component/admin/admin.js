@@ -2,9 +2,8 @@ import "./index.scss";
 import React, { Component, Fragment } from "react";
 import Axios from "axios";
 
-import { Form, Icon, Button, Checkbox, Select, Input } from "antd";
+import { Form, Icon, Button, Input } from "antd";
 const { TextArea } = Input;
-const { Option } = Select;
 
 class Admin extends Component {
   constructor(props) {
@@ -18,8 +17,8 @@ class Admin extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    console.log(this.state)
-    
+    console.log(this.state);
+
     Axios({
       method: "post",
       url: "localhost:5000/api/post/create",
@@ -33,10 +32,8 @@ class Admin extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
-    
   };
   render() {
-    
     return (
       <Fragment>
         <div className="container">

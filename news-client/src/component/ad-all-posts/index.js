@@ -8,7 +8,7 @@ import moment from "moment";
 import { connect } from "react-redux";
 import {
   requestGetAllNewsList,
-  requestDeleteNewsItem,
+
   actNewsEdit,
   actNewsEditStatus,
   actDeleteNewsItem
@@ -19,9 +19,7 @@ import Swal from "sweetalert2";
 const { Search } = Input;
 
 class AllPosts extends Component {
-  constructor(props) {
-    super(props);
-  }
+ 
   componentDidMount() {
     this.props.onGetAllNewsList();
     // Axios({

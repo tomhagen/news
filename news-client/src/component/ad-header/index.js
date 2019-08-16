@@ -12,13 +12,13 @@ class AdminHeader extends Component {
             <div className="admin-container">
               <div className="logo">
                 <Link to="/">
-                  <img src="/img/logo.png" />
+                  <img alt="logo" src="/img/logo.png" />
                 </Link>
               </div>
               <div className="admin-info">
                 <Icon type="bell" className="admin-icon" />
                 <div className="admin-img">
-                  <img src="/img/author-img1.jpeg" />
+                  <img alt="admin" src="/img/author-img1.jpeg" />
                 </div>
                 <p className="admin-name">Tuyen Tran</p>
               </div>

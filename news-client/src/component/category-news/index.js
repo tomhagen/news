@@ -1,7 +1,6 @@
 import "./index.scss";
 import React, { Component, Fragment } from "react";
 import Category from "../category";
-import { Breadcrumb, Icon } from "antd";
 import CategoryNewsItem from "./category-news-item";
 import {connect} from 'react-redux';
 
