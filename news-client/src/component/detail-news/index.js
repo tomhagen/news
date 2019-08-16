@@ -8,9 +8,15 @@ import TrendingItem from "../trending-item";
 import { Form, Input, Button, Row, Col } from "antd";
 const { TextArea } = Input;
 
+
+
 class DetailNews extends Component {
+  // createMarkup = () => {
+  //   return {_html: this.props.detailNews.description}
+  // }
   render() {
     let { description, images } = this.props.detailNews;
+   
     return (
       <Fragment>
         <section className="detail-news">
@@ -18,7 +24,7 @@ class DetailNews extends Component {
             <div className="news-container">
               <Social />
               <div className="main-content">
-                <p>{description}</p>
+                <div dangerouslySetInnerHTML={{__html: description}}/>
 
                 {/* <img src="./img/technology-computer-chips-gigabyte.jpg" /> */}
                 <img src={`http://localhost:5000/api/open?name=${images}`} />
@@ -28,7 +34,7 @@ class DetailNews extends Component {
                 <hr className="post_divider" />
                 <hr className="post_divider double" />
               </div>
-              <Author detailNews={this.props.detailNews}/>
+              <Author detailNews={this.props.detailNews} />
               <div className="trending__now">
                 <h2>TRENDING NOW</h2>
               </div>
@@ -86,4 +92,7 @@ class DetailNews extends Component {
     );
   }
 }
+
+
+
 export default DetailNews;

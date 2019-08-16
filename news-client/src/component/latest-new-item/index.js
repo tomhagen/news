@@ -25,7 +25,8 @@ class LatestNewsItem extends Component {
               </Link>
             </h5>
             <p className="content">
-              {item.description.substr(0,100) + "...."}
+            <div dangerouslySetInnerHTML={{__html: item.description.substr(0,100) + "...."}}/>
+              {/* {item.description.substr(0,100) + "...."} */}
               {/* Lorem ipsum dosectetur adipisicing elit, sed do.Lorem ipsum dolor
               sit amet, consectetur Nulla fringilla purus at leo […] */}
             </p>

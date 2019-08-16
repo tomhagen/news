@@ -16,6 +16,9 @@ import CKEditor from "ckeditor4-react";
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -30,9 +33,62 @@ class CreatePosts extends Component {
       category: "",
       file: null,
       images: "",
-      author: ""
+      author: "",
+      // comments: ""
     };
+    this.modules = {
+      toolbar: [
+        [{ font: [] }],
+        [{ size: ["small", false, "large", "huge"] }],
+        ["bold", "italic", "underline"],
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ list: "ordered" }, { list: "bullet" }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [ 'link', 'image', 'video', 'formula' ],
+         [{ 'direction': 'rtl' }],
+        [{ align: [] }],
+        [{ color: [] }, { background: [] }],
+        ["clean"],
+        [{ 'header': '3' }]
+      ]
+    };
+
+    this.formats = [
+      "font",
+      "size",
+      "bold",
+      "italic",
+      "underline",
+      "list",
+      "bullet",
+      "align",
+      "color",
+      "background",
+      "code",
+      "link",
+      "strike",
+      "script",
+      "header",
+      "indent",
+      "direction",
+      "image",
+      "video"
+    ];
+    this.rteChange = this.rteChange.bind(this);
   }
+  
+
+  rteChange = (content, delta, source, editor) => {
+    const text = editor.getHTML();
+    this.setState({
+      description: text
+    })
+    console.log(text); // rich text 
+    // console.log(editor.getText()); // plain text
+    // console.log(editor.getLength()); // number of characters
+  };
+
   handleOnChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -48,9 +104,7 @@ class CreatePosts extends Component {
       author
     });
   };
-  handleReturnAdmin = () => {
-
-  }
+  handleReturnAdmin = () => {};
   // onChange(evt) {
   //   console.log("onChange fired with event info: ", evt);
   //   var newContent = evt.editor.getData();
@@ -167,6 +221,7 @@ class CreatePosts extends Component {
   }
   render() {
     let { editStatus } = this.props;
+   
     return (
       <Fragment>
         <div className="create-posts">
@@ -216,7 +271,7 @@ class CreatePosts extends Component {
                 </Select>
               </Form.Item>
 
-              <Form.Item>
+              {/* <Form.Item>
                 <TextArea
                   rows={4}
                   name="description"
@@ -224,7 +279,16 @@ class CreatePosts extends Component {
                   placeholder="Type content of post"
                   onChange={this.handleOnChange}
                 />
-              </Form.Item>
+              </Form.Item> */}
+
+              <ReactQuill
+                theme="snow"
+                name="description"
+                modules={this.modules}
+                formats={this.formats}
+                onChange={this.rteChange}
+                value={this.state.description}
+              />
               <input
                 type="file"
                 name="images"
@@ -232,16 +296,7 @@ class CreatePosts extends Component {
                 onChange={this.handleUploadChange}
                 file={this.state.file}
               />
-              {/* <CKEditor
-                // name="description"
-                data={this.state.description}
-                events={{ change: this.onChange }}
-                onChange={this.onEditorChange}
-                placeholder="Type content of post"
-                onChange={this.handleChange}
-              /> */}
-              {/* <Editor rows={8}  apiKey="API_KEY" init={{ plugins: "link table" }} /> */}
-              {/* <textarea id="mytextarea">Hello, World!</textarea> */}
+
               {/* <Form.Item label="Upload">
                 <Upload
                   name="imgUrl"
@@ -259,7 +314,12 @@ class CreatePosts extends Component {
                 <Button type="primary" htmlType="submit">
                   {this.props.editStatus ? "UPDATE POST" : "CREATE NEW POST"}
                 </Button>
-                <Button type="dashed" onClick={() => this.props.history.push("/admin/posts")}>Return Post Admin</Button>
+                <Button
+                  type="dashed"
+                  onClick={() => this.props.history.push("/admin/posts")}
+                >
+                  Return Post Admin
+                </Button>
               </Form.Item>
             </Form>
           </div>

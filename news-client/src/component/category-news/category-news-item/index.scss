@@ -1,18 +1,18 @@
 @import "../../scss/variables.scss";
 
 .category-news-item {
-    padding: 10px 0;
-    .item-box-breadcrumb{
-      .ant-breadcrumb{
-        .ant-breadcrumb-link{
-          a{
-            &:hover{
-              color: $primaryColor;
-            }
+  padding: 10px 0;
+  .item-box-breadcrumb {
+    .ant-breadcrumb {
+      .ant-breadcrumb-link {
+        a {
+          &:hover {
+            color: $primaryColor;
           }
         }
       }
     }
+  }
   .item-box-title {
     width: 93%;
     .content-title {
@@ -52,12 +52,18 @@
     margin-top: 20px;
     width: 93%;
     .content {
-      font-size: 14px;
+      font-size: 15px;
       letter-spacing: 1px;
       line-height: 21px;
       padding-top: 0.5em;
       padding-bottom: 0.5em;
       color: $contentTextColor;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-height: 110px;
     }
   }
   .item-box-view {

@@ -39,7 +39,8 @@ class CategoryNewsItem extends Component {
           </div>
           <div className="item-box-content">
             <p className="content">
-              {description.substr(0,1000) + "...."}
+            <div dangerouslySetInnerHTML={{__html: description.substr(0,1000) + "...."}}/>
+              {/* {description.substr(0,1000) + "...."} */}
             </p>
             {/* <p className="content">
               Aliquam et elit eu nunc rhoncus viverra quis at felis et netus et
