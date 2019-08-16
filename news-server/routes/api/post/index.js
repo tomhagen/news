@@ -81,7 +81,10 @@ router.post("/posts", (req, res) => {
   });
   newPost
     .save()
-    .then(post => res.status(200).json(post))
+    .then(post => {
+      res.status(200).json(post);
+      // res.redirect('/admin/posts')
+    })
     .catch(err => res.status(400).json(err));
 });
 
@@ -91,6 +94,7 @@ router.post("/posts", (req, res) => {
 
 router.get("/posts", (req, res) => {
   Post.find()
+    .sort({ createdOn: -1 })
     .then(post => res.status(200).json(post))
     .catch(err => res.status(400).json(err));
 });

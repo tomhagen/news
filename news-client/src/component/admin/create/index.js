@@ -1,9 +1,21 @@
 import React, { Component, Fragment } from "react";
 import "./index.scss";
-import { Form, Button, Input, Icon, Select, message, Upload } from "antd";
+import {
+  Form,
+  Button,
+  Input,
+  Icon,
+  Select,
+  message,
+  Upload,
+  Badge
+} from "antd";
 import Axios from "axios";
 // import { Editor } from "@tinymce/tinymce-react";
 import CKEditor from "ckeditor4-react";
+import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -11,7 +23,7 @@ const { TextArea } = Input;
 class CreatePosts extends Component {
   constructor(props) {
     super(props);
-    this.updateContent = this.updateContent.bind(this);
+    // this.updateContent = this.updateContent.bind(this);
     this.state = {
       title: "",
       description: "",
@@ -36,24 +48,21 @@ class CreatePosts extends Component {
       author
     });
   };
+  handleReturnAdmin = () => {
 
-  onChange(evt) {
-    console.log("onChange fired with event info: ", evt);
-    var newContent = evt.editor.getData();
-    this.setState({
-      description: newContent
-    });
   }
-  updateContent(newContent) {
-    this.setState({
-      description: newContent
-    });
-  }
-  // onEditorChange = event => {
+  // onChange(evt) {
+  //   console.log("onChange fired with event info: ", evt);
+  //   var newContent = evt.editor.getData();
   //   this.setState({
-  //     description: event.editor.getData()
+  //     description: newContent
   //   });
-  // };
+  // }
+  // updateContent(newContent) {
+  //   this.setState({
+  //     description: newContent
+  //   });
+  // }
 
   handleUploadChange = event => {
     this.setState({
@@ -76,41 +85,98 @@ class CreatePosts extends Component {
         "content-type": "multipart/form-data"
       }
     };
-    Axios({
-      method: "POST",
-      url: "http://localhost:5000/api/upload_images",
-      data: formData,
-      config
-    })
-      .then(res => {
-        // Handle submit form
 
-        const hide = message.loading("Action in progress...", 0);
-        setTimeout(
-          hide,
-          Axios({
-            method: "POST",
-            url: "http://localhost:5000/api/posts",
-            data: this.state
-          })
-            .then(res => {
-              message.success("New post has created successfully");
-            })
-            .catch(err => {
-              message.error("Cannot create new post");
-            })
-        );
+    if (!this.props.editStatus) {
+      Axios({
+        method: "POST",
+        url: "http://localhost:5000/api/upload_images",
+        data: formData,
+        config
       })
-      .catch(err => {
-        message.error("Cannot upload images", err);
-        console.log(err);
-      });
+        .then(res => {
+          // Handle submit form
+
+          const hide = message.loading("Action in progress...", 0);
+          setTimeout(
+            hide,
+            Axios({
+              method: "POST",
+              url: "http://localhost:5000/api/posts",
+              data: this.state
+            })
+              .then(res => {
+                message.success("New post has created successfully");
+                this.props.history.push("/admin/posts");
+              })
+              .catch(err => {
+                message.error("Cannot create new post");
+              })
+          );
+        })
+        .catch(err => {
+          message.error("Cannot upload images", err);
+          console.log(err);
+        });
+    } else {
+      Axios({
+        method: "POST",
+        url: "http://localhost:5000/api/upload_images",
+        data: formData,
+        config
+      })
+        .then(res => {
+          // Handle submit form
+
+          const hide = message.loading("Action in progress...", 0);
+          setTimeout(
+            hide,
+            Axios({
+              method: "PUT",
+              url: `http://localhost:5000/api/posts/${
+                this.props.editNewsInfo._id
+              }`,
+              data: this.state
+            })
+              .then(res => {
+                message.success("Update post successfully");
+                this.props.history.push("/admin/posts");
+              })
+              .catch(err => {
+                message.error("Cannot update post");
+              })
+          );
+        })
+        .catch(err => {
+          message.error("Cannot upload images", err);
+          console.log(err);
+        });
+    }
   };
+
+  componentWillMount() {
+    if (this.props.editStatus) {
+      this.setState({
+        title: this.props.editNewsInfo.title,
+        category: this.props.editNewsInfo.category,
+        author: this.props.editNewsInfo.author,
+        description: this.props.editNewsInfo.description
+        // images: this.props.editNewsInfo.images,
+        // file: this.props.editNewsInfo.file
+      });
+    }
+  }
   render() {
+    let { editStatus } = this.props;
     return (
       <Fragment>
         <div className="create-posts">
           <div class="container">
+            <Badge
+              count={
+                this.props.editStatus ? "UPDATE A NEW POST" : "CREATE POST"
+              }
+              style={{ backgroundColor: "#52c41a" }}
+            />
             <Form onSubmit={this.handleOnSubmit}>
               <Form.Item>
                 <Input
@@ -119,14 +185,14 @@ class CreatePosts extends Component {
                   }
                   placeholder="Enter the title"
                   name="title"
+                  value={this.state.title}
                   onChange={this.handleOnChange}
-
-                  // value={this.state.email}
                 />
               </Form.Item>
               <Form.Item>
                 <Select
                   placeholder="Select the category"
+                  value={this.state.category}
                   onChange={this.handleSelectCategoryChange}
                 >
                   <Option value="BUSINESS">Business</Option>
@@ -143,6 +209,7 @@ class CreatePosts extends Component {
                 <Select
                   placeholder="Select Author"
                   onChange={this.handleSelectAuthorChange}
+                  value={this.state.author}
                 >
                   <Option value="TUYEN TRAN">Tuyen Tran</Option>
                   <Option value="PHILIPPE XI">Phillipe</Option>
@@ -153,6 +220,7 @@ class CreatePosts extends Component {
                 <TextArea
                   rows={4}
                   name="description"
+                  value={this.state.description}
                   placeholder="Type content of post"
                   onChange={this.handleOnChange}
                 />
@@ -160,8 +228,9 @@ class CreatePosts extends Component {
               <input
                 type="file"
                 name="images"
+                value={this.state.images}
                 onChange={this.handleUploadChange}
-                // file={this.state.file}
+                file={this.state.file}
               />
               {/* <CKEditor
                 // name="description"
@@ -188,8 +257,9 @@ class CreatePosts extends Component {
 
               <Form.Item>
                 <Button type="primary" htmlType="submit">
-                  Create Post
+                  {this.props.editStatus ? "UPDATE POST" : "CREATE NEW POST"}
                 </Button>
+                <Button type="dashed" onClick={() => this.props.history.push("/admin/posts")}>Return Post Admin</Button>
               </Form.Item>
             </Form>
           </div>
@@ -198,4 +268,13 @@ class CreatePosts extends Component {
     );
   }
 }
-export default CreatePosts;
+const mapStateToProps = state => {
+  return {
+    editStatus: state.newsEditStatus,
+    editNewsInfo: state.newsEdit
+  };
+};
+export default connect(
+  mapStateToProps,
+  null
+)(withRouter(CreatePosts));

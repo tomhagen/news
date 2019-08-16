@@ -17,6 +17,18 @@ export const requestGetAllNewsList = () => {
   };
 };
 
+// export const requestDeleteNewsItem = (id) => {
+//   return dispatch => {
+//     Axios({
+//       method: 'DELETE',
+//       url: `http://localhost:5000/api/posts/${id}`
+//     })
+//     .then(res => {
+//       console.log(res);
+//       dispatch(actDeleteNewsItem(id))
+//     })
+//   }
+// }
 export const requestGetNewsByCategory = (type, limit) => {
   return dispatch => {
     Axios({
@@ -65,3 +77,33 @@ export const actGetDetailOfNews = news => {
     payload: news
   };
 };
+export const actDeleteNewsItem = id => {
+  return {
+    type: types.DELETE_NEWS,
+    payload: id
+  };
+};
+export const actNewsEdit = news => {
+  return {
+    type: types.EDIT_NEWS,
+    payload: news
+  };
+};
+export const actNewsEditStatus = status => {
+  return {
+    type: types.GET_EDIT_STATUS,
+    payload: status
+  };
+};
+export const actUpdateNews = news => {
+  return {
+    type: types.UPDATE_NEWS,
+    payload: news
+  };
+};
+// export const actResetState = state => {
+//   return {
+//     type: types.RESET_STATE,
+//     payload: state
+//   }
+// }

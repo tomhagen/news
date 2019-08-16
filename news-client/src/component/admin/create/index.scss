@@ -1,1 +1,17 @@
 @import "../../../component/scss/variables.scss";
+
+.create-posts {
+  .container {
+    .ant-form {
+      .ant-form-item {
+        margin-top: 30px;
+        .ant-form-item-control {
+          .ant-form-item-children {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+}

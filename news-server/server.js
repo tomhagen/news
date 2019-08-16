@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
-
+const cors = require("cors");
 
 // Connect to database
 mongoose
@@ -13,10 +13,11 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 // Config CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+
   res.header("Access-Control-Allow-Method", "GET, PUT, POST, DELETE");
   res.header(
     "Access-Control-Allow-Headers",
@@ -32,7 +33,6 @@ app.use("/", express.static(path.join(__dirname, "public")));
 // app.use("/", (req, res) => {
 //   res.render("../news-client/public/index");
 // });
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
