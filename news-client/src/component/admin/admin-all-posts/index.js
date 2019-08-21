@@ -8,19 +8,18 @@ import moment from "moment";
 import { connect } from "react-redux";
 import {
   requestGetAllNewsList,
-
   actNewsEdit,
   actNewsEditStatus,
   actDeleteNewsItem
-} from "../../actions/newsAction";
+} from "../../../actions/newsAction";
 import { withRouter } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const { Search } = Input;
 
 class AllPosts extends Component {
- 
   componentDidMount() {
+    window.scrollTo(0, 0);
     this.props.onGetAllNewsList();
     // Axios({
     //   method: "GET",
@@ -152,22 +151,20 @@ class AllPosts extends Component {
                 CREATE NEW POSTS
               </Button>
             </Link>
-            <Link to="/">
-              <Button block>Return Home Page</Button>
-            </Link>
+
             <Search
-              placeholder="Type the title of Post"
+              placeholder="Search Post"
               enterButton
               className="post-search"
             />
           </div>
+          <Table
+            className="post-table"
+            bordered="true"
+            columns={columns}
+            dataSource={data}
+          />
         </div>
-        <Table
-          className="post-table"
-          bordered="true"
-          columns={columns}
-          dataSource={data}
-        />
       </Fragment>
     );
   }

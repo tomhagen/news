@@ -176,6 +176,26 @@ router.get("/posts/pagniation", (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// route api/posts/search?q=
+// SEARCH BY TITLE & DESCRIPTION
+
+router.get("/posts/search", (req, res) => {
+  let query = `/.*${req.query.q}.*/`;
+  console.log(query)
+  // Post.find({title:{'$regex' : /.*.*/, $in:['laptop'], '$options' : 'i'} })
+Post.find({ title: query }) // i : case-sensitive, not difference between Lower and Upper
+    .select({
+      _id: 1,
+      title: 1,
+      description: 1,
+      author: 1,
+      createdOn: 1,
+      category: 1,
+      images: 1
+    })
+    .then(post => res.status(200).json(post))
+    .catch(err => res.status(400).json(err));
+});
 // OPEN IMAGES ON BROWSER
 // route api/open?name=
 

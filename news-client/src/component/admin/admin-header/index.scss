@@ -1,15 +1,20 @@
-@import "../scss/variables.scss";
+@import "../../scss/variables.scss";
 
 .header {
+  background-color: rgb(241, 241, 241);
+  position: sticky;
+  top: 0;
+  z-index: 999;
   .admin-header {
-    width: 80%;
+    width: 100%;
     margin: auto;
     border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+
     .admin-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 10px 30px;
       .logo {
         width: 70px;
         img {

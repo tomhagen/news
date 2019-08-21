@@ -1,14 +1,6 @@
 import React, { Component, Fragment } from "react";
 import "./index.scss";
-import {
-  Form,
-  Button,
-  Input,
-  Icon,
-  Select,
-  message,
-  Badge
-} from "antd";
+import { Form, Button, Input, Icon, Select, message, Badge } from "antd";
 import Axios from "axios";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -28,7 +20,7 @@ class CreatePosts extends Component {
       category: "",
       file: null,
       images: "",
-      author: "",
+      author: ""
       // comments: ""
     };
     this.modules = {
@@ -36,16 +28,16 @@ class CreatePosts extends Component {
         [{ font: [] }],
         [{ size: ["small", false, "large", "huge"] }],
         ["bold", "italic", "underline"],
-        [{ 'header': 1 }, { 'header': 2 }],
+        [{ header: 1 }, { header: 2 }],
         [{ list: "ordered" }, { list: "bullet" }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
-        [ 'link', 'image', 'video', 'formula' ],
-         [{ 'direction': 'rtl' }],
+        [{ script: "sub" }, { script: "super" }],
+        [{ indent: "-1" }, { indent: "+1" }],
+        ["link", "image", "video", "formula"],
+        [{ direction: "rtl" }],
         [{ align: [] }],
         [{ color: [] }, { background: [] }],
         ["clean"],
-        [{ 'header': '3' }]
+        [{ header: "3" }]
       ]
     };
 
@@ -72,14 +64,13 @@ class CreatePosts extends Component {
     ];
     this.rteChange = this.rteChange.bind(this);
   }
-  
 
   rteChange = (content, delta, source, editor) => {
     const text = editor.getHTML();
     this.setState({
       description: text
-    })
-    console.log(text); // rich text 
+    });
+    console.log(text); // rich text
     // console.log(editor.getText()); // plain text
     // console.log(editor.getLength()); // number of characters
   };
@@ -143,29 +134,31 @@ class CreatePosts extends Component {
         config
       })
         .then(res => {
-          // Handle submit form
-
-          const hide = message.loading("Action in progress...", 0);
-          setTimeout(
-            hide,
-            Axios({
-              method: "POST",
-              url: "http://localhost:5000/api/posts",
-              data: this.state
-            })
-              .then(res => {
-                message.success("New post has created successfully");
+          // message.success("Upload images successfully");
+          Axios({
+            method: "POST",
+            url: "http://localhost:5000/api/posts",
+            data: this.state
+          })
+            .then(res => {
+              message.loading("Action in progress...", 1);
+              const success = () => {
                 this.props.history.push("/admin/posts");
-              })
-              .catch(err => {
-                message.error("Cannot create new post");
-              })
-          );
+                message.success("New post has created successfully",1);
+                
+              };
+              setTimeout(success, 500);
+            })
+            .catch(err => {
+              message.error("Cannot create new post");
+            });
         })
         .catch(err => {
-          message.error("Cannot upload images", err);
+          message.error("Upload images errors. Please update again", 1.5);
           console.log(err);
         });
+
+      // Create a new posts
     } else {
       Axios({
         method: "POST",
@@ -215,8 +208,6 @@ class CreatePosts extends Component {
     }
   }
   render() {
-   
-   
     return (
       <Fragment>
         <div className="create-posts">
@@ -230,9 +221,6 @@ class CreatePosts extends Component {
             <Form onSubmit={this.handleOnSubmit}>
               <Form.Item>
                 <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
                   placeholder="Enter the title"
                   name="title"
                   value={this.state.title}
@@ -283,8 +271,10 @@ class CreatePosts extends Component {
                 formats={this.formats}
                 onChange={this.rteChange}
                 value={this.state.description}
+                // placeholde="Write somethign"
               />
               <input
+                style={{ marginTop: "30px" }}
                 type="file"
                 name="images"
                 value={this.state.images}
@@ -308,12 +298,6 @@ class CreatePosts extends Component {
               <Form.Item>
                 <Button type="primary" htmlType="submit">
                   {this.props.editStatus ? "UPDATE POST" : "CREATE NEW POST"}
-                </Button>
-                <Button
-                  type="dashed"
-                  onClick={() => this.props.history.push("/admin/posts")}
-                >
-                  Return Post Admin
                 </Button>
               </Form.Item>
             </Form>

@@ -10,7 +10,22 @@
     padding: 15px 0;
     .latest-container {
       width: 70%;
-
+      .loadmore-btn {
+        // margin-left: 10px;
+        margin-top: 20px;
+        width: 100%;
+        height: 46px;
+        font-size: 16px;
+        padding: 0 30px;
+        font-weight: bold;
+      }
+      .ant-btn-primary{
+        background-color: $primaryColor !important;
+        border-color: $primaryColor !important;
+        &:hover{
+            background-color: black !important;
+        }
+      }
       .latest-news-title {
         font-size: 18px;
         font-weight: bold;

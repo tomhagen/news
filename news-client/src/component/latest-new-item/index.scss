@@ -1,4 +1,5 @@
-@import "../scss/variables.scss";
+@import "../scss/variables.scss" ;
+
 
 .latest-news-item {
   width: 100%;
@@ -44,6 +45,20 @@
       }
     }
   }
+}
+
+
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+.fade-in{
+  animation: fadeIn 1.5s ease-in;
+  -webkit-animation: fadeIn 1.5s ease-in;
 }
 
 // responsive

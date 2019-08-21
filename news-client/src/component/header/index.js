@@ -1,10 +1,11 @@
 import "./index.scss";
 
 import React, { Component, Fragment } from "react";
-import { Icon, Drawer, Menu } from "antd";
+import { Icon, Drawer, Menu, Input } from "antd";
 import { Link } from "react-router-dom";
 
 const { SubMenu } = Menu;
+const {Search} = Input;
 
 class header extends Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class header extends Component {
     this.state = {
       isMenuFixed: false,
       visible: false,
-      isShowSearchInput: false
+      isShowSearchInput: false,
+      isShowQuerySearch: false
     };
   }
   handleMenuScroll = () => {
@@ -27,6 +29,11 @@ class header extends Component {
       });
     }
   };
+  handleShowQuerySearch = () => {
+    this.setState({
+      isShowQuerySearch: !this.state.isShowQuerySearch
+    })
+  }
   showDrawer = () => {
     this.setState({
       visible: true
@@ -67,161 +74,262 @@ class header extends Component {
                 </Link>
               </li>
               <li className="menu-item">
-                <Link to="/" className="menu-item-a">Computing</Link>
+                <Link to="/" className="menu-item-a">
+                  Computing
+                </Link>
                 <ul className="menu-item-submenu">
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Right Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Right Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Left Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Left Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Fullwidth</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Fullwidth
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Fullwidth Image</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Fullwidth Image
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Gallery Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Gallery Post
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Video Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Video Post
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Review Post ( Star )</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Review Post ( Star )
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Review Post ( Point )</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Review Post ( Point )
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Review Post ( Percentage )</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Review Post ( Percentage )
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Pagniation Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Pagniation Post
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="menu-item">
-                <Link to="/" className="menu-item-a">Single Post</Link>
+                <Link to="/" className="menu-item-a">
+                  Single Post
+                </Link>
                 <ul className="menu-item-submenu">
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Right Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Right Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Left Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Left Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Fullwidth</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Fullwidth
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Fullwidth Image</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Fullwidth Image
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Gallery Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Gallery Post
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Video Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Video Post
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Review Post ( Star )</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Review Post ( Star )
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Review Post ( Point )</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Review Post ( Point )
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Review Post ( Percentage )</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Review Post ( Percentage )
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Pagniation Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Pagniation Post
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="menu-item">
-                <Link to="/" className="menu-item-a">Category</Link>
+                <Link to="/" className="menu-item-a">
+                  Category
+                </Link>
                 <ul className="menu-item-submenu">
                   <li className="submenu-item">
-                    <Link to="/category/BUSINESS" className="submenu-item-a">Business</Link>
+                    <Link to="/category/BUSINESS" className="submenu-item-a">
+                      Business
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/COMPUTING" className="submenu-item-a">Computing</Link>
+                    <Link to="/category/COMPUTING" className="submenu-item-a">
+                      Computing
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/ENERGY" className="submenu-item-a">Energy</Link>
+                    <Link to="/category/ENERGY" className="submenu-item-a">
+                      Energy
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/GADGETS" className="submenu-item-a">Gadgets</Link>
+                    <Link to="/category/GADGETS" className="submenu-item-a">
+                      Gadgets
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/MOBILE" className="submenu-item-a">Mobile</Link>
+                    <Link to="/category/MOBILE" className="submenu-item-a">
+                      Mobile
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/ROBOTIC" className="submenu-item-a">Robotic</Link>
+                    <Link to="/category/ROBOTIC" className="submenu-item-a">
+                      Robotic
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/COMPUTING" className="submenu-item-a">Start Up</Link>
+                    <Link to="/category/COMPUTING" className="submenu-item-a">
+                      Start Up
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/category/TOPNEWS" className="submenu-item-a">Top News</Link>
+                    <Link to="/category/TOPNEWS" className="submenu-item-a">
+                      Top News
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="menu-item">
-                <Link to="/" className="menu-item-a">Pages</Link>
+                <Link to="/" className="menu-item-a">
+                  Pages
+                </Link>
                 <ul className="menu-item-submenu">
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Home with Advertisement</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Home with Advertisement
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Left Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Left Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Fullwidth</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Fullwidth
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Contact</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Contact
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Gallery Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Gallery Post
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Video Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Video Post
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Background Header</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Background Header
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Typography</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Typography
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Short Codes</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Short Codes
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Pagniation Post</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Pagniation Post
+                    </Link>
                   </li>
                 </ul>
               </li>
               <li className="menu-item">
-                <Link to="/" className="menu-item-a">Shop</Link>
+                <Link to="/" className="menu-item-a">
+                  Shop
+                </Link>
                 <ul className="menu-item-submenu">
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Right Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Right Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Left Sidebar</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Left Sidebar
+                    </Link>
                   </li>
                   <li className="submenu-item">
-                    <Link to="/" className="submenu-item-a">Fullwidth</Link>
+                    <Link to="/" className="submenu-item-a">
+                      Fullwidth
+                    </Link>
                   </li>
                 </ul>
               </li>
             </ul>
             <div className="search-container">
-              <Icon type="search" />
+              <Icon type="search" onClick={this.handleShowQuerySearch}/>
             </div>
 
             <div className="hamburger-btn">
               <Icon type="menu" onClick={this.showDrawer} />
             </div>
+          </div>
+
+          <div className={`query__search__container ${this.state.isShowQuerySearch ? "showSearch":"hideSearch"} `}>
+            <Search
+              placeholder="Search something"
+              enterButton="Search"
+              size="large"
+              onSearch={value => console.log(value)}
+            />
           </div>
         </header>
 

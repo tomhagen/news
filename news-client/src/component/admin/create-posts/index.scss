@@ -1,7 +1,13 @@
 @import "../../../component/scss/variables.scss";
 
 .create-posts {
+  background-color: #FAFAFA;
+  padding: 50px 40px;
+  width: 80%;
   .container {
+     
+      width: 100%;
+      margin: auto;
     .ant-form {
       .ant-form-item {
         margin-top: 30px;

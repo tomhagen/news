@@ -8,7 +8,7 @@ class LatestNewsItem extends Component {
     let item = this.props.item;
     return (
       <Fragment>
-        <div className="latest-news-item">
+        <div className="latest-news-item fade-in">
           <div className="item-box-img">
             <Link to={`detail/${item._id}`}>
               <img

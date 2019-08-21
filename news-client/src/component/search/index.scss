@@ -1,0 +1,160 @@
+@import "../scss/variables.scss";
+
+.search__container {
+  .search__title {
+    width: 100%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 35px;
+    border-bottom: 3px solid #efeff0;
+    p {
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px 0;
+    }
+  }
+  .search__wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    .search__btn {
+      width: 84%;
+      margin: auto;
+      .ant-btn-primary {
+        background-color: $primaryColor !important;
+        border-color: $primaryColor !important;
+        &:hover {
+          background-color: black !important;
+          border-color: black !important;
+        }
+      }
+    }
+    .search__main {
+      width: 84%;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      .filter__container {
+        width: 30%;
+        margin-top: 30px;
+        margin-right: 20px;
+        h2 {
+          font-size: 25px;
+          font-weight: bold;
+        }
+        .filter__list {
+          margin-top: 20px;
+          h3 {
+            font-weight: bold;
+          }
+          ul {
+            li {
+              margin: 10px 5px;
+              padding: 5px;
+              background-color: $primaryColor;
+              a {
+                color: white;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+      .result__container {
+        width: 67%;
+        .result__item {
+          width: 100%;
+          margin-top: 30px;
+          display: flex;
+          flex-wrap: wrap;
+          .item-box-img {
+            width: 30%;
+            img {
+              width: 100%;
+            }
+          }
+          .item-box-content {
+            width: 70%;
+            padding: 0px 30px;
+            .content-title {
+              font-size: 18px;
+              font-weight: bold;
+              a {
+                color: black;
+              }
+              &:hover a {
+                color: $primaryColor;
+              }
+            }
+            .content {
+              font-size: 15px;
+              margin-top: 20px;
+            }
+            .content-info {
+              display: flex;
+              flex-wrap: wrap;
+              margin-top: 10px;
+              .info-name {
+                font-size: 12px;
+                font-weight: bold;
+              }
+              .info-date {
+                font-size: 11px;
+                margin-left: 20px;
+                color: $dateTextColor;
+                letter-spacing: 1px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .search__container {
+    .search__wrapper {
+      .search__main {
+        .filter__container {
+          width: 100%;
+        }
+        .result__container {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 685px) {
+  .search__container {
+    .search__wrapper {
+      .search__main {
+        width: 96%;
+        .filter__container {
+        }
+        .result__container {
+          .result__item {
+            .item-box-content {
+              .content-title {
+                font-size: 16px;
+              }
+              .content {
+                font-size: 14px;
+              }
+              .content-info {
+                .info-name {
+                  font-size: 10px;
+                }
+                .info-date {
+                  font-size: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

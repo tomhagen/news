@@ -1,0 +1,16 @@
+@import "../../scss/variables.scss";
+
+.admin__sidebar {
+  width: 15%;
+  // height: 90vh;
+  // background-color: #F5F5F5;
+  border-right: 1px solid rgb(221, 218, 218);
+  .sidebar__container {
+    .drawer-menu-container {
+      margin-top: 20px;
+      .ant-menu-inline {
+        border: none !important;
+      }
+    }
+  }
+}

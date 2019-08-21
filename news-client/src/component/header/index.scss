@@ -27,7 +27,28 @@ header {
       }
     }
   }
-
+  
+  .query__search__container{
+    width: 54%;
+    margin-left: 10%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    .ant-btn-primary{
+      background-color: $primaryColor;
+      &:hover{
+        background-color: black;
+      }
+    }
+  }
+  
+  .hideSearch{
+    display: none;
+  }
+  .showSearch{
+    display: block;
+    
+  }
   .menu {
     background-color: $bgColor2;
     display: flex;
@@ -212,7 +233,7 @@ header {
         }
       }
       .search-container{
-        display: none
+        margin-left: -86%;
       }
       .hamburger-btn{
         display: block;

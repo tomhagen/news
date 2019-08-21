@@ -1,0 +1,19 @@
+@import "../../scss/variables.scss";
+
+.post-create {
+  width: 80%;
+  margin: auto;
+margin-top: 50px;
+  .post-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .post-search {
+      width: 450px;
+    }
+  }
+  .post-table {
+    width: 100%;
+    margin-top: 50px;
+  }
+}
