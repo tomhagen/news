@@ -8,7 +8,6 @@ export const requestGetAllNewsList = () => {
       url: "http://localhost:5000/api/posts"
     })
       .then(res => {
-   
         dispatch(actGetAllNewsList(res.data));
       })
       .catch(err => {
@@ -24,7 +23,6 @@ export const requestGetNewsByCategory = (type, limit) => {
       url: `http://localhost:5000/api/posts/category?type=${type}&limit=${limit}`
     })
       .then(res => {
-     
         dispatch(actGetNewsByCategory(res.data));
       })
       .catch(err => {
@@ -45,6 +43,28 @@ export const requestGetDetailOfNews = id => {
       .catch(err => {
         console.log(err);
       });
+  };
+};
+export const requestAllNewsPagniation = (pageNumber, pageSize) => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url: `http://localhost:5000/api/posts/pagniation?pageNumber=${pageNumber}&pageSize=${pageSize}`
+    })
+      .then(res => {
+        console.log(res);
+        dispatch(actAllNewsPagniation(res.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
+export const actAllNewsPagniation = news => {
+  return {
+    type: types.GET_ALL_NEWS_PAGNIATION,
+    payload: news
   };
 };
 export const actGetAllNewsList = news => {

@@ -11,7 +11,7 @@ mongoose
 
 // Configure express
 const app = express();
-app.use(express.json({limit: '50mb'}));
+app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // Config CORS
@@ -27,6 +27,7 @@ app.use(function(req, res, next) {
 });
 
 app.use("/api", require("./routes/api/post"));
+app.use("/api/users", require("./routes/api/users"));
 
 app.use("/", express.static(path.join(__dirname, "public")));
 // app.use("/", express.static("public"));

@@ -15,7 +15,7 @@ class BreadcrumbTags extends Component {
       <Fragment>
         <section className="breadcrumb">
           <div className="container">
-            <h1>{category}</h1>
+            <h1>{category.toLowerCase().charAt(0).toUpperCase() + category.toLowerCase().slice(1)}</h1>
             <Breadcrumb>
               <Breadcrumb.Item>
                 <Link to="/">Home</Link>

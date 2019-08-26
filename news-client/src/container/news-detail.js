@@ -18,14 +18,31 @@ class NewsDetail extends Component {
     };
   }
   componentDidMount() {
-    window.scrollTo(0,0);
-    const id = this.props.match.params.id
+    console.log("didmout");
+    window.scrollTo(0, 0);
+    const id = this.props.match.params.id;
     Axios({
       method: "GET",
       url: `http://localhost:5000/api/posts/id?id=${id}`
     })
       .then(res => {
-    
+        this.setState({
+          detailNews: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    window.scrollTo(0, 0);
+    const id = nextProps.match.params.id;
+    Axios({
+      method: "GET",
+      url: `http://localhost:5000/api/posts/id?id=${id}`
+    })
+      .then(res => {
         this.setState({
           detailNews: res.data
         });
@@ -40,7 +57,7 @@ class NewsDetail extends Component {
         <Header />
         <BackTop />
         <PagesCaption detailNews={this.state.detailNews} />
-        <DetailNews detailNews={this.state.detailNews}/>
+        <DetailNews detailNews={this.state.detailNews} />
         <StayUpdated />
         <Footer />
         <Copyright />

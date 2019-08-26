@@ -4,6 +4,12 @@ import AdminSidebar from "../component/admin/admin-sidebar";
 import AllPosts from "../component/admin/admin-all-posts";
 
 class AdminPosts extends Component {
+  componentDidMount(){
+    const token = localStorage.getItem('token');
+    if(!token){
+      this.props.history.push("/login")
+    }
+  }
   render() {
     return (
       <Fragment>

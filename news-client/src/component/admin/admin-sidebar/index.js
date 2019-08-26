@@ -13,6 +13,8 @@ class AdminSidebar extends Component {
           <div className="sidebar__container">
             <ul className="drawer-menu-container">
               <Menu mode="inline">
+
+                {/* Dashboard */}
                 <Menu.Item key="1">
                   <Icon type="dashboard" />
                   <span>
@@ -29,27 +31,30 @@ class AdminSidebar extends Component {
                     </NavLink>
                   </span>
                 </Menu.Item>
+
+                {/* Posts */}
                 <SubMenu
                   key="sub1"
                   title={
                     <span>
-                      <i class="fa fa-clipboard" />
-                      <span style={{ marginLeft: "10px" }}>
-                        <NavLink
-                          to="/admin/posts"
-                          activeStyle={{
-                            fontWeight: "bold",
-                            color: "#08A100"
-                          }}
-                          style={{ color: "rgba(0, 0, 0, 0.65)" }}
-                        >
-                          Posts
-                        </NavLink>
-                      </span>
+                      <i className="fa fa-clipboard" />
+                      <span style={{ marginLeft: "10px" }}>Posts</span>
                     </span>
                   }
                 >
-                  <Menu.Item key="1">All Post</Menu.Item>
+                  <Menu.Item key="1">
+                    <NavLink
+                      exact
+                      to="/admin/posts"
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#08A100"
+                      }}
+                      style={{ color: "rgba(0, 0, 0, 0.65)" }}
+                    >
+                      All Posts
+                    </NavLink>
+                  </Menu.Item>
                   <Menu.Item key="2">
                     <NavLink
                       to="/admin/posts/create"
@@ -65,6 +70,8 @@ class AdminSidebar extends Component {
                   <Menu.Item key="3">Categories</Menu.Item>
                   <Menu.Item key="4">Tags</Menu.Item>
                 </SubMenu>
+
+                {/* Layouts */}
                 <SubMenu
                   key="sub2"
                   title={
@@ -80,11 +87,13 @@ class AdminSidebar extends Component {
                   <Menu.Item key="4">Detail</Menu.Item>
                   <Menu.Item key="5">Gallery Post</Menu.Item>
                 </SubMenu>
+
+                {/* Comments */}
                 <SubMenu
                   key="sub4"
                   title={
                     <span>
-                      <i class="fa fa-comments" />
+                      <i className="fa fa-comments" />
                       <span style={{ marginLeft: "10px" }}>Comments</span>
                     </span>
                   }
@@ -94,6 +103,8 @@ class AdminSidebar extends Component {
                   <Menu.Item key="3">Fullwidth</Menu.Item>
                   <Menu.Item key="4">Fullwidth Imgae</Menu.Item>
                 </SubMenu>
+
+                {/* Users */}
                 <SubMenu
                   key="sub5"
                   title={
@@ -103,8 +114,30 @@ class AdminSidebar extends Component {
                     </span>
                   }
                 >
-                  <Menu.Item key="1">Right Sidebar</Menu.Item>
-                  <Menu.Item key="2">Left Sidebar</Menu.Item>
+                  <Menu.Item key="1">
+                    <NavLink
+                      to="/admin/add-user"
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#08A100"
+                      }}
+                      style={{ color: "rgba(0, 0, 0, 0.65)" }}
+                    >
+                      Add New User
+                    </NavLink>
+                  </Menu.Item>
+                  <Menu.Item key="2">
+                    <NavLink
+                      to="/admin/users"
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#08A100"
+                      }}
+                      style={{ color: "rgba(0, 0, 0, 0.65)" }}
+                    >
+                      All Users
+                    </NavLink>
+                  </Menu.Item>
                   <Menu.Item key="3">Fullwidth</Menu.Item>
                   <Menu.Item key="4">Fullwidth Imgae</Menu.Item>
                 </SubMenu>

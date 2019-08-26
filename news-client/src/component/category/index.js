@@ -42,7 +42,7 @@ class Category extends Component {
 
           <ul className="categories-item">
             <li>
-              <Link to="/category/BUSINESS">Business</Link>
+              <Link to="/category/business">Business</Link>
               <div className="badge">
                 <Badge
                   count={9}
@@ -54,7 +54,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/COMPUTING">Computing</Link>
+              <Link to="/category/computing">Computing</Link>
               <div className="badge">
                 <Badge
                   count={5}
@@ -66,7 +66,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/ENERGY">Energy</Link>
+              <Link to="/category/energy">Energy</Link>
               <div className="badge">
                 <Badge
                   count={7}
@@ -78,7 +78,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/GADGETS">Gadgets</Link>
+              <Link to="/category/gadgets">Gadgets</Link>
               <div className="badge">
                 <Badge
                   count={2}
@@ -90,7 +90,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/MOBILE">Mobile</Link>
+              <Link to="/category/mobile">Mobile</Link>
               <div className="badge">
                 <Badge
                   count={5}
@@ -102,7 +102,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/ROBOTIC">Robotic</Link>
+              <Link to="/category/robotic">Robotic</Link>
               <div className="badge">
                 <Badge
                   count={6}
@@ -114,7 +114,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/STARTUP">Start Up</Link>
+              <Link to="/category/startup">Start Up</Link>
               <div className="badge">
                 <Badge
                   count={6}
@@ -126,7 +126,7 @@ class Category extends Component {
               </div>
             </li>
             <li>
-              <Link to="/category/TOPNEWS">Top News</Link>
+              <Link to="/category/topnews">Top News</Link>
               <div className="badge">
                 <Badge
                   count={4}

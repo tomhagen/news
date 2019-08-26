@@ -1,20 +1,43 @@
 @import "../../../component/scss/variables.scss";
 
 .create-posts {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   padding: 50px 40px;
   width: 80%;
   .container {
-     
-      width: 100%;
-      margin: auto;
+    width: 100%;
+    margin: auto;
     .ant-form {
       .ant-form-item {
         margin-top: 30px;
         .ant-form-item-control {
           .ant-form-item-children {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
+            .publish__btn{
+              width: 50%;
+              height: 42px;
+              margin: 0 20px;
+              font-size: 18px;
+              background-color: $primaryColor;
+              &:hover{
+                background-color: black;
+                color: white;
+              }
+              
+            }
+            .preview__btn{
+              width: 50%;
+              height: 42px;
+              margin: 0 20px;
+              font-size: 18px;
+              background-color: #EE7C1B;
+              &:hover{
+                background-color: black;
+                color: white;
+              }
+              
+            }
           }
         }
       }

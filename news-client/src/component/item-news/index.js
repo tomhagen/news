@@ -1,11 +1,11 @@
 import "./index.scss";
 import React, { Component } from "react";
 import moment from "moment";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class ItemNews extends Component {
   render() {
-    let {_id, title, author, createdOn, images } = this.props.news;
+    let { _id, title, author, createdOn, images } = this.props.news;
     return (
       <div className="news-item item">
         <div className="news-item-box-img">

@@ -2,27 +2,20 @@ import "./index.scss";
 import React, { Component, Fragment } from "react";
 import Category from "../category";
 import CategoryNewsItem from "./category-news-item";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 class CategoryNews extends Component {
-
   renderNewsByCategory = () => {
-    return this.props.newsByCategory.map((news,index) => {
-      return <CategoryNewsItem key={index} news={news}/>
-    })
-  }
+    return this.props.newsByCategory.map((news, index) => {
+      return <CategoryNewsItem key={index} news={news} />;
+    });
+  };
   render() {
     return (
       <Fragment>
         <section className="category-news">
           <div className="container">
-            <div className="news-container">
-              {this.renderNewsByCategory()}
-              {/* <CategoryNewsItem/>
-              <CategoryNewsItem/>
-              <CategoryNewsItem/>
-              <CategoryNewsItem/> */}
-            </div>
+            <div className="news-container">{this.renderNewsByCategory()}</div>
             <Category />
           </div>
         </section>
@@ -30,9 +23,13 @@ class CategoryNews extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     newsByCategory: state.newsByCategory
-  }
-}
-export default connect(mapStateToProps,null) (CategoryNews);
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(CategoryNews);

@@ -5,18 +5,6 @@ import React, { Component, Fragment } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-// const background = {
-//   width: "100%",
-//   // backgroundImage: 'url("./img/technology-computer-chips-gigabyte.jpg")',
-//   // backgroundImage: `url(http://localhost:5000/api/open?name=${images})`,
-//   backgroundRepeat: "no-repeat",
-//   backgroundSize: "cover",
-//   backgroundPosition: "center",
-//   position: "relative",
-//   height: "400px",
-//   backgroundColor: "rgba(0, 0, 0, 0.5)"
-//   // zIndex: '100'
-// };
 class PagesCaption extends Component {
   render() {
     let { title, createdOn, category, author, images } = this.props.detailNews;

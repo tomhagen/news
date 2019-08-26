@@ -1,9 +1,25 @@
 import React, { Component, Fragment } from "react";
-import { Icon } from "antd";
+import { Icon, message } from "antd";
 import "./index.scss";
-import {Link} from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import jwtDecoded from "jwt-decode";
+import { setCurrentUser, logout } from "../../../actions/authAction";
 
 class AdminHeader extends Component {
+
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecoded(token);
+      this.props.onSetProfile(decoded);
+    }
+  }
+  handleLogout = () => {
+    this.props.onHandleLogout()
+    message.success("You have logout successfully")
+    this.props.history.push("/login")
+  }
   render() {
     return (
       <Fragment>
@@ -20,7 +36,10 @@ class AdminHeader extends Component {
                 <div className="admin-img">
                   <img alt="admin" src="/img/author-img1.jpeg" />
                 </div>
-                <p className="admin-name">Tuyen Tran</p>
+                <p className="admin-name"> Hi, {this.props.profile.username}</p>
+                <div className="logout" onClick={this.handleLogout}>
+                  Logout <Icon type="logout" />
+                </div>
               </div>
             </div>
           </div>
@@ -29,4 +48,22 @@ class AdminHeader extends Component {
     );
   }
 }
-export default AdminHeader;
+const mapStateToProps = state => {
+  return {
+    profile: state.auth.profile
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetProfile: token => {
+      dispatch(setCurrentUser(token));
+    },
+    onHandleLogout: () => {
+      dispatch(logout());
+    }
+  };
+};
+export default withRouter( connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminHeader)) ;

@@ -9,7 +9,10 @@ class PopularPost extends Component {
         <div className="popular-item">
           <div className="item-logo">
             <Link to={`/detail/${_id}`}>
-              <img alt="popular" src={`http://localhost:5000/api/open?name=${images}`} />
+              <img
+                alt="popular"
+                src={`http://localhost:5000/api/open?name=${images}`}
+              />
             </Link>
           </div>
           <Link to={`/detail/${_id}`} className="item-content">

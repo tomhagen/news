@@ -1,0 +1,63 @@
+@import "../../scss/variables.scss";
+
+.section__signup {
+  display: flex;
+  flex-wrap: wrap;
+  .img__container {
+    width: 50%;
+    background-image: url("../../../img/0_V3gN7KZ4P-r-YQPu_.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  .signup__container {
+    width: 50%;
+    padding: 10% 10%;
+    h3 {
+      text-align: center;
+      font-size: 28px;
+      color: $primaryColor;
+      font-weight: bold;
+    }
+    .ant-form {
+      .ant-row {
+        .ant-form-item-control {
+          line-height: 20px;
+          .ant-form-item-children {
+            .validate {
+              font-size: 13px;
+              color: red;
+              animation: fade 2s ease-in;
+              -webkit-animation: fade 2s ease-in;
+}
+          }
+        }
+        .ant-btn-primary {
+          height: 38px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    display: none;
+  }
+  to {
+    display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section__signup {
+    .img__container {
+      width: 100%;
+      height: 40vh;
+    }
+    .signup__container {
+      width: 100%;
+    }
+  }
+}

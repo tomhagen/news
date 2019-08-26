@@ -1,6 +1,16 @@
 import React, { Component, Fragment } from "react";
 import "./index.scss";
-import { Form, Button, Input, Icon, Select, message, Badge } from "antd";
+import {
+  Form,
+  Button,
+  Input,
+  Icon,
+  Select,
+  message,
+  Badge,
+  Tag,
+  Card
+} from "antd";
 import Axios from "axios";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
@@ -9,11 +19,11 @@ import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 
 const { Option } = Select;
+const { Meta } = Card;
 
 class CreatePosts extends Component {
   constructor(props) {
     super(props);
-    // this.updateContent = this.updateContent.bind(this);
     this.state = {
       title: "",
       description: "",
@@ -70,7 +80,7 @@ class CreatePosts extends Component {
     this.setState({
       description: text
     });
-    console.log(text); // rich text
+    // console.log(text); // rich text
     // console.log(editor.getText()); // plain text
     // console.log(editor.getLength()); // number of characters
   };
@@ -80,41 +90,76 @@ class CreatePosts extends Component {
       [event.target.name]: event.target.value
     });
   };
+
   handleSelectCategoryChange = category => {
     this.setState({
       category
     });
   };
+
   handleSelectAuthorChange = author => {
     this.setState({
       author
     });
   };
+
   handleReturnAdmin = () => {};
-  // onChange(evt) {
-  //   console.log("onChange fired with event info: ", evt);
-  //   var newContent = evt.editor.getData();
-  //   this.setState({
-  //     description: newContent
-  //   });
-  // }
-  // updateContent(newContent) {
-  //   this.setState({
-  //     description: newContent
-  //   });
-  // }
+
+  checkMimeType = event => {
+    //getting file object
+    let files = event.target.files;
+    let err = "";
+    const types = ["image/png", "image/jpeg", "image/gif"];
+
+    for (var x = 0; x < files.length; x++) {
+      // compare file type find doesn't match
+      if (types.every(type => files[x].type !== type)) {
+        // create error message and assign to container
+        err += files[x].type + " is not a supported format\n";
+        message.error("We only supported JPEG, PNG & GIF format !", 1.5);
+      }
+    }
+
+    if (err !== "") {
+      // if message not same old that mean has error
+      event.target.value = null; // discard selected file
+      console.log(err);
+      return false;
+    }
+    return true;
+  };
+
+  checkFileSize = event => {
+    let files = event.target.files;
+    let size = 2097152; // 2MB
+    let err = "";
+    for (var x = 0; x < files.length; x++) {
+      if (files[x].size > size) {
+        err += files[x].type + "is too large, please pick a smaller file\n";
+        message.error("Images is too large. Please select the file below 2MB");
+      }
+    }
+    if (err !== "") {
+      event.target.value = null;
+      console.log(err);
+      return false;
+    }
+
+    return true;
+  };
 
   handleUploadChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value,
-      file: event.target.files && event.target.files[0]
-    });
+    if (this.checkMimeType(event) && this.checkFileSize(event)) {
+      this.setState({
+        [event.target.name]: event.target.value,
+        file: event.target.files && event.target.files[0]
+      });
+    }
   };
 
   handleOnSubmit = event => {
     event.preventDefault();
     // Handle upload image
-    console.log(this.state);
 
     let file = this.state.file;
 
@@ -138,14 +183,13 @@ class CreatePosts extends Component {
           Axios({
             method: "POST",
             url: "http://localhost:5000/api/posts",
-            data: this.state
+            data: { ...this.state, images: res.data.path }
           })
             .then(res => {
               message.loading("Action in progress...", 1);
               const success = () => {
                 this.props.history.push("/admin/posts");
-                message.success("New post has created successfully",1);
-                
+                message.success("New post has created successfully", 1);
               };
               setTimeout(success, 500);
             })
@@ -154,8 +198,9 @@ class CreatePosts extends Component {
             });
         })
         .catch(err => {
+          // console.log(res.message);
           message.error("Upload images errors. Please update again", 1.5);
-          console.log(err);
+          // console.log(err);
         });
 
       // Create a new posts
@@ -174,9 +219,7 @@ class CreatePosts extends Component {
             hide,
             Axios({
               method: "PUT",
-              url: `http://localhost:5000/api/posts/${
-                this.props.editNewsInfo._id
-              }`,
+              url: `http://localhost:5000/api/posts/${this.props.editNewsInfo._id}`,
               data: this.state
             })
               .then(res => {
@@ -201,8 +244,8 @@ class CreatePosts extends Component {
         title: this.props.editNewsInfo.title,
         category: this.props.editNewsInfo.category,
         author: this.props.editNewsInfo.author,
-        description: this.props.editNewsInfo.description
-        // images: this.props.editNewsInfo.images,
+        description: this.props.editNewsInfo.description,
+        images: this.props.editNewsInfo.images,
         // file: this.props.editNewsInfo.file
       });
     }
@@ -211,7 +254,7 @@ class CreatePosts extends Component {
     return (
       <Fragment>
         <div className="create-posts">
-          <div class="container">
+          <div className="container">
             <Badge
               count={
                 this.props.editStatus ? "UPDATE A NEW POST" : "CREATE POST"
@@ -233,37 +276,29 @@ class CreatePosts extends Component {
                   value={this.state.category}
                   onChange={this.handleSelectCategoryChange}
                 >
-                  <Option value="BUSINESS">Business</Option>
-                  <Option value="COMPUTING">Computing</Option>
-                  <Option value="ENERGY">Energy</Option>
-                  <Option value="GADGETS">Gadgets</Option>
-                  <Option value="MOBILE">Mobile</Option>
-                  <Option value="ROBOTIC">Robotic</Option>
-                  <Option value="STARTUP">Start Up</Option>
-                  <Option value="TOP NEWS">Top News</Option>
+                  <Option value="business">Business</Option>
+                  <Option value="computing">Computing</Option>
+                  <Option value="energy">Energy</Option>
+                  <Option value="gadgets">Gadgets</Option>
+                  <Option value="mobile">Mobile</Option>
+                  <Option value="robotic">Robotic</Option>
+                  <Option value="startup">Start Up</Option>
+                  <Option value="topnews">Top News</Option>
                 </Select>
               </Form.Item>
+
               <Form.Item>
                 <Select
                   placeholder="Select Author"
                   onChange={this.handleSelectAuthorChange}
                   value={this.state.author}
                 >
-                  <Option value="TUYEN TRAN">Tuyen Tran</Option>
-                  <Option value="PHILIPPE XI">Phillipe</Option>
+                  <Option value="Tuyen Tran">Tuyen Tran</Option>
+                  <Option value="Philippe XI">Phillipe</Option>
                 </Select>
               </Form.Item>
 
-              {/* <Form.Item>
-                <TextArea
-                  rows={4}
-                  name="description"
-                  value={this.state.description}
-                  placeholder="Type content of post"
-                  onChange={this.handleOnChange}
-                />
-              </Form.Item> */}
-
+              {/* Text Editor */}
               <ReactQuill
                 theme="snow"
                 name="description"
@@ -271,16 +306,38 @@ class CreatePosts extends Component {
                 formats={this.formats}
                 onChange={this.rteChange}
                 value={this.state.description}
-                // placeholde="Write somethign"
               />
+
+              {/* Upload images */}
+
               <input
                 style={{ marginTop: "30px" }}
                 type="file"
                 name="images"
-                value={this.state.images}
                 onChange={this.handleUploadChange}
                 file={this.state.file}
               />
+              {this.state.images ? (
+                <Card
+                  hoverable
+                  style={{ width: "500px", marginTop: "30px" }}
+                  cover={
+                    <img
+                      alt="example"
+                      src={`http://localhost:5000/api/open?name=${this.state.images.replace(
+                        "C:\\fakepath\\",
+                        ""
+                      )}`}
+                    />
+                  }
+                >
+                  <Meta
+                    title={this.state.images.replace("C:\\fakepath\\", "")}
+                  />
+                </Card>
+              ) : (
+                ""
+              )}
 
               {/* <Form.Item label="Upload">
                 <Upload
@@ -294,10 +351,12 @@ class CreatePosts extends Component {
                   </Button>
                 </Upload>
               </Form.Item> */}
-
               <Form.Item>
-                <Button type="primary" htmlType="submit">
-                  {this.props.editStatus ? "UPDATE POST" : "CREATE NEW POST"}
+                <Button className="publish__btn" htmlType="submit">
+                  {this.props.editStatus ? "UPDATE POST" : "PUBLISH"}
+                </Button>
+                <Button className="preview__btn">
+                  {this.props.editStatus ? "PREVIEW CHANGES" : "PREVIEW"}
                 </Button>
               </Form.Item>
             </Form>

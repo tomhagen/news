@@ -14,8 +14,10 @@ class DetailNews extends Component {
   //   return {_html: this.props.detailNews.description}
   // }
   render() {
+    console.log('render');
+    
     let { description, images } = this.props.detailNews;
-   
+   console.log(images)
     return (
       <Fragment>
         <section className="detail-news">

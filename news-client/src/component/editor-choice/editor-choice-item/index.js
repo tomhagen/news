@@ -18,10 +18,7 @@ class EditorChoiceItem extends Component {
         </div>
         <div className="item-box-content">
           <h5 className="content-title">
-            <Link to={`/detail/${_id}`}>
-              {title}
-              {/* 3 Delicious Post-Holiday Detox Recipes, Courtesy of Personal Chef */}
-            </Link>
+            <Link to={`/detail/${_id}`}>{title}</Link>
           </h5>
         </div>
       </div>

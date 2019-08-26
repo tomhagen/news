@@ -142,7 +142,7 @@ class AllPosts extends Component {
     return (
       <Fragment>
         <div className="post-create">
-          <div class="post-container">
+          <div className="post-container">
             <Link to="/admin/posts/create">
               <Button
                 onClick={() => this.handleEditStatus(false)}
@@ -160,7 +160,7 @@ class AllPosts extends Component {
           </div>
           <Table
             className="post-table"
-            bordered="true"
+            bordered={true}
             columns={columns}
             dataSource={data}
           />

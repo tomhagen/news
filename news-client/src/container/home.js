@@ -30,7 +30,7 @@ class Home extends Component {
 
     Axios({
       method: "GET",
-      url: "http://localhost:5000/api/posts/category?type=BUSINESS&limit=1"
+      url: "http://localhost:5000/api/posts/category?type=business&limit=1"
     })
       .then(res => {
         // console.log(res.data);
@@ -42,7 +42,7 @@ class Home extends Component {
 
     Axios({
       method: "GET",
-      url: "http://localhost:5000/api/posts/category?type=COMPUTING&limit=8"
+      url: "http://localhost:5000/api/posts/category?type=computing&limit=20"
     })
       .then(res => {
     

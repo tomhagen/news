@@ -25,36 +25,36 @@ class LatestInCategory extends Component {
       });
       // const hide = message.loading('Action in progress..', 0);
       // setTimeout(hide, 2500);
-      this.props.onGetNewsByCategory("BUSINESS", 100);
+      this.props.onGetNewsByCategory("business", 100);
     } else if (divId === "computing") {
       this.setState({
         activeClass: [false, true, false, false, false, false]
       });
-      this.props.onGetNewsByCategory("COMPUTING", 100);
+      this.props.onGetNewsByCategory("computing", 100);
     } else if (divId === "energy") {
       this.setState({
         activeClass: [false, false, true, false, false, false]
       });
-      this.props.onGetNewsByCategory("ENERGY", 100);
+      this.props.onGetNewsByCategory("energy", 100);
     } else if (divId === "mobile") {
       this.setState({
         activeClass: [false, false, false, true, false, false]
       });
-      this.props.onGetNewsByCategory("MOBILE", 100);
+      this.props.onGetNewsByCategory("mobile", 100);
     } else if (divId === "robotic") {
       this.setState({
         activeClass: [false, false, false, false, true, false]
       });
-      this.props.onGetNewsByCategory("ROBOTIC", 100);
+      this.props.onGetNewsByCategory("robotic", 100);
     } else if (divId === "startup") {
       this.setState({
         activeClass: [false, false, false, false, false, true]
       });
-      this.props.onGetNewsByCategory("STARTUP", 100);
+      this.props.onGetNewsByCategory("startup", 100);
     }
   };
   componentWillMount() {
-    this.props.onGetNewsByCategory("BUSINESS", 100);
+    this.props.onGetNewsByCategory("business", 100);
   }
   render() {
     return (

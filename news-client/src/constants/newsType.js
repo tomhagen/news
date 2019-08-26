@@ -7,4 +7,6 @@ export const DELETE_NEWS = 'DELETE_NEWS';
 export const UPDATE_NEWS = 'UPDATE_NEWS';
 export const EDIT_NEWS = 'EDIT_NEWS';
 export const GET_EDIT_STATUS = 'GET_EDIT_STATUS';
+export const GET_ALL_NEWS_PAGNIATION = 'GET_ALL_NEWS_PAGNIATION';
+
 // export const RESET_STATE = 'RESET_STATE';

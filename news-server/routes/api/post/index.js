@@ -7,36 +7,21 @@ const multer = require("multer");
 const path = require("path");
 
 // UPLOAD IMAGES WITH MULTER
+
 const storage = multer.diskStorage({
   destination: "uploads/",
   filename: function(req, file, callback) {
     callback(
       null,
-      // file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-      //  file.originalname + path.extname(file.originalname)
+
       file.originalname
     );
   }
 });
-// const fileFilter = (file, cb) => {
-//   const filetypes = /jpeg|jpg|png|gif/;
-//   // Check ext
-//   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-//   // Check mine
-//   const minetype = filetypes.test(file.minetype);
-//   if (minetype && extname) {
-//     return cb(null, true);
-//   } else {
-//     cb("Images only !");
-//   }
-// };
+
 // init upload
 const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 }
-  // fileFilter: function(req, file, cb) {
-  //   fileFilter(file, cb);
-  // }
+  storage: storage
 }).single("images");
 
 router.post("/upload_images", (req, res) => {
@@ -53,9 +38,11 @@ router.post("/upload_images", (req, res) => {
           message: "You are not submit images"
         });
       } else {
+        console.log(req.file);
         res.status(200).json({
           result: "ok",
-          message: "Upload image successfully"
+          message: "Upload image successfully",
+          path: req.file.originalname
         });
       }
     }
@@ -181,9 +168,9 @@ router.get("/posts/pagniation", (req, res) => {
 
 router.get("/posts/search", (req, res) => {
   let query = `/.*${req.query.q}.*/`;
-  console.log(query)
+  console.log(query);
   // Post.find({title:{'$regex' : /.*.*/, $in:['laptop'], '$options' : 'i'} })
-Post.find({ title: query }) // i : case-sensitive, not difference between Lower and Upper
+  Post.find({ title: query }) // i : case-sensitive, not difference between Lower and Upper
     .select({
       _id: 1,
       title: 1,

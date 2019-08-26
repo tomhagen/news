@@ -4,25 +4,41 @@ import Category from "../category";
 import LatestNewsItem from "../latest-new-item";
 import { connect } from "react-redux";
 import { Button, message } from "antd";
+import { requestAllNewsPagniation } from "../../actions/newsAction";
+import Axios from "axios";
 
 class LatestNews extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: 5
+      count: 5
     };
   }
   loadMore = () => {
-    this.setState(prev => {
-      return { visible: prev.visible + 3 };
-    });
+    this.setState({
+      count: this.state.count + 3
+    })
   };
   renderLatestNewsList = () => {
-    let latestNewsList = this.props.latestNewsList.slice(0, this.state.visible);
-
-    return latestNewsList.map((item, index) => {
-      return <LatestNewsItem item={item} key={index} />;
-    });
+    Axios({
+      method: "GET",
+      url: `http://localhost:5000/api/posts/pagniation?pageNumber=1&pageSize=${this.state.count}`
+    })
+      .then(res => {
+        console.log(res.data);
+        res.data.map((item, index) => {
+          return <LatestNewsItem item={item} key={index} />;
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    // this.props.onGetNewsPagniation(1, this.state.count);
+    // if (this.props.allNewsPagniation) {
+    //   return this.props.allNewsPagniation.map((item, index) => {
+    //     return <LatestNewsItem item={item} key={index} />;
+    //   });
+    // }
   };
 
   render() {
@@ -48,12 +64,16 @@ class LatestNews extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    latestNewsList: state.newsList
-  };
-};
-export default connect(
-  mapStateToProps,
-  null
-)(LatestNews);
+// const mapStateToProps = state => {
+//   return {
+//     allNewsPagniation: state.allNewsPagniation
+//   };
+// };
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onGetNewsPagniation: (pageNumber, pageSize) => {
+//       dispatch(requestAllNewsPagniation(pageNumber, pageSize));
+//     }
+//   };
+// };
+export default LatestNews;

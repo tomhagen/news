@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 
 class NewsHome extends Component {
   renderLatestNews = () => {
-    
-    return this.props.computingList.slice(0, 1).map((computing, index) => {
+    return this.props.newsList.slice(0, 1).map((computing, index) => {
       return (
-        <div key={index}
+        <div
+          key={index}
           className="main-news"
           style={{
             width: "67%",
@@ -26,7 +26,11 @@ class NewsHome extends Component {
         >
           <div className="container">
             <div className="box-info">
-              <img alt="author" src="./img/author-img1.jpeg" className="info-author" />
+              <img
+                alt="author"
+                src="./img/author-img1.jpeg"
+                className="info-author"
+              />
               <h5 className="info-name">{computing.author}</h5>
               <span className="info-date">
                 {moment(computing.createdOn).format("MMM DD YYYY")}
@@ -42,7 +46,7 @@ class NewsHome extends Component {
   };
 
   renderSubNews = () => {
-    return this.props.computingList.slice(1, 8).map((news, index) => {
+    return this.props.computingList.slice(1, 20).map((news, index) => {
       return <SubNewsItem key={index} news={news} />;
     });
   };
@@ -62,7 +66,8 @@ class NewsHome extends Component {
 }
 const mapStateToProps = state => {
   return {
-    newsList: state.newsList
+    newsList: state.newsList,
+
   };
 };
 export default connect(

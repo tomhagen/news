@@ -1,0 +1,32 @@
+@import "../../scss/variables.scss";
+
+.add-user__container {
+  width: 85%;
+  padding: 5% 10%;
+  .ant-form {
+    .ant-row {
+      .ant-form-item-control {
+        line-height: 20px;
+        .ant-form-item-children {
+          .validate {
+            font-size: 13px;
+            color: red;
+            animation: fade 2s ease-in;
+            -webkit-animation: fade 2s ease-in;
+          }
+        }
+      }
+      .ant-btn-primary {
+        height: 48px;
+        width: 100%;
+        font-size: 16px;
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+        &:hover{
+            background-color: black;
+            border-color: black;
+        }
+      }
+    }
+  }
+}

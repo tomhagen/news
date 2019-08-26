@@ -7,11 +7,13 @@ import { connect } from "react-redux";
 
 class Footer extends Component {
   renderRecentPost = () => {
+    console.log('render 1')
     return this.props.newsList.splice(0, 3).map((news, index) => {
       return <RecentPost key={index} news={news} />;
     });
   };
   renderPopularPost = () => {
+    console.log('render2')
     return this.props.newsList.splice(3, 3).map((news, index) => {
       return <PopularPost key={index} news={news} />;
     });
