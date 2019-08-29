@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class EditorChoiceItem extends Component {
   render() {
-    let { _id, title, images } = this.props.news;
+    let { _id, title, images, slug } = this.props.news;
 
     return (
       <div className="item">
@@ -18,7 +18,7 @@ class EditorChoiceItem extends Component {
         </div>
         <div className="item-box-content">
           <h5 className="content-title">
-            <Link to={`/detail/${_id}`}>{title}</Link>
+            <Link to={`/${slug}`}>{title}</Link>
           </h5>
         </div>
       </div>

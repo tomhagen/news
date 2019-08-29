@@ -9,7 +9,10 @@ const PostSchema = new mongoose.Schema({
   createdOn: { type: Date, default: Date.now() },
   category: { type: String, required: true },
   comments: { type: Schema.Types.ObjectId, ref: "comment" },
-  images: {type: String, required: true}
+  images: {type: String, required: true},
+  slug: {type: String, required: true},
+  trending: {type: Boolean, required: true},
+  mainContent: {type: String}
 });
 
 const Post = mongoose.model("Post", PostSchema);

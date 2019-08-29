@@ -22,6 +22,7 @@ class Login extends Component {
     event.preventDefault();
 
     this.props.login(this.state, this.props.history);
+    
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.error.errors) {

@@ -36,7 +36,7 @@ class Business extends Component {
                 </span>
               </div>
               <div className="title">
-                <Link to={`/detail/${news._id}`}>{news.title}</Link>
+                <Link to={`/${news.slug}`}>{news.title}</Link>
               </div>
             </div>
           </div>

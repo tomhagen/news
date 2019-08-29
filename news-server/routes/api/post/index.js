@@ -50,32 +50,6 @@ router.post("/upload_images", (req, res) => {
 });
 
 // route api/posts
-// CREATE A NEW POST
-// access PUBLIC
-
-router.post("/posts", (req, res) => {
-  console.log(req.file);
-  // const images = req.file;
-  const { title, status, author, description, category, images } = req.body;
-
-  const newPost = new Post({
-    title,
-    status,
-    author,
-    description,
-    category,
-    images
-  });
-  newPost
-    .save()
-    .then(post => {
-      res.status(200).json(post);
-      // res.redirect('/admin/posts')
-    })
-    .catch(err => res.status(400).json(err));
-});
-
-// route api/posts
 // GET ALL POSTS
 // access PUBLIC
 
@@ -90,9 +64,10 @@ router.get("/posts", (req, res) => {
 // GET DETAIL OF POST
 // access PUBLIC
 
-router.get("/posts/id", (req, res) => {
-  let id = req.query.id;
-  Post.findById(id)
+router.get("/posts/slug", (req, res) => {
+  // let id = req.query.id;
+  const { slug } = req.query;
+  Post.findOne({ slug })
     .then(post => res.status(200).json(post))
     .catch(err => res.status(400).json(err));
 });
@@ -130,6 +105,17 @@ router.get("/posts/category", (req, res) => {
   let type = req.query.type;
   let limit = req.query.limit;
   Post.find({ category: type })
+    .sort({ createdOn: -1 })
+    .limit(Number(limit))
+    .then(post => res.status(200).json(post))
+    .catch(err => res.status(400).json(err));
+});
+
+// route api/posts/trending?limit=
+// GET TRENDING POSTS
+router.get("/posts/trending", (req, res) => {
+  let limit = req.query.limit;
+  Post.find({ trending: true })
     .sort({ createdOn: -1 })
     .limit(Number(limit))
     .then(post => res.status(200).json(post))
@@ -289,6 +275,66 @@ router.post("/getemail", (req, res) => {
     console.log("Preview ", nodemailer.getTestMessageUrl(info));
   });
 });
+
+// handle slug of news url
+const slugWithDate = text => {
+  let myText = text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/[^\w\-]+/g, "") // Remove all non-word chars
+    .replace(/\-\-+/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, ""); // Trim - from end of text
+  return myText;
+};
+
+// route api/posts
+// CREATE A NEW POST
+// access PUBLIC
+
+router.post("/posts", (req, res) => {
+  const x = Math.floor(Math.random() * 100000 + 1);
+  const slug = slugWithDate(req.body.title + "-" + x);
+  const {
+    title,
+    status,
+    author,
+    description,
+    mainContent,
+    category,
+    images,
+    trending
+  } = req.body;
+
+  const newPost = new Post({
+    title,
+    status,
+    author,
+    description,
+    mainContent,
+    category,
+    images,
+    slug,
+    trending
+  });
+  newPost
+    .save()
+    .then(post => {
+      res.status(200).json(post);
+      // res.redirect('/admin/posts')
+    })
+    .catch(err => res.status(400).json(err));
+});
+
+// GET DETAIL OF POSTS WITH SLUG
+// route api/posts/:slug
+// router.get("/posts/slug", (req, res) => {
+//   let slug = req.query.slug;
+//   Post.findOne({slug})
+//     .then(post => res.status(200).json(post))
+//     .catch(err => res.status(400).json(err));
+// });
 
 module.exports = router;
 

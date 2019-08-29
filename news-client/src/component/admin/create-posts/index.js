@@ -9,7 +9,8 @@ import {
   message,
   Badge,
   Tag,
-  Card
+  Card,
+  Checkbox
 } from "antd";
 import Axios from "axios";
 import { withRouter } from "react-router";
@@ -27,11 +28,12 @@ class CreatePosts extends Component {
     this.state = {
       title: "",
       description: "",
+      mainContent: "",
       category: "",
       file: null,
       images: "",
-      author: ""
-      // comments: ""
+      author: "",
+      trending: false
     };
     this.modules = {
       toolbar: [
@@ -73,16 +75,20 @@ class CreatePosts extends Component {
       "video"
     ];
     this.rteChange = this.rteChange.bind(this);
+    this.rteChange2 = this.rteChange2.bind(this);
   }
 
   rteChange = (content, delta, source, editor) => {
-    const text = editor.getHTML();
+    let text = editor.getHTML();
     this.setState({
       description: text
     });
-    // console.log(text); // rich text
-    // console.log(editor.getText()); // plain text
-    // console.log(editor.getLength()); // number of characters
+  };
+  rteChange2 = (content, delta, source, editor) => {
+    let text2 = editor.getHTML();
+    this.setState({
+      mainContent: text2
+    });
   };
 
   handleOnChange = event => {
@@ -103,6 +109,12 @@ class CreatePosts extends Component {
     });
   };
 
+  handleTrendingChange = event => {
+    // console.log(event.target.checked)
+    this.setState({
+      trending: event.target.checked
+    });
+  };
   handleReturnAdmin = () => {};
 
   checkMimeType = event => {
@@ -245,7 +257,9 @@ class CreatePosts extends Component {
         category: this.props.editNewsInfo.category,
         author: this.props.editNewsInfo.author,
         description: this.props.editNewsInfo.description,
-        images: this.props.editNewsInfo.images,
+        mainContent: this.props.editNewsInfo.mainContent,
+        trending: this.props.editNewsInfo.trending,
+        images: this.props.editNewsInfo.images
         // file: this.props.editNewsInfo.file
       });
     }
@@ -262,17 +276,31 @@ class CreatePosts extends Component {
               style={{ backgroundColor: "#52c41a" }}
             />
             <Form onSubmit={this.handleOnSubmit}>
-              <Form.Item>
+
+              {/* Form Title */}
+              <Form.Item label="Post Title">
                 <Input
-                  placeholder="Enter the title"
+                  placeholder="Type here..."
                   name="title"
                   value={this.state.title}
                   onChange={this.handleOnChange}
                 />
               </Form.Item>
-              <Form.Item>
+
+               {/* Form Editor */} 
+               <Form.Item label="Post Description"></Form.Item>
+              <ReactQuill
+                theme="snow"
+                name="description"
+                modules={this.modules}
+                formats={this.formats}
+                onChange={this.rteChange}
+                value={this.state.description}
+              />
+
+              {/* Form Category */}
+              <Form.Item label="Choose the category">
                 <Select
-                  placeholder="Select the category"
                   value={this.state.category}
                   onChange={this.handleSelectCategoryChange}
                 >
@@ -287,29 +315,44 @@ class CreatePosts extends Component {
                 </Select>
               </Form.Item>
 
-              <Form.Item>
+              {/* Form Author */}
+              <Form.Item label="Select Author">
                 <Select
-                  placeholder="Select Author"
                   onChange={this.handleSelectAuthorChange}
                   value={this.state.author}
                 >
                   <Option value="Tuyen Tran">Tuyen Tran</Option>
                   <Option value="Philippe XI">Phillipe</Option>
+                  <Option value="Chris Welch">Chris Welch</Option>
+                  <Option value="Dieter Bohn">Dieter Bohn</Option>
+                  <Option value="Jon Porter">Jon Porter</Option>
                 </Select>
               </Form.Item>
 
-              {/* Text Editor */}
+              {/* Form Trending */}
+              <Form.Item className="checkbox">
+                <Checkbox
+                  onChange={this.handleTrendingChange}
+                  checked={this.state.trending}
+                  value="true"
+                >
+                  Mark as Trending Posts
+                </Checkbox>
+              </Form.Item>
+
+                {/* Form Editor */} 
+              <Form.Item label="Main Content of Post"></Form.Item>
               <ReactQuill
                 theme="snow"
-                name="description"
+                name="mainContent"
                 modules={this.modules}
                 formats={this.formats}
-                onChange={this.rteChange}
-                value={this.state.description}
+                onChange={this.rteChange2}
+                value={this.state.mainContent}
               />
 
               {/* Upload images */}
-
+              <Form.Item label="Upload images"></Form.Item>
               <input
                 style={{ marginTop: "30px" }}
                 type="file"
@@ -339,18 +382,7 @@ class CreatePosts extends Component {
                 ""
               )}
 
-              {/* <Form.Item label="Upload">
-                <Upload
-                  name="imgUrl"
-                  onFieldsChange={this.handleUploadChange}
-                  action={this.handleUploadSubmit}
-                  listType="picture"
-                >
-                  <Button>
-                    <Icon type="upload" /> Click to upload image
-                  </Button>
-                </Upload>
-              </Form.Item> */}
+              {/* Form Button */}
               <Form.Item>
                 <Button className="publish__btn" htmlType="submit">
                   {this.props.editStatus ? "UPDATE POST" : "PUBLISH"}

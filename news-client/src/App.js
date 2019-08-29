@@ -14,9 +14,10 @@ import Login from "./component/auth/login";
 import SignUp from "./component/auth/sign-up";
 import { connect } from "react-redux";
 import jwtDecode from "jwt-decode";
-import { setCurrentUser } from "./actions/authAction";
+import { setCurrentUser, logout } from "./actions/authAction";
 import AdminAddUser from "./container/admin-adduser";
 import AdminUsers from "./container/admin-users";
+import Permission from "./component/permission";
 
 class App extends Component {
   componentDidMount() {
@@ -24,11 +25,18 @@ class App extends Component {
     if (token) {
       const decoded = jwtDecode(token);
       this.props.setCurrentUser(decoded);
+
+      // logout when token expired
+      if (Date.now() / 1000 > decoded.exp) {
+        this.props.logout();
+      }
     }
   }
 
   render() {
     const { isAuthenticated } = this.props.auth;
+    // console.log(this.props.auth.profile)
+    let {usertype} = this.props.auth.profile
     return (
       <Fragment>
         <BrowserRouter>
@@ -42,12 +50,14 @@ class App extends Component {
             <Route path="/category/:id" exact component={Category} />
             <Route path="/search" exact component={SearchPage} />
             <Route path="/login" exact component={Login} />
+            <Route path="/permission" exact component={Permission}/>
             <Route
               path="/admin/signup"
               exact
               component={isAuthenticated ? SignUp : Login}
             />
-            <Route path="/detail/:id" exact component={NewsDetail} />
+            {/* <Route path="/detail/:id" exact component={NewsDetail} /> */}
+            <Route path="/:slug" exact component={NewsDetail} />
 
             <Route component={NotFound} />
           </Switch>
@@ -65,5 +75,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setCurrentUser }
+  { setCurrentUser, logout }
 )(App);

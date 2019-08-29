@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 class NewsHome extends Component {
   renderLatestNews = () => {
-    return this.props.newsList.slice(0, 1).map((computing, index) => {
+    return this.props.newsList.slice(0, 1).map((news, index) => {
       return (
         <div
           key={index}
@@ -20,7 +20,7 @@ class NewsHome extends Component {
             marginRight: "3%",
             backgroundPosition: "center",
             backgroundImage: `url(http://localhost:5000/api/open?name=${
-              computing.images
+              news.images
             }`
           }}
         >
@@ -31,13 +31,13 @@ class NewsHome extends Component {
                 src="./img/author-img1.jpeg"
                 className="info-author"
               />
-              <h5 className="info-name">{computing.author}</h5>
+              <h5 className="info-name">{news.author}</h5>
               <span className="info-date">
-                {moment(computing.createdOn).format("MMM DD YYYY")}
+                {moment(news.createdOn).format("MMM DD YYYY")}
               </span>
             </div>
             <div className="title">
-              <Link to={`/detail/${computing._id}`}>{computing.title}</Link>
+              <Link to={`/${news.slug}`}>{news.title}</Link>
             </div>
           </div>
         </div>

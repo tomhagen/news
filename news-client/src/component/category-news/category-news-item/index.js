@@ -13,7 +13,9 @@ class CategoryNewsItem extends Component {
       category,
       createdOn,
       description,
-      images
+      mainContent,
+      images,
+      slug
     } = this.props.news;
     return (
       <Fragment>
@@ -28,7 +30,7 @@ class CategoryNewsItem extends Component {
           </div>
           <div className="item-box-title">
             <h5 className="content-title">
-              <Link to={`/detail/${_id}`}>{title}</Link>
+              <Link to={`/${slug}`}>{title}</Link>
             </h5>
             <div className="content-info">
               <h5 className="info-name">{author}</h5>
@@ -38,7 +40,7 @@ class CategoryNewsItem extends Component {
             </div>
           </div>
           <div className="item-box-img">
-            <Link to={`/detail/${_id}`}>
+            <Link to={`/${slug}`}>
               <img
                 alt="detail"
                 src={`http://localhost:5000/api/open?name=${images}`}
@@ -50,14 +52,14 @@ class CategoryNewsItem extends Component {
             <p className="content">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: description.substr(0, 1000) + "...."
+                  __html: mainContent.substr(0, 1000) + "...."
                 }}
               />
             </p>
           </div>
           <div className="item-box-view">
             <p className="view-continue">
-              <Link to={`/detail/${_id}`}>CONTINUE READING</Link>
+              <Link to={`/${slug}`}>CONTINUE READING</Link>
             </p>
             <div className="view-count">
               <Icon type="eye" className="view-icon" />

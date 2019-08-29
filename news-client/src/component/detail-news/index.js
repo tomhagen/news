@@ -5,30 +5,56 @@ import Social from "../social";
 import Author from "../author";
 import TrendingItem from "../trending-item";
 import { Form, Input, Button, Row, Col } from "antd";
+import moment from "moment";
+
 const { TextArea } = Input;
-
-
 
 class DetailNews extends Component {
   // createMarkup = () => {
   //   return {_html: this.props.detailNews.description}
   // }
   render() {
-    console.log('render');
-    
-    let { description, images } = this.props.detailNews;
-   console.log(images)
+    console.log("render");
+
+    let {
+      description,
+      images,
+      author,
+      createdOn,
+      mainContent
+    } = this.props.detailNews;
+    console.log(images);
     return (
       <Fragment>
         <section className="detail-news">
           <div className="container">
             <div className="news-container">
               <Social />
+              <div className="description-container">
+                <p className="summary">
+                  <div dangerouslySetInnerHTML={{ __html: `${description ? description : ""}` }} />
+                </p>
+                <div className="description-detail">
+                  By
+                  <span className="author-name">{author}</span>
+                  <span className="date">
+                    {" "}
+                    Posts on:{" "}
+                    <strong> {moment(createdOn).format("LLLL")}</strong>
+                  </span>
+                </div>
+                <div className="item-divider">
+                  <hr className="post_divider" />
+                  <hr className="post_divider double" />
+                </div>
+              </div>
               <div className="main-content">
-                <div dangerouslySetInnerHTML={{__html: description}}/>
+                <div dangerouslySetInnerHTML={{ __html: mainContent }} />
 
-                {/* <img src="./img/technology-computer-chips-gigabyte.jpg" /> */}
-                <img alt="item" src={`http://localhost:5000/api/open?name=${images}`} />
+                <img
+                  alt="item"
+                  src={`http://localhost:5000/api/open?name=${images}`}
+                />
               </div>
               <Social />
               <div className="item-divider">
@@ -93,7 +119,5 @@ class DetailNews extends Component {
     );
   }
 }
-
-
 
 export default DetailNews;

@@ -1,14 +1,14 @@
 @import "../scss/variables.scss";
 
 .pages-caption {
-//   width: 100%;
-//   background-image: url("../../img/technology-computer-chips-gigabyte.jpg");
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   background-position: center;
-//   position: relative;
-//   height: 400px;
-//   background-color: rgba(0, 0, 0, 0.5);
+  //   width: 100%;
+  //   background-image: url("../../img/technology-computer-chips-gigabyte.jpg");
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   background-position: center;
+  //   position: relative;
+  //   height: 400px;
+  //   background-color: rgba(0, 0, 0, 0.5);
   .overlay {
     background-color: rgba(0, 0, 0, 0.3);
     position: absolute;
@@ -16,7 +16,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-   
   }
   .container {
     position: absolute;
@@ -25,17 +24,17 @@
     left: 2%;
     width: 70%;
     text-align: left;
-   .ant-breadcrumb{
-       a{
-           color: white;
-           &:hover{
-               color: $primaryColor;
-           }
-       }
-   }
-   .ant-breadcrumb-separator{
-       color: white;
-   }
+    .ant-breadcrumb {
+      a {
+        color: white;
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+    }
+    .ant-breadcrumb-separator {
+      color: white;
+    }
     .title {
       font-size: 28px;
       font-weight: bold;
@@ -44,7 +43,8 @@
     .box-info {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       .info-author {
         width: 25px;
         border-radius: 50%;
@@ -73,17 +73,17 @@
   }
 }
 
-@media screen and (max-width: 1200px){
-    .pages-caption{
-        .container{
-            width: 80%;
-        }
+@media screen and (max-width: 1200px) {
+  .pages-caption {
+    .container {
+      width: 80%;
     }
+  }
 }
-@media screen and (max-width: 993px){
-    .pages-caption{
-        .container{
-            width: 85%;
-        }
+@media screen and (max-width: 993px) {
+  .pages-caption {
+    .container {
+      width: 85%;
     }
+  }
 }

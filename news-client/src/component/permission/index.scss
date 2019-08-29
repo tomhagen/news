@@ -1,0 +1,35 @@
+@import "../scss/variables.scss";
+
+.permission {
+  text-align: center;
+  padding: 10% 0;
+  width: 80%;
+  margin: auto;
+  i {
+    font-size: 118px;
+    color: #ffbd17;
+  }
+  p:nth-child(2) {
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  p:nth-child(3) {
+    color: #737474;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .ant-btn-primary {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+    height: 50px;
+    font-size: 20px;
+    margin-top: 20px;
+    &:hover {
+      background-color: black;
+      border-color: black;
+    }
+  }
+}

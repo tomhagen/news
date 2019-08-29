@@ -11,13 +11,40 @@
     padding: 15px 0;
     .news-container {
       width: 70%;
+      .description-container {
+        margin-top: 20px;
+        width: 90%;
+        .summary {
+          font-style: italic;
+          font-weight: 400;
+          letter-spacing: normal;
+          line-height: normal;
+          text-transform: none;
+          font-size: 17px;
+          color: #08A100;
+          margin-bottom: 0.6rem;
+        }
+        .description-detail{
+          font-size: 14px;
+          .author-name{
+            color: #e2127A;
+            margin-left: 5px;
+            margin-right: 10px;
+          }
+          .date{
+            border-left: 1px solid gray;
+            letter-spacing: 1px;
+          }
+        }
+        
+      }
       .main-content {
         width: 90%;
         color: $contentTextColor;
         font-size: 16px;
         line-height: 21px;
         letter-spacing: 1px;
-        margin-top: 20px;
+        margin-top: 40px;
         margin-bottom: 30px;
         img {
           width: 100%;
@@ -91,13 +118,13 @@
         margin-top: 50px;
         width: 94%;
         .post__comment__container {
-          .title{
+          .title {
             color: black;
             font-size: 20px;
             font-weight: bold;
             margin-bottom: 20px;
           }
-          .subtitle{
+          .subtitle {
             margin-bottom: 20px;
           }
           .input-btn {

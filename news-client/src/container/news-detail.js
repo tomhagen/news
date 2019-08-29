@@ -18,12 +18,11 @@ class NewsDetail extends Component {
     };
   }
   componentDidMount() {
-    console.log("didmout");
     window.scrollTo(0, 0);
-    const id = this.props.match.params.id;
+    const slug = this.props.match.params.slug;
     Axios({
       method: "GET",
-      url: `http://localhost:5000/api/posts/id?id=${id}`
+      url: `http://localhost:5000/api/posts/slug?slug=${slug}`
     })
       .then(res => {
         this.setState({
@@ -37,10 +36,11 @@ class NewsDetail extends Component {
 
   componentWillReceiveProps(nextProps) {
     window.scrollTo(0, 0);
-    const id = nextProps.match.params.id;
+    const slug = nextProps.match.params.slug;
+
     Axios({
       method: "GET",
-      url: `http://localhost:5000/api/posts/id?id=${id}`
+      url: `http://localhost:5000/api/posts/slug?slug=${slug}`
     })
       .then(res => {
         this.setState({
@@ -65,9 +65,5 @@ class NewsDetail extends Component {
     );
   }
 }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onGet
-//   }
-// }
+
 export default NewsDetail;

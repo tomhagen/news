@@ -2,13 +2,14 @@ import "./index.scss";
 import { Icon, Button } from "antd";
 import { connect } from "react-redux";
 import React, { Component, Fragment } from "react";
-import { Link , withRouter} from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { requestGetAllNewsList } from "../../../actions/newsAction";
+import { requestGetAllUsers } from "../../../actions/usersAction";
 
 class DashboardContainer extends Component {
   componentDidMount() {
     this.props.onGetAllNewsList();
-   
+    this.props.onGetAllUserList();
   }
   render() {
     // console.log(this.props.newsList.length)
@@ -17,7 +18,7 @@ class DashboardContainer extends Component {
         <div className="dashboard__wrapper">
           <div className="number-card v1">
             <div className="card-top">
-              <span>3</span>
+              <span>{this.props.userList.length}</span>
             </div>
             <div className="card-info">
               <span>Total Users</span>
@@ -74,13 +75,17 @@ class DashboardContainer extends Component {
 }
 const mapStateToProps = state => {
   return {
-    newsList: state.newsList
+    newsList: state.newsList,
+    userList: state.userList
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     onGetAllNewsList: () => {
       dispatch(requestGetAllNewsList());
+    },
+    onGetAllUserList: () => {
+      dispatch(requestGetAllUsers());
     }
   };
 };

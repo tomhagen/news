@@ -98,9 +98,9 @@ class AllUsers extends Component {
         dataIndex: "usertype",
         render: tags => {
           if (tags === "admin") {
-            return <Tag color="blue">{tags.toUpperCase()}</Tag>;
+            return <Tag color="#f50">{tags.toUpperCase()}</Tag>;
           } else if (tags === "user") {
-            return <Tag color="gold">{tags.toUpperCase()}</Tag>;
+            return <Tag color="#08A100">{tags.toUpperCase()}</Tag>;
           }
         }
       },
