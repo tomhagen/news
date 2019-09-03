@@ -17,40 +17,8 @@ import { connect } from "react-redux";
 import Axios from "axios";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      businessList: [],
-      computingList: []
-    };
-  }
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.props.onGetAllNewsList();
-
-    Axios({
-      method: "GET",
-      url: "http://localhost:5000/api/posts/category?type=business&limit=1"
-    })
-      .then(res => {
-        // console.log(res.data);
-        this.setState({ businessList: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    Axios({
-      method: "GET",
-      url: "http://localhost:5000/api/posts/category?type=computing&limit=20"
-    })
-      .then(res => {
-    
-        this.setState({ computingList: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
   render() {
     return (
@@ -58,11 +26,11 @@ class Home extends Component {
         <Header />
         <BackTop />
         <Trending />
-        <NewsHome computingList={this.state.computingList}/>
-        <LatestNews />
+        <NewsHome />
+         <LatestNews /> 
         <EditorChoice />
-        <Advertising />
-        <Business businessList={this.state.businessList} />
+        <Advertising /> 
+        <Business />
         <LatestInCategory />
         <StayUpdated />
         <Footer />
@@ -72,14 +40,4 @@ class Home extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onGetAllNewsList: () => {
-      dispatch(requestGetAllNewsList());
-    }
-  };
-};
-export default connect(
-  null,
-  mapDispatchToProps
-)(Home);
+export default Home;

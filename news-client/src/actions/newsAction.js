@@ -16,6 +16,21 @@ export const requestGetAllNewsList = () => {
   };
 };
 
+export const requestGetTrendingNews = limit => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url: `http://localhost:5000/api/posts/trending?limit=${limit}`
+    })
+      .then(res => {
+        dispatch(actGetTrendingNews(res.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
 export const requestGetNewsByCategory = (type, limit) => {
   return dispatch => {
     Axios({
@@ -52,7 +67,6 @@ export const requestAllNewsPagniation = (pageNumber, pageSize) => {
       url: `http://localhost:5000/api/posts/pagniation?pageNumber=${pageNumber}&pageSize=${pageSize}`
     })
       .then(res => {
-        console.log(res);
         dispatch(actAllNewsPagniation(res.data));
       })
       .catch(err => {
@@ -70,6 +84,13 @@ export const actAllNewsPagniation = news => {
 export const actGetAllNewsList = news => {
   return {
     type: types.GET_ALL_NEWS,
+    payload: news
+  };
+};
+
+export const actGetTrendingNews = news => {
+  return {
+    type: types.GET_TRENDING_NEWS,
     payload: news
   };
 };

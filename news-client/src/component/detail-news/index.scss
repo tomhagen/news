@@ -23,6 +23,8 @@
           font-size: 17px;
           color: #08A100;
           margin-bottom: 0.6rem;
+          padding: 10px 20px;
+          border: 1px solid;
         }
         .description-detail{
           font-size: 14px;
@@ -73,9 +75,10 @@
         margin-top: 20px;
         h2 {
           text-align: left;
-          color: black;
+          color: $primaryColor;
           font-size: 20px;
           font-weight: bolder;
+
         }
       }
       .trending__box {
@@ -89,7 +92,7 @@
         margin-top: 40px;
         h2 {
           text-align: left;
-          color: black;
+          color: $primaryColor;
           font-size: 20px;
           font-weight: bolder;
         }
@@ -99,11 +102,11 @@
         flex-wrap: wrap;
         width: 93%;
         justify-content: space-between;
-        .trending-item {
+        .you__may__like-item {
           max-width: 30%;
           flex: 30%;
-          .trending-item-box-content {
-            .trending-box-content-info {
+          .you__may__like-item-box-content {
+            .you__may__like-box-content-info {
               display: block;
               .info-date {
                 margin-left: 0;

@@ -22,27 +22,27 @@ class Author extends Component {
                 <ul>
                   <li>
                     <a href="https://www.facebook.com/mrsvietnam1/"  >
-                      <i class="fa fa-facebook-f" />
+                      <i className="fa fa-facebook-f" />
                     </a>
                   </li>
                   <li>
                     <a href="https://twitter.com/mrsvietnam1"  >
-                      <i class="fa fa-twitter" />
+                      <i className="fa fa-twitter" />
                     </a>
                   </li>
                   <li>
                     <a href="https://www.google.com/"  >
-                      <i class="fa fa-google-plus" />
+                      <i className="fa fa-google-plus" />
                     </a>
                   </li>
                   <li>
                     <a href="https://www.linkedin.com/company/material-resource-solutions"  >
-                      <i class="fa fa-linkedin" />
+                      <i className="fa fa-linkedin" />
                     </a>
                   </li>
                   <li>
                     <a href="https://www.instagram.com/mrsvietnam/"  >
-                      <i class="fa fa-instagram" />
+                      <i className="fa fa-instagram" />
                     </a>
                   </li>
                 </ul>

@@ -7,10 +7,12 @@ import authReducer from "./auth";
 import errorReducer from "./errors";
 import newsPagniationReducer from "./news-pagniation";
 import userReducer from "./users";
+import trendingNewsReducer from "./news-trending";
 
 const rootReducer = combineReducers({
   newsList: newsListReducer,
   newsByCategory: newsByCategoryReducer,
+  trendingNews: trendingNewsReducer,
   newsEdit: newsEditReducer,
   newsEditStatus: EditStatusReducer,
   allNewsPagniation: newsPagniationReducer,

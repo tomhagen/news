@@ -21,7 +21,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-      
+
         background: transparent;
         background-image: linear-gradient(
           transparent 0%,
@@ -84,6 +84,18 @@
       height: 520px;
       overflow-y: auto;
       width: 30%;
+      .sub-load-more{
+        width: 100%;
+        .ant-btn-primary{
+          background-color: $primaryColor;
+          border-color: $primaryColor;
+          width: 100%;
+          &:hover{
+            background-color: black;
+            border-color: black;
+          }
+        }
+      }
       .sub-news-item {
         width: 100%;
         text-align: left;
@@ -123,11 +135,23 @@
           }
         }
       }
-      
+
     }
   }
 }
 
+@keyframes fadeIn{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+.fade-in{
+  animation: fadeIn 1s ease-in;
+  -webkit-animation: fadeIn 1s ease-in;
+}
 // responsive
 @media screen and (max-width: 1200px) {
   .news-home {

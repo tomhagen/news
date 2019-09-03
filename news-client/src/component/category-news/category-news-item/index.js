@@ -49,13 +49,13 @@ class CategoryNewsItem extends Component {
             </Link>
           </div>
           <div className="item-box-content">
-            <p className="content">
+            <div className="content">
               <div
                 dangerouslySetInnerHTML={{
                   __html: mainContent.substr(0, 1000) + "...."
                 }}
               />
-            </p>
+            </div>
           </div>
           <div className="item-box-view">
             <p className="view-continue">
@@ -64,7 +64,7 @@ class CategoryNewsItem extends Component {
             <div className="view-count">
               <Icon type="eye" className="view-icon" />
               <p>3.3K View</p>
-              <i class="fa fa-comments" />
+              <i className="fa fa-comments" />
               <p>0</p>
             </div>
           </div>

@@ -7,18 +7,21 @@ import { connect } from "react-redux";
 
 class Footer extends Component {
   renderRecentPost = () => {
-    console.log('render 1')
-    return this.props.newsList.splice(0, 3).map((news, index) => {
+    
+    // console.log(this.props.trendingNews);
+    return this.props.trendingNews.slice(0, 3).map((news, index) => {
       return <RecentPost key={index} news={news} />;
     });
   };
   renderPopularPost = () => {
-    console.log('render2')
-    return this.props.newsList.splice(3, 3).map((news, index) => {
+   
+    // console.log(this.props.trendingNews);
+    return this.props.trendingNews.slice(3, 6).map((news, index) => {
       return <PopularPost key={index} news={news} />;
     });
   };
   render() {
+    // console.log(this.props.trendingNews);
     return (
       <Fragment>
         <section className="footer">
@@ -87,18 +90,11 @@ class Footer extends Component {
                 <div className="news-box-container">
                   <div className="recent-post-box">
                     <p className="recent-title">RECENT POSTS</p>
-
                     {this.renderRecentPost()}
-                    {/* <RecentPost />
-                    <RecentPost />
-                    <RecentPost /> */}
                   </div>
                   <div className="popular-post-box">
                     <p className="popular-title">POPULAR POSTS</p>
                     {this.renderPopularPost()}
-                    {/* <PopularPost />
-                    <PopularPost />
-                    <PopularPost /> */}
                   </div>
                 </div>
               </div>
@@ -111,7 +107,7 @@ class Footer extends Component {
 }
 const mapStateToProps = state => {
   return {
-    newsList: state.newsList
+    trendingNews: state.trendingNews
   };
 };
 export default connect(

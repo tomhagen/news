@@ -6,7 +6,7 @@ class SubNewsItem extends Component {
   render() {
     let { _id, title, createdOn, images, slug } = this.props.news;
     return (
-      <div className="sub-news-item item-child">
+      <div className="sub-news-item item-child fade-in">
         <div className="item-img">
           <Link to={`/${slug}`}>
             <img

@@ -1,7 +1,6 @@
 @import "../scss/variables.scss";
 
 header {
-  
   z-index: 999;
   .box-ads {
     .container {
@@ -27,33 +26,45 @@ header {
       }
     }
   }
-  
-  .query__search__container{
-    width: 54%;
-    margin-left: 10%;
+
+  .search__wrapper {
     position: fixed;
-    top: 0;
-    z-index: 1000;
-    .ant-btn-primary{
-      background-color: $primaryColor;
-      &:hover{
-        background-color: black;
+    z-index: 1200;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+    .query__search__container {
+      width: 80vw;
+      margin: auto;
+      margin-top: 5%;
+      .ant-input-group{
+        .ant-input{
+          height: 50px;
+        }
+      }
+      .ant-btn-primary {
+        height: 50px;
+        background-color: $primaryColor;
+        border-color: $primaryColor;
+        &:hover {
+          background-color: black;
+          
+        }
       }
     }
   }
-  
-  .hideSearch{
+
+  .hideSearch {
     display: none;
   }
-  .showSearch{
+  .showSearch {
     display: block;
-    
   }
   .menu {
     background-color: $bgColor2;
     display: flex;
-    padding: 0 7%;  
-  
+    padding: 0 7%;
+
     .main-container {
       display: flex;
       width: 84%;
@@ -140,8 +151,7 @@ header {
         color: $primaryColor;
       }
     }
-   
-  
+
     .hamburger-btn {
       display: none;
       font-size: 20px;
@@ -166,13 +176,12 @@ header {
 
 // Drawer
 .drawer {
-  .box-logo{
+  .box-logo {
     margin: auto;
     text-align: center;
     .drawer-logo {
       padding: 0 0 40px 0;
       width: 38%;
-      
     }
   }
   .drawer-menu-container {
@@ -189,7 +198,6 @@ header {
     // background-color: rgba(51, 51, 51, 0.5);
     z-index: -1;
   }
- 
 }
 
 // Responsive
@@ -221,24 +229,23 @@ header {
   }
 }
 
-@media screen and (max-width: 934px){
-  header{
-    .menu{
+@media screen and (max-width: 934px) {
+  header {
+    .menu {
       background-color: $bgColor2;
-      .main-container{
+      .main-container {
         width: 84%;
         height: 60px;
-        .menu-item{
+        .menu-item {
           display: none;
         }
       }
-      .search-container{
+      .search-container {
         margin-left: -86%;
       }
-      .hamburger-btn{
+      .hamburger-btn {
         display: block;
         line-height: 60px;
-        
       }
     }
   }

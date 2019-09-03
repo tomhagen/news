@@ -14,6 +14,7 @@ class LatestInCategory extends Component {
     };
   }
   renderNewsByCategoryList = () => {
+    // console.log(this.props.newsByCategoryList);
     return this.props.newsByCategoryList.slice(0, 6).map((news, index) => {
       return <ItemNews key={index} news={news} />;
     });
@@ -53,10 +54,12 @@ class LatestInCategory extends Component {
       this.props.onGetNewsByCategory("startup", 100);
     }
   };
-  componentWillMount() {
+  componentDidMount() {
+    // console.log("category willmount")
     this.props.onGetNewsByCategory("business", 100);
   }
   render() {
+    // console.log(this.props.newsByCategoryList);
     return (
       <Fragment>
         {/* <Loading/> */}

@@ -5,7 +5,7 @@ import { Icon, Drawer, Menu, Input } from "antd";
 import { Link } from "react-router-dom";
 
 const { SubMenu } = Menu;
-const {Search} = Input;
+const { Search } = Input;
 
 class header extends Component {
   constructor(props) {
@@ -32,8 +32,8 @@ class header extends Component {
   handleShowQuerySearch = () => {
     this.setState({
       isShowQuerySearch: !this.state.isShowQuerySearch
-    })
-  }
+    });
+  };
   showDrawer = () => {
     this.setState({
       visible: true
@@ -315,7 +315,7 @@ class header extends Component {
               </li>
             </ul>
             <div className="search-container">
-              <Icon type="search" onClick={this.handleShowQuerySearch}/>
+              <Icon type="search" onClick={this.handleShowQuerySearch} />
             </div>
 
             <div className="hamburger-btn">
@@ -323,13 +323,19 @@ class header extends Component {
             </div>
           </div>
 
-          <div className={`query__search__container ${this.state.isShowQuerySearch ? "showSearch":"hideSearch"} `}>
-            <Search
-              placeholder="Search something"
-              enterButton="Search"
-              size="large"
-              onSearch={value => console.log(value)}
-            />
+          <div
+            className={`search__wrapper ${
+              this.state.isShowQuerySearch ? "showSearch" : "hideSearch"
+            }`}
+          >
+            <div className="query__search__container ">
+              <Search
+                placeholder="Search something"
+                enterButton="Search"
+                size="large"
+                onSearch={value => console.log(value)}
+              />
+            </div>
           </div>
         </header>
 

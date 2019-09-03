@@ -182,7 +182,7 @@ class CreatePosts extends Component {
         "content-type": "multipart/form-data"
       }
     };
-
+    // CREATE POSTS
     if (!this.props.editStatus) {
       Axios({
         method: "POST",
@@ -214,39 +214,53 @@ class CreatePosts extends Component {
           message.error("Upload images errors. Please update again", 1.5);
           // console.log(err);
         });
-
-      // Create a new posts
     } else {
-      Axios({
-        method: "POST",
-        url: "http://localhost:5000/api/upload_images",
-        data: formData,
-        config
-      })
-        .then(res => {
-          // Handle submit form
-
-          const hide = message.loading("Action in progress...", 0);
-          setTimeout(
-            hide,
-            Axios({
-              method: "PUT",
-              url: `http://localhost:5000/api/posts/${this.props.editNewsInfo._id}`,
-              data: this.state
-            })
-              .then(res => {
-                message.success("Update post successfully");
-                this.props.history.push("/admin/posts");
-              })
-              .catch(err => {
-                message.error("Cannot update post");
-              })
-          );
+      // UPDATE POSTS
+      if (this.state.file !== null) { // Check if images have data or not 
+        Axios({
+          method: "POST",
+          url: "http://localhost:5000/api/upload_images",
+          data: formData,
+          config
         })
-        .catch(err => {
-          message.error("Cannot upload images", err);
-          console.log(err);
-        });
+          .then(res => {
+            // Handle submit form
+
+            const hide = message.loading("Action in progress...", 0);
+            setTimeout(
+              hide,
+              Axios({
+                method: "PUT",
+                url: `http://localhost:5000/api/posts/${this.props.editNewsInfo._id}`,
+                data: { ...this.state, images: res.data.path }
+              })
+                .then(res => {
+                  message.success("Update post successfully");
+                  this.props.history.push("/admin/posts");
+                })
+                .catch(err => {
+                  message.error("Cannot update post");
+                })
+            );
+          })
+          .catch(err => {
+            message.error("Cannot upload images", err);
+            console.log(err);
+          });
+      } else {
+        Axios({
+          method: "PUT",
+          url: `http://localhost:5000/api/posts/${this.props.editNewsInfo._id}`,
+          data: this.state
+        })
+          .then(res => {
+            message.success("Update post successfully");
+            this.props.history.push("/admin/posts");
+          })
+          .catch(err => {
+            message.error("Cannot update post");
+          });
+      }
     }
   };
 
@@ -276,7 +290,6 @@ class CreatePosts extends Component {
               style={{ backgroundColor: "#52c41a" }}
             />
             <Form onSubmit={this.handleOnSubmit}>
-
               {/* Form Title */}
               <Form.Item label="Post Title">
                 <Input
@@ -287,8 +300,8 @@ class CreatePosts extends Component {
                 />
               </Form.Item>
 
-               {/* Form Editor */} 
-               <Form.Item label="Post Description"></Form.Item>
+              {/* Form Editor */}
+              <Form.Item label="Post Description"></Form.Item>
               <ReactQuill
                 theme="snow"
                 name="description"
@@ -340,7 +353,7 @@ class CreatePosts extends Component {
                 </Checkbox>
               </Form.Item>
 
-                {/* Form Editor */} 
+              {/* Form Editor */}
               <Form.Item label="Main Content of Post"></Form.Item>
               <ReactQuill
                 theme="snow"

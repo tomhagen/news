@@ -2,10 +2,11 @@ import "./index.scss";
 import React, { Component, Fragment } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
 
 class Business extends Component {
   renderBusinessItem = () => {
-    return this.props.businessList.map((news, index) => {
+    return this.props.newsByCategory.slice(0,1).map((news, index) => {
       return (
         <div className="container" key={index}>
           <div
@@ -52,4 +53,10 @@ class Business extends Component {
     );
   }
 }
-export default Business;
+
+const mapStateToProps = state => {
+  return {
+    newsByCategory: state.newsByCategory
+  }
+}
+export default connect(mapStateToProps,null) (Business);

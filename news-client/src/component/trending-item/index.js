@@ -1,25 +1,32 @@
 import "./index.scss";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import moment from "moment";
 
 class TrendingItem extends Component {
   render() {
+    let { images, title, author, createdOn, slug } = this.props.news;
+
     return (
       <div className="trending-item">
         <div className="trending-item-box-img">
-          <a href="#">
-            <img src="/img/latest-in-category1.jpg" className="news-item-img" />
-          </a>
+          <Link to={`/${slug}`}>
+            <img
+              src={`http://localhost:5000/api/open?name=${images}`}
+              className="news-item-img"
+            />
+          </Link>
         </div>
         <div className="trending-item-box-content">
           <h5 className="box-content-title">
-            <a href="#">
-              Magnificent Image Of The New Hoover Dam Bridge Taking Shape
-            </a>
+            <Link to={`/${slug}`}>{title}</Link>
           </h5>
 
           <div className="trending-box-content-info">
-            <h5 className="info-name">John Phillipe</h5>
-            <span className="info-date">POSTED ON MARCH 24, 20167</span>
+            <h5 className="info-name">{author}</h5>
+            <span className="info-date">
+              {moment(createdOn).format("MMM DD YYYY")}
+            </span>
           </div>
         </div>
       </div>

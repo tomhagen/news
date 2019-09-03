@@ -24,13 +24,16 @@ class EditorChoice extends Component {
       .catch(err => {
         console.log(err);
       });
+      // console.log("editor didmount")
   }
   renderEditorChoiceList = () => {
+    // console.log(this.state.editorChoiceList)
     return this.state.editorChoiceList.map((news, index) => {
       return <EditorChoiceItem key={index} news={news} />;
     });
   };
   render() {
+    // console.log(this.state.editorChoiceList)
     const settings = {
       speed: 500,
       slidesToShow: 4,

@@ -1,0 +1,78 @@
+@import "../scss/variables.scss";
+
+.you__may__like-item {
+  flex: 48% 1;
+  max-width: 48%;
+    margin-top: 20px;
+  .you__may__like-item-box-img {
+    img {
+      width: 100%;
+    }
+  }
+  .you__may__like-item-box-content {
+    margin-top: 20px;
+    .box-content-title {
+      font-size: 20px;
+      font-weight: bold;
+
+      a {
+        color: black;
+      }
+      &:hover a {
+        color: $primaryColor;
+      }
+    }
+
+    .you__may__like-box-content-info {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      .info-name {
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .info-date {
+        font-size: 11px;
+        margin-left: 20px;
+        color: $dateTextColor;
+        letter-spacing: 1px;
+      }
+    }
+  }
+}
+
+
+// responsive
+
+@media screen and (max-width: 993px) {
+  .trending-item {
+    flex: 48% 1;
+    max-width: 48%;
+    .trending-item-box-content {
+      .box-content-title {
+        font-size: 18px;
+      }
+      .trending-box-content-info {
+        display: block;
+        .info-date {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .trending-item {
+    flex: 100% 1;
+    max-width: 100%;
+    .trending-item-box-content {
+      .box-content-title {
+        font-size: 20px;
+      }
+    }
+  }
+  .item {
+    margin: 20px 10px;
+  }
+}

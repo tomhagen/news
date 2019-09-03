@@ -12,7 +12,7 @@ class AdminUsers extends Component {
     } else {
       if (this.props.auth.profile.usertype !== "admin") {
         this.props.history.push("/permission");
-      }
+      } 
     }
   }
   render() {

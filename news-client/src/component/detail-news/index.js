@@ -5,17 +5,43 @@ import Social from "../social";
 import Author from "../author";
 import TrendingItem from "../trending-item";
 import { Form, Input, Button, Row, Col } from "antd";
-import moment from "moment";
+import moment from "moment-timezone";
+import { connect } from "react-redux";
+import {
+  requestGetTrendingNews,
+  requestGetNewsByCategory
+} from "../../actions/newsAction";
+import YouMayLikeItem from "../you-may-like-item";
 
 const { TextArea } = Input;
 
 class DetailNews extends Component {
-  // createMarkup = () => {
-  //   return {_html: this.props.detailNews.description}
-  // }
-  render() {
-    console.log("render");
+  componentDidMount() {
+    this.props.onGetYouMayLikeNews(this.props.detailNews.category, 6);
+  }
 
+  renderTrendingItem = () => {
+    let newsListFilter = this.props.trendingNewsList.filter(
+      news => news._id !== this.props.detailNews._id
+    );
+    console.log(newsListFilter);
+    return newsListFilter.slice(0, 4).map((news, i) => {
+      return <TrendingItem news={news} key={i} />;
+    });
+  };
+
+  renderYouMayLikeItem = () => {
+    console.log(this.props.newsByCategoryList);
+    let categoryListFilter = this.props.newsByCategoryList.filter(
+      news => news._id !== this.props.detailNews._id
+    );
+    console.log(categoryListFilter);
+    return categoryListFilter.slice(0, 4).map((news, i) => {
+      return <YouMayLikeItem news={news} key={i} />;
+    });
+  };
+  render() {
+    console.log("item news");
     let {
       description,
       images,
@@ -23,7 +49,7 @@ class DetailNews extends Component {
       createdOn,
       mainContent
     } = this.props.detailNews;
-    console.log(images);
+
     return (
       <Fragment>
         <section className="detail-news">
@@ -31,16 +57,25 @@ class DetailNews extends Component {
             <div className="news-container">
               <Social />
               <div className="description-container">
-                <p className="summary">
-                  <div dangerouslySetInnerHTML={{ __html: `${description ? description : ""}` }} />
-                </p>
+                <div className="summary">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: `${description ? description : ""}`
+                    }}
+                  />
+                </div>
                 <div className="description-detail">
                   By
                   <span className="author-name">{author}</span>
                   <span className="date">
                     {" "}
                     Posts on:{" "}
-                    <strong> {moment(createdOn).format("LLLL")}</strong>
+                    <strong>
+                      {" "}
+                      {moment(createdOn)
+                        .tz("Etc/GMT-7")
+                        .format("LLLL")}
+                    </strong>
                   </span>
                 </div>
                 <div className="item-divider">
@@ -65,18 +100,13 @@ class DetailNews extends Component {
               <div className="trending__now">
                 <h2>TRENDING NOW</h2>
               </div>
-              <div className="trending__box">
-                <TrendingItem />
-                <TrendingItem />
-              </div>
+              <div className="trending__box">{this.renderTrendingItem()}</div>
 
               <div className="you__may__like">
                 <h2>YOU MAY ALSO LIKE</h2>
               </div>
               <div className="you__may__like__box">
-                <TrendingItem />
-                <TrendingItem />
-                <TrendingItem />
+                {this.renderYouMayLikeItem()}
               </div>
               <div className="post__comment">
                 <div className="post__comment__container">
@@ -120,4 +150,25 @@ class DetailNews extends Component {
   }
 }
 
-export default DetailNews;
+const mapStateToProps = state => {
+  return {
+    trendingNewsList: state.trendingNews,
+    newsByCategoryList: state.newsByCategory
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    // onGetTrendingNews: limit => {
+    //   dispatch(requestGetTrendingNews(limit));
+    // },
+    onGetYouMayLikeNews: (type, limit) => {
+      dispatch(requestGetNewsByCategory(type, limit));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DetailNews);
